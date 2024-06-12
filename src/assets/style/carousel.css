@@ -1,0 +1,123 @@
+.swiper-item-content {
+  font-family: Gilroy-Bold !important ;
+
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 55px;
+  letter-spacing: 0em;
+  text-align: left;
+  white-space: nowrap;
+  color: var(--text_color);
+}
+.swiper-wrapper {
+  align-items: center;
+}
+.swiper_custom_item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+.left-swiper-item,
+.right-swiper-item {
+  width: 50%;
+}
+
+.swiper-item-desc {
+  font-family: Gilroy-Regular, sans-serif;
+
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 23px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: var(--red);
+  margin-bottom: 8px;
+}
+
+.auth-btn {
+  padding: 1.225rem 2rem;
+  border-radius: 8px;
+  gap: 10px;
+  background: var(--primary_bg);
+  margin-top: 20px;
+  font-family: Gilroy-Medium !important;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.swiper-pagination-bullet {
+  background: white !important;
+  border: 1px solid;
+}
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  border-radius: 50px !important;
+  background: var(--grey) !important;
+  border: 1px solid var(--grey);
+}
+.slide_item {
+  display: flex !important;
+  align-items: center;
+}
+@media screen and (max-width: 768px) {
+  .left-swiper-item,
+  .right-swiper-item {
+    width: 50%;
+  }
+  .swiper-item-content {
+    font-size: 34px;
+    width: 90%;
+    white-space: wrap;
+    line-height: normal;
+    /* color: white; */
+  }
+  .swiper-item-desc {
+    font-size: 14px;
+    /* color: white; */
+    line-height: normal;
+  }
+  .auth-btn {
+    padding: 8px 10px;
+    margin-top: 4px;
+    font-size: 12px !important;
+  }
+  .swiper-button-prev,
+  .swiper-button-next {
+    margin-top: 20px;
+  }
+  .right-swiper-item {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .left-swiper-item {
+    padding-left: 10px;
+  }
+  .swiper-slide {
+    /* min-height: 100%; */
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+  }
+  .items-center {
+    position: relative;
+    padding: 0 !important;
+  }
+
+  .right-swiper-item-img img {
+    position: absolute;
+    left: -150px;
+    right: 0;
+    bottom: 0;
+    top: -100px;
+    z-index: -1;
+    object-fit: contain;
+  }
+  .center_image {
+    top: -30px !important;
+  }
+  .slide_item {
+    display: flex !important;
+    align-items: center;
+  }
+}

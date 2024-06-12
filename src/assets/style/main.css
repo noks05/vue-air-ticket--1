@@ -1,0 +1,412 @@
+@import "vue-select/dist/vue-select.css";
+@import url("./colors.css");
+@import url("./carousel.css");
+@import url("./product_show.css");
+
+.items-center {
+  display: flex;
+  justify-content: center;
+  align-items: center !important;
+}
+
+* {
+  font-family: Gilroy-Regular, sans-serif !important;
+}
+
+.f-500 {
+  font-weight: 500;
+  font-family: Gilroy-Medium, sans-serif !important;
+}
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+
+/* transition */
+
+.slide-fade-enter-active {
+  transition: all 0.3s linear;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.3s linear;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+.n-card__content {
+  padding: 0 !important;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.rotated_icon {
+  transform: rotate(180deg);
+}
+
+.top_product_card {
+  width: 100%;
+  background: white;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #ebebeb;
+}
+
+.top_product_card_heading {
+  padding: 16px 0 0 16px;
+}
+
+.top_card_title {
+  font-family: Gilroy-Regular, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 15px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #777777 !important;
+}
+
+.top_card_description {
+  font-family: Gilroy-Medium, sans-serif !important;
+  font-size: 16px;
+  font-weight: 500 !important;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-top: 4px;
+  color: #333 !important;
+}
+
+.top_card_price_parent {
+  display: flex;
+  margin-top: 4px;
+}
+
+.top_card_price_start {
+  font-family: Gilroy-Regular, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 15px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #777777 !important;
+}
+
+.top_card_price {
+  font-family: Gilroy-Medium, sans-serif !important;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+  /* margin-left: 4px; */
+}
+
+.top_product_card_footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: var(--primary_bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 0;
+  font-family: Gilroy-Medium, sans-serif !important;
+  height: 41px;
+  font-size: 14px !important;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: white;
+}
+
+.iPhone_img {
+  max-height: 264px;
+}
+
+@media screen and (max-width: 567px) {
+  .product-details-action {
+    align-items: center !important;
+    display: grid;
+    grid-template-columns: auto 1fr 2fr;
+  }
+}
+
+.dropdown-menu {
+  border-bottom-right-radius: 8px !important;
+  border-bottom-left-radius: 8px !important;
+  overflow: hidden;
+}
+
+.vc-indigo {
+  --vc-accent-50: #eef2ff;
+  --vc-accent-100: #fff !important;
+  --vc-accent-200: #fff !important;
+  --vc-accent-300: #fff !important;
+  --vc-accent-400: #818cf8;
+  --vc-accent-500: #55246a !important;
+  --vc-accent-600: #55246a !important;
+  --vc-accent-700: #55246a !important;
+  --vc-accent-800: #55246a !important;
+  --vc-accent-900: #55246a !important;
+}
+
+.vc-highlight.vc-highlight-bg-solid {
+  border-radius: 8px !important;
+}
+
+.vc-focus {
+  border-radius: 8px !important;
+  border: 0 !important;
+}
+
+.vc-focusable {
+  border-radius: 8px !important;
+  border: 0 !important;
+}
+
+.vc-highlight-content-outline {
+  background: var(--primary_bg) !important;
+  border-radius: 8px !important;
+  color: var(--white) !important;
+}
+
+.vc-highlights {
+  background: none !important;
+  color: var(--white) !important;
+}
+
+.vc-day-layer {
+  background: transparent !important;
+  color: var(--white) !important;
+}
+
+.vc-highlight-content-light {
+  color: var(--white) !important;
+  /* background: var(--primary_bg) !important; */
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+}
+.vc-highlight-content-solid{
+  background-color: var(--primary_bg);
+  border-radius: 4px !important;
+}
+
+.skel-shop-products {
+  margin-top: 1px;
+}
+
+
+/* select-search-form  */
+.search-form-select {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  padding-left: 6px;
+  border-radius: var(--bdrs-7);
+}
+
+.search-form-select .vs__selected {
+  display: block;
+  margin: 0;
+  padding: 8px 6px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.search-form-route-mobile .search-form-select.search-form-select--active .vs__selected {
+  display: block;
+  transform: translateY(-3px);
+}
+.search-form-select .vs__selected-options {
+  width: 100%;
+  overflow: hidden;
+}
+
+.search-form-select .vs__search {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text_color);
+}
+
+.search-form-select .select-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-form-select .vs__actions {
+  display: none;
+}
+
+.search-form-select .vs__dropdown-menu {
+  min-width: 351px;
+  /* width: 100%; */
+  padding-block: 2.4rem;
+  padding-inline: 0.5rem;
+  border: var(--border-grey);
+  border-radius: 0 0 7px 7px;
+  background-color: #fff;
+  box-shadow: var(--shadow-light);
+  z-index: 1000;
+}
+
+.search-form-select .vs__dropdown-menu li span{
+text-overflow: ellipsis;
+overflow: hidden;
+white-space: nowrap;
+} 
+
+.search-form-select .vs__dropdown-toggle {
+  height: 100%;
+  border: none;
+  padding: 0;
+}
+
+@media screen and (max-width: 768px) {
+
+  .search-form-select .vs__dropdown-menu {
+     min-width: 45vw;
+     padding: 1.6rem;
+     font-size: 12px;
+     font-family: GilroyRegular;
+     font-weight: 400;
+     line-height: 150%;
+     color: #797979;
+  } 
+  .search-form-select .vs__dropdown-menu li {
+    padding: 0; 
+  } 
+}
+@media screen and (max-width: 576px) {
+
+  .breadcrumb {
+    margin-bottom: 0!important;
+    padding-bottom: 0!important;
+  } 
+}
+
+@media screen and (max-width: 480px) {
+
+  .search-form-select .vs__selected {
+    margin-top: 4px;
+    font-size: 12px;
+    line-height: 172%;
+  } 
+  .search-form-select .vs__dropdown-menu {
+    min-width: calc(100vw - 11px*2 - 15px*2);
+ } 
+  
+}
+
+
+/* datepicker in search-fields */
+.search-form-field .vc-bordered{
+  top: -10px;
+  z-index: 1000;
+  padding: 40px 48px;
+  font-family: Gilroy-Medium;
+  font-weight: 400;
+  font-size: 14px;
+  border: var(--border-grey);
+}
+.search-form-field .vc-header.is-lg {
+ margin-bottom: 10px;
+}
+.search-form-field .vc-header.is-lg span{
+  font-family: Gilroy-Medium;
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--primary_bg);
+}
+.search-form-field .vc-weekday{
+  font-family: Gilroy-Medium;
+  font-weight: 400;
+  font-size: 14px;
+  color: #797979;
+}
+.search-form-field .vc-weekday:nth-last-child(-n+2){
+  color: var(--red);
+}
+
+.search-form-field .vc-light.vc-attr, .vc-light .vc-attr{
+  border-radius: 4px !important;
+}
+.vc-popover-content-wrapper{
+  left: -18% !important;
+  right: auto !important;
+  z-index: 1000 !important;
+}
+.vc-date-picker-content{
+  position: absolute !important;
+  border: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+.vc-date-picker-content .vc-container{
+  border: var(--border-grey) !important;
+}
+
+.vc-day{
+  border-radius: 4px !important;
+  padding: 2px !important;
+}
+.vc-highlight-bg-solid{
+  height: 40px !important;
+  width: 40px !important;
+}
+
+.vc-header .vc-arrow .vc-base-icon{
+  stroke: var(--primary_bg)!important;
+}
+
+@media screen and (max-width: 992px) {
+  .search-form-field .vc-bordered{
+    padding: 24px 20px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .vc-popover-content-wrapper{
+    position: fixed !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    top: 0 !important;
+    transform: translateY(300px) !important;
+  }
+  .vc-popover-content.direction-bottom{
+    bottom: 226px;
+  }
+  .vc-bordered{
+    border-radius: 7px 7px 0 0 !important;
+  }
+  .search-form-field .vc-bordered{
+    padding-top: 60px;  
+  }
+  .search-form-field .vc-bordered .date-picker__btn{
+    position: absolute;
+    top: -40px;
+    right: 10px;
+  }
+  .search-form-field .vc-bordered .date-picker__mobile-title{
+    position: absolute;
+    top: -40px;
+    left: 10px;
+  }
+}
