@@ -1061,7 +1061,7 @@ export default {
   margin-top: 20px;
   padding: 10px;
   padding-block: 14px;
-  /* padding-bottom: 18px; */
+  padding-bottom: 18px;
   border-radius: var(--bdrs-7);
   font-size: 16px;
   font-family: Gilroy-Medium;
