@@ -42,8 +42,8 @@ export default {
   position: absolute;
   top: 40px;
   right: 0;
-  max-width: 250px;
-  min-width: 250px;
+  max-width: 214px;
+  min-width: 214px;
   padding-inline: 1.6rem;
   border-top-left-radius: 7px;
 }
@@ -79,8 +79,8 @@ label:active{
 }
 input[type="radio"]:checked+.mark {
   width: 16px;
-  margin-right: 8px;
-  opacity: 1;
+  margin-inline: 7px;
+  opacity: 1; 
 }
 input[type="radio"]:checked ~ .text {
   color: var(--primary_bg);

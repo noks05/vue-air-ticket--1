@@ -13,21 +13,23 @@
           </div>
 
           <div class="path__point-wrap">
-            <div class="path__point" v-for="(obj, index) in arr"
-            :key="index">
+            <div class="path__point" v-for="(obj, index) in arr" :key="index">
               <span class="name-slider text"> {{ obj.title }} </span>
-              <Slider
-                v-model="obj.rangeValue"
-                range
-                :step="(1 / 12).toFixed(1)"
-                :min="1"
-                :max="24"
-              />
+
+              <div class="slider-wrapper">
+                <Slider
+                  v-model="obj.rangeValue"
+                  range
+                  :step="(1 / 12).toFixed(1)"
+                  :min="1"
+                  :max="24"
+                />
+              </div>
+
               <span class="time text">
                 <span> c {{ obj.from }} </span>
                 <span>
-                  до {{ obj.to
-                  }}<span v-if="i === 1">, {{ obj.day }}</span>
+                  до {{ obj.to }}<span v-if="i === 1">, {{ obj.day }}</span>
                 </span>
               </span>
             </div>
@@ -35,16 +37,25 @@
         </div>
       </li>
 
-      <li v-for="(it, i) in listData.otherSliders" :key="i">  
-        
+      <li v-for="(it, i) in listData.otherSliders" :key="i">
         <div class="path__point">
           <h3 class="path-title_l">{{ it.title }}</h3>
-            <Slider v-model="it.rangeValue" range :step="1 / 12" :min="1" :max="24" />
-            <span class="time text">
-              <span> c {{ it.from }} ч</span>
-              <span> до {{ it.to }} ч</span>
-            </span>
+
+          <div class="slider-wrapper">
+            <Slider
+              v-model="it.rangeValue"
+              range
+              :step="1 / 12"
+              :min="1"
+              :max="24"
+            />
           </div>
+
+          <span class="time text">
+            <span> от {{ it.from }} ч</span>
+            <span> до {{ it.to }} ч</span>
+          </span>
+        </div>
       </li>
     </ul>
   </div>
@@ -70,32 +81,39 @@ export default {
 </script>
 
 <style scoped>
-.path {
+div.path {
   position: absolute;
   top: 40px;
   right: 50%;
   transform: translateX(50%);
   max-width: 325px;
   min-width: 325px;
+  padding-block: 2.2rem;
+}
+.path .slider-wrapper{
+  padding-inline: 8px;
 }
 .path h3 {
   margin-bottom: 1.6rem;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 400;
   line-height: 100%;
   color: #333;
 }
-.path__row:not(:last-child){
+.path ul {
+  margin-bottom: 0;
+}
+.path h3.path-title_l {
+  margin-bottom: 1.3rem;
+}
+.path__row:not(:last-child) {
   margin-bottom: 24px;
 }
 .sub-title {
   font-size: 14px;
   font-weight: 400;
-  line-height: 150%;
+  line-height: 135%;
   color: #797979;
-}
-.name-slider {
-  margin-bottom: 1.1rem;
 }
 .text {
   display: inline-block;
@@ -113,7 +131,12 @@ export default {
 .path__point-wrap {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+}
+.path .path__point-wrap{
+  gap: 5px;
+}
+.path ul{
+  gap: 13px;
 }
 </style>
 
@@ -134,31 +157,30 @@ export default {
   width: 16px;
   border-radius: 100%;
   background-color: var(--primary_bg);
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   cursor: grab;
 }
 
-
-@media (max-width: 576px) { 
-  .path .path-title_l{
-    font-size: 14px!important;
-font-weight: 400!important;
-font-family: Gilroy-Regular!important;
-  }  
-  .path .path-title{
-font-weight: 500!important;
-font-family: Gilroy-Medium !important;
-  } 
-  .sub-title{
-font-size: 12px;
-  }  
-  .path .p-slider{
-margin-bottom: 1.1rem ;
-  } 
-  .path__point-wrap{
+@media (max-width: 576px) {
+  .path .path-title_l {
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    font-family: Gilroy-Regular !important;
+  }
+  .path .path-title {
+    font-weight: 500 !important;
+    font-family: Gilroy-Medium !important;
+  }
+  .sub-title {
+    font-size: 12px;
+  }
+  .path .p-slider {
+    margin-bottom: 1.1rem;
+  }
+  .path__point-wrap {
     gap: 10px;
   }
-  .path__row:not(:last-child){
+  .path__row:not(:last-child) {
     margin-bottom: 19px;
   }
 }

@@ -1,8 +1,8 @@
 <template>
   <div class="list">
     <h3>{{listTitle}}</h3>
-    <ul v-for="item in listData" :key="item.name">
-      <li>
+    <ul>
+      <li v-for="item in listData" :key="item.name">
        <label>
          <input 
          class="visually-hidden"
@@ -38,20 +38,22 @@ export default {
 </script>
 
 <style scoped>
-.list {
+div.list {
   position: absolute;
   top: 40px;
   right: 50%;
   transform: translateX(50%);
   max-width: 230px;
+  padding-block: 2.2rem;
 }
 .list h3 {
-  margin-bottom: 1.6rem;
+  margin-bottom: 1.4rem;
   font-size: 16px;
   line-height: 100%;
   color: #333;
 }
 .list label {
+  margin-bottom: 0;
   cursor: initial;
 }
 .mark {
@@ -97,7 +99,10 @@ label{
   font-family: Gilroy-Medium;
   cursor: pointer;
 }
+ul {
+  margin-bottom: 0;
+}
 li:not(:last-child) {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 </style>

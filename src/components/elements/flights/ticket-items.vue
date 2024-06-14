@@ -59,9 +59,9 @@
               </p>
             </div>
 
-            <ticket-items-more :moreData="moreData[1]" />
+            <ticket-items-more :moreData="moreData[1]" classContent="transfer-content_custom"/>
 
-            <p class="flight-text flight-text_l">
+            <p class="flight-text flight-text_l flight-text-descr">
               *Местное время отправления и прибытия
             </p>
           </div>
@@ -87,7 +87,7 @@
       <div class="flight-right__more" v-if="ticketMore">
         <ul>
           <li>
-            <BagNoIcon class="flight-more-icon" />
+            <BagNoIcon class="flight-more-icon flight-more-icon_b" />
             <span>Багаж оплачивается отдельно</span>
           </li>
           <li class="item--active">
@@ -257,8 +257,10 @@ export default {
 .flight-left {
   width: 70%;
   max-width: 795px;
-  padding: 2.4rem;
+  padding-left: 2.2rem;
   padding-right: 0;
+  padding-top: 2.4rem;
+  padding-bottom: 2rem;
 }
 .flight-left__wrapper {
   border-right: var(--border-grey);
@@ -268,7 +270,7 @@ export default {
 .flight-title {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 9px;
   margin-bottom: 1.6rem;
 }
 .flight-title h3 {
@@ -357,19 +359,18 @@ export default {
   visibility: visible;
 }
 .flight-data:first-child {
-  padding-bottom: 2.4rem;
+  padding-bottom: 1.9rem;
   border-bottom: var(--border-grey);
-  margin-bottom: 2.4rem;
+  margin-bottom: 2.9rem;
 }
 .flight-right {
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-grow: 1;
   width: 30%;
   max-width: 387px;
   padding: 2.4rem;
-  padding-left: 3.4rem;
+  padding-left: 3.2rem;
 }
 .flight-right__default {
   display: flex;
@@ -386,14 +387,13 @@ export default {
 }
 .flight-right__more li {
   display: flex;
-  align-items: center;
   gap: 8px;
   font-weight: 400;
   line-height: 120%;
   color: #797979;
 }
 .flight-right__more li:not(:last-child) {
-  margin-bottom: 1.6rem;
+  margin-bottom: 2rem;
 }
 .flight-right__more .flight-more-icon {
   min-width: 18px;
@@ -407,6 +407,11 @@ export default {
 }
 .flight-right__more li.item--active span {
   color: var(--primary_bg);
+}
+.flight-right__more .flight-more-icon_b{  
+  padding-top: 2px;
+  min-width: 22px;
+  min-height: 22px;
 }
 .flight-number-price {
   display: flex;
@@ -423,6 +428,9 @@ export default {
 }
 .flight-right__left {
   min-width: 116px;
+}
+.flight-right__left svg{
+ margin-left: 7px;
 }
 .flight-right__left .flight-text_l {
   display: block;
@@ -459,20 +467,22 @@ export default {
 .flight-wrapper.ticket--more .flight-btn__transfer-price {
   display: none;
 }
+.flight-wrapper.ticket--more .flight-btn {
+  min-width: 167px;
+  max-width: 167px;
+}
 
 .transfer {
-  margin-top: 16px;
-  width: 70%;
-  max-width: 512px;
-}
-.transfer > *:not(:last-child) {
-  margin-bottom: 16px;
+  margin-top: 12px;
+  width: 75%;
+  max-width: 529px;
 }
 .transfer-pointer {
   display: flex;
   align-items: center;
   gap: 8px;
-  height: 6.4rem;
+  margin-top: 36px;
+  margin-bottom: 40px;
 }
 .transfer-pointer p {
   font-size: 14px;
@@ -481,8 +491,8 @@ export default {
   font-family: Gilroy-Regular;
   color: #000;
 }
-.transfer p {
-  margin-top: 1.6rem;
+.flight-text-descr{
+  margin-top: 10px;
 }
 
 .flight-wrapper.ticket--more .flight-left__wrapper {
@@ -502,14 +512,19 @@ export default {
   width: 32px;
 }
 .flight-wrapper.ticket--more .flight-title h3 {
-  font-size: 16px;
+  font-size: 17px;
   line-height: 100%;
   font-weight: 500;
-  font-family: Gilroy-Medium;
+  font-family: Gilroy-Medium!important;
   color: var(--text_color);
 }
 .flight-wrapper.ticket--more .flight-right {
   background-color: #fbfbfb;
+  padding-left: 2.4rem;
+}
+
+.flight-wrapper.ticket--more .flight-title > .img-wrap {
+  height: 33px;
 }
 
 @media screen and (max-width: 1280px) {
@@ -617,7 +632,7 @@ export default {
 .flight-text {
   display: block;
   font-size: 14px;
-  line-height: 150%;
+  line-height: 137%;
   font-weight: 400;
   font-family: Gilroy-Regular;
   color: #797979;
@@ -672,5 +687,11 @@ export default {
   .flight-text{
     font-size: 12px;
   }
+}
+</style>
+<style>
+.transfer-content_custom .transfer-left,
+.transfer-content_custom .transfer-right{
+  flex-direction: column-reverse;
 }
 </style>

@@ -105,13 +105,10 @@
               class="date-picker dropdown"
               :columns="tablet ? 1 : 2"
               locale="ru-RU"
-              v-model.range="selectedDate"
+              v-model="selectedDate"
+              is-range
             >
-              <!-- is-range -->
-              <template #day-content="{day,dayEvents}">
-                <!-- <div @click="()=>console.log(props)">
-                  weffew
-                  </div> -->
+              <template #day-content="{ day, dayEvents }">
                 <div :class="['dp-day-custom']" v-on="dayEvents">
                   <span class="dp-day-custom__day">{{ day.day }}</span>
                   <span
@@ -125,15 +122,16 @@
                   >
                 </div>
               </template>
-              <template #default="{ inputEvents }">
+              <template #default="{togglePopover}">
                 <label>
                   <input
                     class=""
                     type="text"
                     placeholder="Когда"
                     :value="formatDate(selectedDate.start)"
-                    v-on="inputEvents.start"
-                  />
+                    @click="togglePopover"
+                    />
+                    <!-- v-on="inputEvents.start" -->
                   <CalendarIcon class="search-form-field__img" />
                 </label>
                 <label>
@@ -142,8 +140,9 @@
                     type="text"
                     placeholder="Обратно"
                     :value="formatDate(selectedDate.end)"
-                    v-on="inputEvents.end"
-                  />
+                    @click="togglePopover"
+                    />
+                    <!-- v-on="inputEvents.end" -->
                   <CalendarIcon class="search-form-field__img" />
                 </label>
               </template>
@@ -236,59 +235,57 @@
                   </span>
                 </label>
 
-                  <VDatePicker
-              class="date-picker dropdown"
-              :columns="mobile ? 1 : 2"
-              locale="ru-RU"
-              v-model.range="selectedDate"
-            >
-              <!-- is-range -->
-              <template #day-content="{day,dayEvents}">
-                <!-- <div @click="()=>console.log(props)">
-                  weffew
-                  </div> -->
-                <div :class="['dp-day-custom']" v-on="dayEvents">
-                  <span class="dp-day-custom__day">{{ day.day }}</span>
-                  <span
-                    :class="[
-                      'dp-day-custom__price',
-                      day.weekday === 4 || day.weekday === 5
-                        ? 'dp-day-custom__price--green'
-                        : '',
-                    ]"
-                    >{{ prices[day.month][day.day] }}</span
-                  >
-                </div>
-              </template>
-              <template #default="{ inputEvents }">
-                <label>
-                  <input
-                    class=""
-                    type="text"
-                    placeholder="Когда"
-                    :value="formatDate(selectedDate.start)"
-                    v-on="inputEvents.start"
-                  />
-                </label>
-              </template>
-              <template #footer>
-                <div class="date-picker__mobile-title" v-if="mobile">Когда</div>
-                <button
-                  class="search-filter__item date-picker__btn"
-                  type="button"
+                <VDatePicker
+                  class="date-picker dropdown"
+                  :columns="mobile ? 1 : 2"
+                  locale="ru-RU"
+                  v-model.range="selectedDate"
                 >
-                  <PathIcon v-if="!mobile"/>
-                  Обратный билет не нужен
-                </button>
-              </template>
-            </VDatePicker>
+                  <template #day-content="{ day, dayEvents }">
+                    <div :class="['dp-day-custom']" v-on="dayEvents">
+                      <span class="dp-day-custom__day">{{ day.day }}</span>
+                      <span
+                        :class="[
+                          'dp-day-custom__price',
+                          day.weekday === 4 || day.weekday === 5
+                            ? 'dp-day-custom__price--green'
+                            : '',
+                        ]"
+                        >{{ prices[day.month][day.day] }}</span
+                      >
+                    </div>
+                  </template>
+                  <template #default="{ inputEvents }">
+                    <label>
+                      <input
+                        class=""
+                        type="text"
+                        placeholder="Когда"
+                        :value="formatDate(selectedDate.start)"
+                        v-on="inputEvents.start"
+                      />
+                    </label>
+                  </template>
+                  <template #footer>
+                    <div class="date-picker__mobile-title" v-if="mobile">
+                      Когда
+                    </div>
+                    <button
+                      class="search-filter__item date-picker__btn"
+                      type="button"
+                    >
+                      <PathIcon v-if="!mobile" />
+                      Обратный билет не нужен
+                    </button>
+                  </template>
+                </VDatePicker>
 
                 <button
                   class="search-form-route-mobile__btn"
                   type="button"
                   @click="() => removeRouteMobile()"
                 >
-                  <CancelIcon/>
+                  <CancelIcon />
                 </button>
               </div>
             </div>
@@ -302,14 +299,15 @@
                   countPas.adults + countPas.childs + countPas.babies
                 } пассажир`"
                 @click="
-                  item[pasSelected + item.id] = !item[pasSelected + item.id]
+                  item['pasSelected' + item.id] = !item['pasSelected' + item.id];
+                  showAndHideDropdown();
                 "
               />
               <UserIcon class="search-form-field__img" />
               <pas-dropdown
                 :class="['dropdown', mobile ? 'dropdown--mobile' : '']"
                 v-model="countPas"
-                v-if="item[pasSelected + item.id]"
+                v-if="item['pasSelected' + item.id]"
               />
             </label>
           </div>
@@ -335,11 +333,13 @@
           "
         >
           <PathIcon />
-          {{
-            hardRouteActive
-              ? "Вернуться к простому маршруту"
-              : "Составить сложный маршрут"
-          }}
+          <span>
+            {{
+              hardRouteActive
+                ? "Вернуться к простому маршруту"
+                : "Составить сложный маршрут"
+            }}
+          </span>
         </button>
 
         <button
@@ -363,27 +363,36 @@
 
         <div class="search-filter__center" v-if="!mobile">
           <button
-            :class="['search-filter__item', sliderListActive?'search-filter__item--active': '']"
+            :class="[
+              'search-filter__item',
+              sliderListActive ? 'search-filter__item--active' : '',
+            ]"
             type="button"
-            @click="sliderListActive = !sliderListActive"
+            @click="() => showAndHideDropdown('sliderListActive')"
           >
             <span>Отправление и прибытие</span>
             <ArrowDownIcon />
           </button>
 
           <button
-            :class="['search-filter__item', listTransActive?'search-filter__item--active': '']"
+            :class="[
+              'search-filter__item',
+              listTransActive ? 'search-filter__item--active' : '',
+            ]"
             type="button"
-            @click="listTransActive = !listTransActive"
+            @click="() => showAndHideDropdown('listTransActive')"
           >
             <span>Пересадки</span>
             <ArrowDownIcon />
           </button>
 
           <button
-            :class="['search-filter__item', listBagActive?'search-filter__item--active': '']"
+            :class="[
+              'search-filter__item',
+              listBagActive ? 'search-filter__item--active' : '',
+            ]"
             type="button"
-            @click="listBagActive = !listBagActive"
+            @click="() => showAndHideDropdown('listBagActive')"
           >
             <span>Багаж</span>
             <ArrowDownIcon />
@@ -418,11 +427,18 @@
           <span>Добавить перелёт</span>
         </button>
 
-        <div :class="['search-filter__item', listSortActive?'search-filter__item--active': '']" v-if="!mobile">
+        <div
+          :class="[
+            'search-filter__item',
+            'search-filter__item_sort',
+            listSortActive ? 'search-filter__item--active' : '',
+          ]"
+          v-if="!mobile"
+        >
           <button
             class="search-filter__item"
             type="button"
-            @click="listSortActive = !listSortActive"
+            @click="() => showAndHideDropdown('listSortActive')"
           >
             <FilterIcon />
             <span>Сортировать по</span>
@@ -576,6 +592,7 @@ export default {
   },
   data() {
     return {
+      activeDatePicker: false,
       category: "",
       search: false,
       listTransActive: false,
@@ -693,8 +710,8 @@ export default {
       sliderListPath: {
         departureAndArrival: {
           title: "Отправление и прибытие",
-          pointStartTitle: "Пекин",
-          pointEndTitle: "Екатеринбург",
+          pointStartTitle: "Екатеринбург",
+          pointEndTitle: "Пекин",
           pathData: [
             [
               {
@@ -885,11 +902,30 @@ export default {
     });
   },
   methods: {
+    hidePasDropdowns() {
+      this.dataFields.forEach(obj => {
+        obj["pasSelected" + obj.id] = false;
+      });
+    },
+    showAndHideDropdown(key) {
+      const states = [
+        "listTransActive",
+        "listBagActive",
+        "listSortActive",
+        "sliderListActive",
+      ];
+      if (key) {
+        this[key] = !this[key];
+      }
+      states.forEach(state => {
+        if (state !== key) {
+          this[state] = false;
+        }
+      });
+    },
     activeFilterDropdown(target) {
       this.filterMobileActive = !this.filterMobileActive;
       const nameState = target.id.replace("State", "");
-      console.log(nameState);
-      console.log(this[nameState]);
       this[nameState] = !this[nameState];
     },
     removeRouteMobile() {
@@ -915,7 +951,6 @@ export default {
         }
       });
       this.dataFields.push(newObj);
-      console.log(this.dataFields);
     },
     removeRoute() {
       if (this.dataFields.length > 1) {
@@ -940,6 +975,19 @@ export default {
       let dayWeek = days[Number(date.getDay())];
       return day + " " + month + ", " + dayWeek;
     },
+  },
+  mounted() {
+    window.addEventListener("click", e => {
+      const dropdown = e.target.closest(".dropdown");
+      const btnFilter = e.target.closest(".search-filter__item");
+      if (!btnFilter && !dropdown) {
+        this.showAndHideDropdown();
+      }
+      const btnPas = e.target.closest(".search-form-field__pas");
+      if (!btnPas) {
+        this.hidePasDropdowns();
+      }
+    });
   },
 };
 </script>
@@ -972,10 +1020,10 @@ export default {
 .date-picker__price_b {
   color: #7dd2ea;
 }
-.date-picker__mobile-title{
+.date-picker__mobile-title {
   font-size: 16px;
   font-weight: 500 !important;
-  font-family: Gilroy-Medium!important;
+  font-family: Gilroy-Medium !important;
   color: #333;
 }
 .date-picker__btn {
@@ -993,7 +1041,9 @@ export default {
   height: auto;
   margin-top: 20px;
   padding: 10px;
-  border-radius: 16px 7px;
+  padding-block: 14px;
+  padding-bottom: 18px;
+  border-radius: var(--bdrs-7);
   font-size: 16px;
   font-family: Gilroy-Medium;
   background-color: var(--light_gray);
@@ -1151,17 +1201,18 @@ search-form-field__pas {
   transition: filter 0.2s, background-color 0.2s;
 }
 
-.search-btn:hover{
-  background-color:#470d60;
+.search-btn:hover {
+  background-color: #470d60;
 }
-.search-btn:active{
-  filter: brightness(0.8)
+.search-btn:active {
+  filter: brightness(0.8);
 }
 
 .search-result-field {
   width: 100%;
   height: auto;
   margin: 50px 0;
+  padding-inline: 9px;
 }
 
 .search-result-field > *:first-child {
@@ -1183,12 +1234,12 @@ search-form-field__pas {
 }
 .search-result-field > *:first-child::before {
   content: "Самый дешевый";
-  left: 2.4rem;
+  left: 1.4rem;
   background-color: var(--red);
 }
 .search-result-field > *:first-child::after {
   content: "Самый быстрый";
-  left: 14.2rem;
+  left: 13.2rem;
   background-color: #7dd2ea;
 }
 
@@ -1222,7 +1273,8 @@ search-form-field__pas {
   width: 100%;
 }
 .search-filter > button:first-child {
-  max-width: 280px;
+  /* max-width: 259px; */
+  max-width: fit-content;
 }
 .search-filter > button:nth-child(3),
 .search-filter > button:nth-child(4) {
@@ -1260,14 +1312,29 @@ search-form-field__pas {
   color: #797979;
   background-color: #fff;
 }
-.search-filter__item.search-filter__item--active svg{
- transform: rotate(180deg);
+.search-filter__item .arrow-down {
+  transition: transform 0.3s;
+}
+.search-filter__item.search-filter__item--active .arrow-down {
+  transform: rotate(180deg);
 }
 .search-filter__sort-wrap {
   position: relative;
 }
 .search-filter__sort-wrap.search-filter__item--active svg {
   transform: rotate(180deg);
+}
+.search-filter__item_sort {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+.search-filter__item_sort button {
+  padding-inline: 19px;
+}
+.search-filter__item_sort .dropdown {
+  padding: 1.6rem;
+  border-top-left-radius: 7px;
 }
 .search-filter-mobile {
   position: fixed;
@@ -1438,7 +1505,7 @@ search-form-field__pas {
   cursor: pointer;
 }
 .dp-day-custom:hover {
-background-color: var(--light_gray);
+  background-color: var(--light_gray);
 }
 .vc-highlights + .dp-day-custom {
   border-radius: 4px;
@@ -1643,8 +1710,20 @@ background-color: var(--light_gray);
     padding-left: 0;
   }
   .search-form-field__fields > label:last-child {
-  width: 100%;
-  max-width: 100%;
+    width: 100%;
+    max-width: 100%;
+  }
 }
+</style>
+<style>
+
+.search-filter__item_sort label {
+  margin-bottom: 0;
+}
+.search-filter__item_sort ul {
+  margin-bottom: 0;
+}
+.search-filter__item_sort li:not(:last-child) {
+  margin-bottom: 8px;
 }
 </style>

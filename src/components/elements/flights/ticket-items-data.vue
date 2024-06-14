@@ -64,7 +64,7 @@ export default {
 .flight-row {
   display: flex;
   align-items: center;
-  gap: 4.5rem;
+  gap: 4rem;
   width: 70%;
   max-width: 512px;
 }
@@ -83,7 +83,7 @@ export default {
   display: inline-block;
 }
 .flight-time .flight-number {
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 }
 .flight-path {
   display: flex;
@@ -112,7 +112,7 @@ export default {
   top: 50%;
   transform: translateY(-50%);
   width: 100%;
-  border-bottom: 2px dotted #e6e6e6;
+  border-bottom: 3px dotted #e6e6e6;
   overflow: hidden;
   z-index: 1;
 }

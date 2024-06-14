@@ -16,7 +16,7 @@
     <span class="flight-text"> 14ч20м </span>
   </div>
 
-  <div class="transfer-content">
+  <div :class="['transfer-content', classContent]">
     <div class="transfer-left">
       <span class="img-wrap">
         <img src="/src/assets/images/icons/airplane.svg" alt="S7 Airlines" />
@@ -27,7 +27,7 @@
 
     <div class="transfer-right">
       <div class="flight-time" v-for="(it, i) in moreData.body" :key="i">
-        <div class="flight-number">
+        <div :class="['flight-number', i === 1 ? 'transfer__flight-number_b': '']">
           {{ it.time
           }}<span class="transfer-format_title">
             , {{ it.dayNumber }},
@@ -74,6 +74,7 @@ export default {
   },
   props: {
     moreData: Object,
+    classContent: String,
   },
   data() {},
 };
@@ -84,7 +85,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.8rem 1.6rem;
+  padding: 0.7rem 1.6rem;
   border: var(--border-grey);
   border-radius: var(--bdrs-7);
   margin-bottom: 16px;
@@ -131,6 +132,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 3px;
 }
 .transfer-left::before {
   position: absolute;
@@ -157,14 +159,23 @@ export default {
   background-color: #fff;
   z-index: 2;
 }
+.transfer-right  {
+  display: flex;
+  flex-direction: column;
+  gap: 3.8rem;
+}
 .transfer-right .flight-time {
   text-align: start;
 }
-.transfer-right > div:not(:last-child) {
-  margin-bottom: 4rem;
-}
 .transfer-right .flight-text > span {
   display: block;
+}
+.transfer-right .flight-number {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+.transfer-right .transfer__flight-number_b {
+  font-size: 20px;
 }
 .transfer-format_title {
   display: none;
@@ -200,8 +211,8 @@ export default {
   .flight-wrapper.ticket--more .transfer-content ul {
     display: flex;
   }
-  .transfer-right > div:not(:last-child) {
-  margin-bottom: 3rem;
+  .transfer-right {
+  gap: 3rem;
 }
 }
 </style>
