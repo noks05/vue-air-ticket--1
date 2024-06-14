@@ -12,10 +12,6 @@ import PrimeVue from 'primevue/config';
 
 const app = createApp(App);
 app.component("v-select", VueSelect);
-app.use(PrimeVue);
-app.use(Sticky);
-app.use(router);
-app.use(store);
 app.use(VCalendar, {
   locales: {
     "ru-RU": {
@@ -43,4 +39,8 @@ app.use(VCalendar, {
     },
   },
 });
+app.use(PrimeVue);
+app.use(Sticky);
+app.use(router);
+app.use(store);
 app.mount("#app");

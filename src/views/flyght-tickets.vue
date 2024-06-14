@@ -95,9 +95,9 @@
                     </div>
                   </template>
                 </v-select>
-                <span class="search-form-path__label">{{
-                  selectedDefault.to.format
-                }}</span>
+                <span class="search-form-path__label">
+                  {{ selectedDefault.to.format }}
+                </span>
               </label>
             </div>
 
@@ -105,8 +105,8 @@
               class="date-picker dropdown"
               :columns="tablet ? 1 : 2"
               locale="ru-RU"
-              v-model="selectedDate"
-              is-range
+              v-model.range="selectedDate"
+              
             >
               <template #day-content="{ day, dayEvents }">
                 <div :class="['dp-day-custom']" v-on="dayEvents">
@@ -122,16 +122,16 @@
                   >
                 </div>
               </template>
-              <template #default="{togglePopover}">
+              <template #default="props">
                 <label>
                   <input
                     class=""
                     type="text"
                     placeholder="Когда"
                     :value="formatDate(selectedDate.start)"
-                    @click="togglePopover"
-                    />
-                    <!-- v-on="inputEvents.start" -->
+                    @click.stop="props.togglePopover"
+                    @focusin="console.log(props.locale)"
+                  />
                   <CalendarIcon class="search-form-field__img" />
                 </label>
                 <label>
@@ -140,9 +140,8 @@
                     type="text"
                     placeholder="Обратно"
                     :value="formatDate(selectedDate.end)"
-                    @click="togglePopover"
-                    />
-                    <!-- v-on="inputEvents.end" -->
+                    @click="props.togglePopover"
+                  />
                   <CalendarIcon class="search-form-field__img" />
                 </label>
               </template>
@@ -299,7 +298,8 @@
                   countPas.adults + countPas.childs + countPas.babies
                 } пассажир`"
                 @click="
-                  item['pasSelected' + item.id] = !item['pasSelected' + item.id];
+                  item['pasSelected' + item.id] =
+                    !item['pasSelected' + item.id];
                   showAndHideDropdown();
                 "
               />
@@ -327,8 +327,12 @@
           type="button"
           @click="
             () => {
+              if (hardRouteActive) {
+                removeAllRoute();
+              } else {
+                addRoute();
+              }
               hardRouteActive = !hardRouteActive;
-              removeAllRoute();
             }
           "
         >
@@ -404,7 +408,7 @@
             v-if="!mobile && sliderListActive"
           />
           <list-checkbox
-            class="dropdown"
+            class="dropdown transfers-dropdown"
             :listData="checkboxListTrans"
             listTitle="Пересадки"
             v-if="!mobile && listTransActive"
@@ -592,7 +596,7 @@ export default {
   },
   data() {
     return {
-      activeDatePicker: false,
+      popoverDatePicker: false,
       category: "",
       search: false,
       listTransActive: false,
@@ -645,8 +649,8 @@ export default {
         back: false,
       },
       selectedDefault: {
-        from: { label: "Откуда", value: "", format: "" },
-        to: { label: "Куда", value: "", format: "" },
+        from: { label: "Откуда", value: "", format: "SVX" },
+        to: { label: "Куда", value: "", format: "РЕК" },
       },
       selectOptions: [
         {
@@ -901,6 +905,12 @@ export default {
       this.windowWidth = e.target.innerWidth;
     });
   },
+  created() {
+    if (this.mobile) {
+      this.selectedDefault.from.format = "";
+      this.selectedDefault.to.format = "";
+    }
+  },
   methods: {
     hidePasDropdowns() {
       this.dataFields.forEach(obj => {
@@ -937,17 +947,17 @@ export default {
       }
     },
     addRoute() {
-      const i = this.dataFields.length - 1;
-      const lastObj = this.dataFields[i];
+      const lastIndex = this.dataFields.length - 1;
+      const lastObj = this.dataFields[lastIndex];
       const keys = Object.keys(lastObj);
       const newObj = {};
-      const curIndex = lastObj.id + 1;
+      const newObjIndex = lastObj.id + 1;
       keys.forEach(key => {
         if (key !== "id") {
-          const str = key.slice(0, key.length - 1);
-          newObj[str + curIndex] = false;
+          const str = key.replace(/[0-9]/g, "");
+          newObj[str + newObjIndex] = false;
         } else {
-          newObj.id = curIndex;
+          newObj.id = newObjIndex;
         }
       });
       this.dataFields.push(newObj);
@@ -988,6 +998,10 @@ export default {
         this.hidePasDropdowns();
       }
     });
+
+    const month = document.querySelectorAll(".vc-title-wrapper");
+    month.forEach(m => console.log("m", m));
+    console.log("m");
   },
 };
 </script>
@@ -1001,6 +1015,9 @@ export default {
   box-shadow: var(--shadow-light);
   overflow: hidden;
   z-index: 1000;
+}
+.dropdown.transfers-dropdown {
+  right: 123px;
 }
 .date-picker__day {
   display: flex;
@@ -1026,9 +1043,11 @@ export default {
   font-family: Gilroy-Medium !important;
   color: #333;
 }
-.date-picker__btn {
+.search-filter__item.date-picker__btn {
   gap: 8px;
   margin-left: auto;
+  margin-top: 23px;
+  font-size: 16px;
 }
 .select-option img {
   display: flex;
@@ -1716,7 +1735,6 @@ search-form-field__pas {
 }
 </style>
 <style>
-
 .search-filter__item_sort label {
   margin-bottom: 0;
 }

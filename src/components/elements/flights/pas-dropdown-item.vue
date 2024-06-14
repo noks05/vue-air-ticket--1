@@ -1,6 +1,6 @@
 <template>
   <div class="pas__left">
-    <span>{{ data.text[0] }}</span>
+    <span class="pas__age-group">{{ data.text[0] }}</span>
     <span>{{ data.text[1] }}</span>
   </div>
 
@@ -71,6 +71,9 @@ export default {
   line-height: 150%;
   font-weight: 400;
   color: #797979;
+}
+.pas__age-group{
+  font-size: 14px;
 }
 .pas__right {
   display: flex;

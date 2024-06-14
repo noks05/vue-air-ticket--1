@@ -321,14 +321,18 @@ white-space: nowrap;
 .search-form-field .vc-bordered{
   top: -10px;
   z-index: 1000;
-  padding: 40px 48px;
+  padding: 34px 43px;
   font-family: Gilroy-Medium;
   font-weight: 400;
   font-size: 14px;
   border: var(--border-grey);
 }
+.vc-pane-header-wrapper .vc-header{
+  padding-left: 4px;
+  padding-right: 4px;
+}
 .search-form-field .vc-header.is-lg {
- margin-bottom: 10px;
+ margin-bottom: 7px;
 }
 .search-form-field .vc-header.is-lg span{
   font-family: Gilroy-Medium;
@@ -361,12 +365,13 @@ white-space: nowrap;
   box-shadow: none !important;
 }
 .vc-date-picker-content .vc-container{
+  padding-bottom: 2.3rem;
   border: var(--border-grey) !important;
 }
 
 .vc-day{
   border-radius: 4px !important;
-  padding: 2px !important;
+  /* padding: 2px !important; */
 }
 .vc-highlight-bg-solid{
   height: 40px !important;
@@ -375,6 +380,12 @@ white-space: nowrap;
 
 .vc-header .vc-arrow .vc-base-icon{
   stroke: var(--primary_bg)!important;
+}
+.vc-weekdays{
+ margin-bottom: 10px;
+}
+.vc-pane-layout{
+  gap: 58px;
 }
 
 @media screen and (max-width: 992px) {

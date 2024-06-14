@@ -48,9 +48,6 @@ export default {
     dataTicket: Object,
     ticketMore: Boolean,
   },
-  mounted() {
-    console.log(this.ticketMore);
-  },
 };
 </script>
 

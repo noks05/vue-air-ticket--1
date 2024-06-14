@@ -1,8 +1,8 @@
 <template>
   <div class="pas">
     <h3>Количество пассажиров</h3>
-    <ul v-for="item in items" :key="item.text[0]">
-      <li>
+    <ul>
+      <li v-for="item in items" :key="item.text[0]">
         <PasDropdownItem 
         :data="item" 
         :model-value="modelValue" 
@@ -79,15 +79,21 @@ export default {
   font-size: 16px;
   color: #333;
 }
+.pas.dropdown {
+  padding-bottom: 2rem;
+}
 
+.pas ul {
+  margin-bottom: 0; 
+}
 .pas li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 10px;
 }
 .pas li:not(:last-child) {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 @media (max-width: 576px) {

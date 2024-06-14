@@ -41,8 +41,7 @@ export default {
 div.list {
   position: absolute;
   top: 40px;
-  right: 50%;
-  transform: translateX(50%);
+  right: 0;
   max-width: 230px;
   padding-block: 2.2rem;
 }
