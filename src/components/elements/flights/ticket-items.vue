@@ -349,7 +349,7 @@ export default {
 }
 .flight-tooltip ul {
   margin-bottom: 0;
-  padding-left: 2.4rem;
+  padding-left: 2.1rem;
 }
 .flight-tooltip ul li {
   list-style: initial;
