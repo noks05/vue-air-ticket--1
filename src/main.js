@@ -15,24 +15,6 @@ app.component("v-select", VueSelect);
 app.use(VCalendar, {
   locales: {
     "ru-RU": {
-      dayNames: [
-        "Воскресенье",
-        "Понедельник",
-        "Вторник",  
-        "Среда",
-        "Четверг",
-        "Пятница",
-        "Суббота",
-      ],
-      dayNamesShort: [
-        "Вс",
-        "Пн",
-        "Вт",  
-        "Ср",
-        "Чт",
-        "Пт",
-        "Сб",
-      ],
       masks: {
         weekdays: "WW",
       },

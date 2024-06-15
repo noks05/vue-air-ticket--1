@@ -643,6 +643,7 @@ export default {
         ["15 995", "", "", "15 995", "14 995"],
         ["15 995", "", "", "13 995", "15 995"],
         ["15 995", "", "", "15 995", "14 995"],
+        ["15 995", "", "", "15 995", "14 995"],
       ],
       showCalendar: {
         when: false,
@@ -1517,24 +1518,32 @@ search-form-field__pas {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   height: 40px;
   width: 40px;
   padding: 7px 6px;
+  border-radius: 4px !important;
   transition: background-color 0.2s;
   cursor: pointer;
 }
 .dp-day-custom:hover {
-  background-color: var(--light_gray);
+  border-radius: 4px;
+  background-color: var(--primary_bg);
+}
+.vc-highlight {
+  height: 32px !important;
 }
 .vc-highlights + .dp-day-custom {
   border-radius: 4px;
-  height: 40px;
-  width: 40px;
-  background-color: var(--primary_bg);
+  /* height: 40px;
+  width: 40px; */
+  /* background-color: var(--primary_bg); */
   color: #fff;
 }
+.dp-day-custom:hover span,
+.vc-highlights + .dp-day-custom:hover span,
 .vc-highlights + .dp-day-custom span {
-  color: #fff;
+  color: #fff !important;
 }
 .dp-day-custom__day {
   font-size: 16px;
