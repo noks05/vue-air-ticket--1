@@ -1,7 +1,7 @@
 <template>
   <headerDef />
   <PageHeader title="Авиабилеты" subtitle="Путешествия" />
-  <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
+  <nav aria-label="breadcrumb" class="breadcrumb-nav breadcrumb-nav_mb">
     <div class="container">
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
@@ -1008,6 +1008,12 @@ export default {
 </script>
 
 <style scoped>
+.breadcrumb{
+  padding-left: 10px;
+}
+.breadcrumb-nav_mb{
+  margin-bottom: 0; 
+}
 .dropdown {
   padding: 2.4rem;
   border: var(--border-grey);
@@ -1059,7 +1065,7 @@ export default {
 .search-fields {
   width: 100%;
   height: auto;
-  margin-top: 20px;
+  margin-top: 0;
   padding: 10px;
   padding-block: 14px;
   padding-bottom: 18px;
@@ -1264,17 +1270,19 @@ search-form-field__pas {
 }
 
 .search-result-field > *:not(:last-child) {
-  margin-bottom: 2.4rem;
+  margin-bottom: 4.4rem;
 }
 
 .search-filter {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 8px;
 }
 
+.search-filter__hard-path  {
+  margin-right: 9rem;
+}
 .search-filter__hard-path svg {
   min-width: 21px;
   height: auto;
@@ -1345,6 +1353,7 @@ search-form-field__pas {
   transform: rotate(180deg);
 }
 .search-filter__item_sort {
+  margin-left: auto;
   padding: 0;
   border: none;
   background-color: transparent;
@@ -1572,6 +1581,12 @@ search-form-field__pas {
   }
 }
 @media screen and (max-width: 1200px) {
+  .search-filter__hard-path  {
+  margin-right: 0;
+}
+.search-filter__center{
+  margin-left: auto;
+}
   .search-form-field__fields > *:nth-child(2) {
     flex-wrap: wrap;
     row-gap: 8px;
@@ -1631,13 +1646,13 @@ search-form-field__pas {
     width: 26%;
   }
 
-  .search-filter > *:last-child {
+  .search-filter__item_sort {
     order: 2;
-    max-width: calc(100% - 280px - 8px);
+    max-width: 212px;
     margin-left: 0;
     width: 100%;
   }
-  .search-filter > *:last-child > button {
+  .search-filter__item_sort > button {
     width: 100%;
   }
 }
