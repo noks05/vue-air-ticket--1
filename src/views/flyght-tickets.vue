@@ -1732,6 +1732,10 @@ search-form-field__pas {
     height: 62px;
     padding-inline: 21px;
   }
+  
+.search-result-field > *:not(:last-child) {
+  margin-bottom: 1.6rem;
+}
 }
 @media screen and (max-width: 480px) {
   .search-form-field input::placeholder,
