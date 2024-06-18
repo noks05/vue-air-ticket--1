@@ -319,6 +319,10 @@
   .search-form-select .vs__dropdown-menu {
     min-width: calc(100vw - 11px*2 - 15px*2);
   }
+  
+  .search-form-select.search-form-select_to .vs__dropdown-menu {
+    transform: translateX(-33%);
+  }
 
 }
 
@@ -420,9 +424,6 @@
   border: none !important;
   background-color: #6e1595 !important;
 }
-.vc-highlight{
-    
-}
 
 
 @media screen and (max-width: 992px) {
@@ -441,7 +442,7 @@
   }
 
   .vc-popover-content.direction-bottom {
-    bottom: 226px;
+    bottom: 243px;
   }
 
   .vc-bordered {
@@ -449,18 +450,28 @@
   }
 
   .search-form-field .vc-bordered {
-    padding-top: 60px;
+    padding-top: 76px;
+    padding-inline: 6px;
   }
 
   .search-form-field .vc-bordered .date-picker__btn {
     position: absolute;
-    top: -40px;
+    top: -76px;
     right: 10px;
   }
 
   .search-form-field .vc-bordered .date-picker__mobile-title {
     position: absolute;
-    top: -40px;
-    left: 10px;
+    top: -48px;
+    left: 23px;
   }
+  
+.vc-weekdays {
+  margin-bottom: 4px;
+  /* max-width: 314px; */
+  margin-left: auto;
+}
+.vc-header .vc-arrow{
+  width: 39px;
+}
 }

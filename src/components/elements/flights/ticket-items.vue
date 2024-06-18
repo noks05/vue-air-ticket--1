@@ -329,8 +329,10 @@ export default {
   right: 0;
   max-width: 100%;
   transform: initial;
+  padding-top: 2.4rem;
   border-radius: 7px 7px 0 0;
   border: var(--border-grey);
+  background-color: #fff;
 }
 .flight-tooltip::after {
   position: absolute;
@@ -343,6 +345,9 @@ export default {
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   background-color: var(--light_gray);
   z-index: 1;
+}
+.flight-tooltip.flight-tooltip--mobile::after{
+  display: none;
 }
 .flight-tooltip p {
   color: inherit;

@@ -112,6 +112,17 @@ export default {
   border: var(--border-grey);
   background-color: transparent;
 }
+
+@media (max-width:576px) {
+  .pas__age-group{
+    font-size: 12px;
+  }
+  
+  .pas__left{
+   gap: 0 ;
+   font-size: 12px;
+  }
+}
 </style>
 <style>
 .pas__plus .svg-plus path {

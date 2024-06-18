@@ -104,8 +104,8 @@ export default {
   .pas ul{
     margin-bottom: 1rem;
   }
-  .pas__left{
-   gap: 0;
-  }
+  .pas li:not(:last-child) {
+  margin-bottom: 0.8rem;
+}
 }
 </style>

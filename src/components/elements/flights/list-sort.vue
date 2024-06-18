@@ -1,5 +1,6 @@
 <template>
   <div class="list">
+    <h3>Сортировка</h3>
     <ul>
       <li v-for="item in listData.items" :key="item.id">
        <label>
@@ -47,7 +48,16 @@ export default {
   padding-inline: 1.6rem;
   border-top-left-radius: 7px;
 }
-
+.list h3{
+  display: none;
+  margin-bottom: 1.6rem;
+  margin-left: 0.6rem;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 500;
+  font-family: Gilroy-Medium !important;
+  color: #333;
+}
 label{
   display: flex;
   align-items: center;
@@ -87,6 +97,18 @@ input[type="radio"]:checked ~ .text {
 }
 li:not(:last-child) {
   margin-bottom: 10px;
+}
+
+@media (max-width:576px) {
+  .list h3{
+    display: block;
+  }
+  .text{
+    font-size: 12px;
+  }
+  label{
+    margin-bottom: 0;
+  }
 }
 </style>
 <style>

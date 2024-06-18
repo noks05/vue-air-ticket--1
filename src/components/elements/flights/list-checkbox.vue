@@ -48,6 +48,8 @@ div.list {
 .list h3 {
   margin-bottom: 1.4rem;
   font-size: 16px;
+  font-weight: 500;
+  font-family: Gilroy-Medium!important;
   line-height: 100%;
   color: #333;
 }

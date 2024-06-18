@@ -106,7 +106,6 @@
               :columns="tablet ? 1 : 2"
               locale="ru-RU"
               v-model.range="selectedDate"
-              
             >
               <template #day-content="{ day, dayEvents }">
                 <div :class="['dp-day-custom']" v-on="dayEvents">
@@ -151,7 +150,7 @@
                   class="search-filter__item date-picker__btn"
                   type="button"
                 >
-                  <PathIcon />
+                  <PathIcon v-if="!mobile" />
                   Обратный билет не нужен
                 </button>
               </template>
@@ -170,14 +169,14 @@
                   <v-select
                     :class="[
                       'search-form-select',
-                      selectedDefault.from.format.trim().length
+                      selectedDefaultHardRoutes.from.value.trim().length
                         ? 'search-form-select--active'
                         : '',
                     ]"
-                    v-model="selectedDefault.from"
+                    v-model="selectedDefaultHardRoutes.from"
                     :options="selectOptions"
                     @option:selected="
-                      obj => (selectedDefault.from.format = obj.format)
+                      obj => (selectedDefaultHardRoutes.from.format = obj.format)
                     "
                   >
                     <template #option="{ label, imgName }">
@@ -194,24 +193,24 @@
                   </v-select>
                   <span
                     class="search-form-path__label"
-                    v-if="selectedDefault.from.format.trim().length"
+                    v-if="selectedDefaultHardRoutes.from.value.trim().length"
                   >
-                    {{ selectedDefault.from.format }}
+                    {{ selectedDefaultHardRoutes.from.format }}
                   </span>
                 </label>
 
                 <label>
                   <v-select
                     :class="[
-                      'search-form-select',
-                      selectedDefault.to.format.trim().length
+                      'search-form-select search-form-select_to',
+                      selectedDefaultHardRoutes.to.value.trim().length
                         ? 'search-form-select--active'
                         : '',
                     ]"
-                    v-model="selectedDefault.to"
+                    v-model="selectedDefaultHardRoutes.to"
                     :options="selectOptions"
                     @option:selected="
-                      obj => (selectedDefault.to.format = obj.format)
+                      obj => (selectedDefaultHardRoutes.to.format = obj.format)
                     "
                   >
                     <template #option="{ label, imgName }">
@@ -228,9 +227,9 @@
                   </v-select>
                   <span
                     class="search-form-path__label"
-                    v-if="selectedDefault.to.format.trim().length"
+                    v-if="selectedDefaultHardRoutes.to.value.trim().length"
                   >
-                    {{ selectedDefault.to.format }}
+                    {{ selectedDefaultHardRoutes.to.format }}
                   </span>
                 </label>
 
@@ -325,16 +324,7 @@
         <button
           class="search-filter__item search-filter__hard-path"
           type="button"
-          @click="
-            () => {
-              if (hardRouteActive) {
-                removeAllRoute();
-              } else {
-                addRoute();
-              }
-              hardRouteActive = !hardRouteActive;
-            }
-          "
+          @click="()=>switchFormatRoutes()"
         >
           <PathIcon />
           <span>
@@ -348,7 +338,7 @@
 
         <button
           v-if="mobile"
-          class="search-filter__item"
+          class="search-filter__item search-filter__item-sort"
           type="button"
           @click="
             () => {
@@ -405,19 +395,19 @@
           <list-sliders
             class="dropdown"
             :listData="sliderListPath"
-            v-if="!mobile && sliderListActive"
+            v-if="sliderListActive"
           />
           <list-checkbox
             class="dropdown transfers-dropdown"
             :listData="checkboxListTrans"
             listTitle="Пересадки"
-            v-if="!mobile && listTransActive"
+            v-if="listTransActive"
           />
           <list-checkbox
             class="dropdown"
             :listData="checkboxListBag"
             listTitle="Багаж"
-            v-if="!mobile && listBagActive"
+            v-if="listBagActive"
           />
         </div>
 
@@ -652,6 +642,10 @@ export default {
       selectedDefault: {
         from: { label: "Откуда", value: "", format: "SVX" },
         to: { label: "Куда", value: "", format: "РЕК" },
+      },
+      selectedDefaultHardRoutes: {
+        from: { label: "Откуда", value: "", format: "" },
+        to: { label: "Куда", value: "", format: "" },
       },
       selectOptions: [
         {
@@ -892,6 +886,7 @@ export default {
     /* modalShow() {
       return this.$store.getters["flight/showFilter"];
     },*/
+
     mobile() {
       let result = this.windowWidth <= 576;
       return result;
@@ -905,14 +900,35 @@ export default {
     window.addEventListener("resize", e => {
       this.windowWidth = e.target.innerWidth;
     });
-  },
-  created() {
-    if (this.mobile) {
-      this.selectedDefault.from.format = "";
-      this.selectedDefault.to.format = "";
-    }
+    window.addEventListener("click", e => {
+      const searchFilterMobileEl = document.querySelector(
+        ".search-filter-mobile"
+      );
+      const searchFilterMobile = e.target.closest(".search-filter-mobile");
+      const dropdown = e.target.closest(".dropdown");
+      const btnFilter = e.target.closest(".search-filter__item");
+      const btnFilterSort = e.target.closest(".search-filter__item-sort");
+
+      if (!btnFilter && !dropdown && !searchFilterMobile) {
+        this.showAndHideDropdown();
+        searchFilterMobileEl.classList.remove("search-filter-mobile--active");
+      }
+      const btnPas = e.target.closest(".search-form-field__pas");
+      if (!btnPas && !btnFilterSort) {
+        this.hidePasDropdowns();
+        searchFilterMobileEl.classList.remove("search-filter-mobile--active");
+      }
+    });
   },
   methods: {
+    switchFormatRoutes() {
+      if (!this.mobile && this.hardRouteActive) {
+        this.removeAllRoute();
+      } else if (!this.mobile) {
+        this.addRoute();
+      }
+      this.hardRouteActive = !this.hardRouteActive;
+    },
     hidePasDropdowns() {
       this.dataFields.forEach(obj => {
         obj["pasSelected" + obj.id] = false;
@@ -937,6 +953,7 @@ export default {
     activeFilterDropdown(target) {
       this.filterMobileActive = !this.filterMobileActive;
       const nameState = target.id.replace("State", "");
+      console.log(nameState, this[nameState], !this[nameState]);
       this[nameState] = !this[nameState];
     },
     removeRouteMobile() {
@@ -987,32 +1004,15 @@ export default {
       return day + " " + month + ", " + dayWeek;
     },
   },
-  mounted() {
-    window.addEventListener("click", e => {
-      const dropdown = e.target.closest(".dropdown");
-      const btnFilter = e.target.closest(".search-filter__item");
-      if (!btnFilter && !dropdown) {
-        this.showAndHideDropdown();
-      }
-      const btnPas = e.target.closest(".search-form-field__pas");
-      if (!btnPas) {
-        this.hidePasDropdowns();
-      }
-    });
-
-    const month = document.querySelectorAll(".vc-title-wrapper");
-    month.forEach(m => console.log("m", m));
-    console.log("m");
-  },
 };
 </script>
 
 <style scoped>
-.breadcrumb{
+.breadcrumb {
   padding-left: 10px;
 }
-.breadcrumb-nav_mb{
-  margin-bottom: 0; 
+.breadcrumb-nav_mb {
+  margin-bottom: 0;
 }
 .dropdown {
   padding: 2.4rem;
@@ -1270,7 +1270,7 @@ search-form-field__pas {
 }
 
 .search-result-field > *:not(:last-child) {
-  margin-bottom: 4.4rem;
+  margin-bottom: 2.4rem;
 }
 
 .search-filter {
@@ -1280,7 +1280,7 @@ search-form-field__pas {
   gap: 8px;
 }
 
-.search-filter__hard-path  {
+.search-filter__hard-path {
   margin-right: 9rem;
 }
 .search-filter__hard-path svg {
@@ -1581,12 +1581,12 @@ search-form-field__pas {
   }
 }
 @media screen and (max-width: 1200px) {
-  .search-filter__hard-path  {
-  margin-right: 0;
-}
-.search-filter__center{
-  margin-left: auto;
-}
+  .search-filter__hard-path {
+    margin-right: 0;
+  }
+  .search-filter__center {
+    margin-left: auto;
+  }
   .search-form-field__fields > *:nth-child(2) {
     flex-wrap: wrap;
     row-gap: 8px;
@@ -1712,7 +1712,25 @@ search-form-field__pas {
     right: 0;
     max-width: 100%;
     border-radius: 7px 7px 0 0;
+    padding-top: 2rem;
     border: var(--border-grey);
+  }
+  .dp-day-custom {
+    width: 48px;
+  }
+
+  .vc-weekdays {
+    margin-bottom: 4px;
+  }
+  .search-filter__item.date-picker__btn {
+    font-size: 14px;
+  }
+  .search-filter-mobile li:first-child {
+    height: 72px;
+  }
+  .search-filter-mobile li {
+    height: 62px;
+    padding-inline: 21px;
   }
 }
 @media screen and (max-width: 480px) {

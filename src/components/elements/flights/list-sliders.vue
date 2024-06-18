@@ -172,16 +172,28 @@ div.path {
     font-family: Gilroy-Medium !important;
   }
   .sub-title {
-    font-size: 12px;
+    font-size: 12px!important;
   }
   .path .p-slider {
-    margin-bottom: 1.1rem;
+    margin-bottom: 1.1rem!important;
   }
   .path__point-wrap {
-    gap: 10px;
+    gap: 1rem!important;
   }
   .path__row:not(:last-child) {
-    margin-bottom: 19px;
+    margin-bottom: 2rem!important;
+  }
+  .path .path__point-wrap{
+    gap: 0.8rem!important;
+  }
+  .path h3{
+    gap: 1.3rem !important;
+  }
+  .path ul{
+    gap: 1.7rem !important;
+  }
+  .name-slider{
+    margin-bottom: 1rem!important;
   }
 }
 </style>
