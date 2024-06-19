@@ -53,11 +53,11 @@
                     obj => (selectedDefault.from.format = obj.format)
                   "
                 >
-                  <template #option="{ label, imgName }">
+                  <template #option="{ label, imgSrc,imgAlt }">
                     <div class="select-option">
                       <img
-                        :src="'/src/assets/images/icons/' + imgName + '.jpg'"
-                        :alt="imgName"
+                        :src="imgSrc"
+                        :alt="imgAlt"
                         width="20"
                         height="14"
                       />
@@ -83,11 +83,11 @@
                     obj => (selectedDefault.to.format = obj.format)
                   "
                 >
-                  <template #option="{ label, imgName }">
+                  <template #option="{ label,  imgSrc,imgAlt }">
                     <div class="select-option">
                       <img
-                        :src="'/assets/images/icons/' + imgName + '.jpg'"
-                        :alt="imgName"
+                        :src="imgSrc"
+                        :alt="imgAlt"
                         width="20"
                         height="14"
                       />
@@ -98,18 +98,6 @@
                 <span class="search-form-path__label">
                   {{ selectedDefault.to.format }}
                 </span>
-                <img
-                        :src="testImg"
-                        :alt="imgName"
-                        width="20"
-                        height="14"
-                      />
-                <img
-                        :src="'./src/assets/images/icons/' + 'russia' + '.jpg'"
-                        :alt="imgName"
-                        width="20"
-                        height="14"
-                      />
               </label>
             </div>
 
@@ -577,6 +565,9 @@ import ReverseIcon from "@/assets/images/icons/iconsComp/ReverseIcon.vue";
 import UserIcon from "@/assets/images/icons/iconsComp/UserIcon.vue";
 import CancelIcon from "@/assets/images/icons/iconsComp/CancelIcon.vue";
 
+const russiaImgPath = new URL(`../assets/images/icons/russia.jpg`, import.meta.url).href
+const kazakhstanImgPath = new URL(`../assets/images/icons/kazakhstan.jpg`, import.meta.url).href
+const japanImgPath = new URL(`../assets/images/icons/japan.jpg`, import.meta.url).href
 
 export default {
   components: {
@@ -599,7 +590,6 @@ export default {
   },
   data() {
     return {
-      testImg: new URL('../assets/images/icons/russia.jpg', import.meta.url).href,
       popoverDatePicker: false,
       category: "",
       search: false,
@@ -665,19 +655,22 @@ export default {
         {
           label: "Алма-Ата, Центральный, Казахстан (DME)",
           value: "Алма-Ата, Центральный, Казахстан (DME)",
-          imgName: "kazakhstan",
+          imgSrc: kazakhstanImgPath,
+          imgAlt: "kazakhstan",
           format: "DME",
         },
         {
           label: "Токио, Цунь-жань, Япония (PEK)",
           value: "Токио, Цунь-жань, Япония (PEK)",
-          imgName: "japan",
+          imgSrc: japanImgPath,
+          imgAlt: "japan",
           format: "PEK",
         },
         {
           label: "ТЕкатеринбург, Кольцово, Россия (SVO)",
           value: "ТЕкатеринбург, Кольцово, Россия (SVO)",
-          imgName: "russia",
+          imgSrc: russiaImgPath,
+          imgAlt: "russia",
           format: "SVO",
         },
       ],
