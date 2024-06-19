@@ -86,7 +86,7 @@
                   <template #option="{ label, imgName }">
                     <div class="select-option">
                       <img
-                        :src="'/src/assets/images/icons/' + imgName + '.jpg'"
+                        :src="'@/src/assets/images/icons/' + imgName + '.jpg'"
                         :alt="imgName"
                         width="20"
                         height="14"
