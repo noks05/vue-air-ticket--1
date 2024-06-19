@@ -98,6 +98,18 @@
                 <span class="search-form-path__label">
                   {{ selectedDefault.to.format }}
                 </span>
+                <img
+                        :src="'src/assets/images/icons/' + 'russia' + '.jpg'"
+                        :alt="imgName"
+                        width="20"
+                        height="14"
+                      />
+                <img
+                        :src="'./src/assets/images/icons/' + 'russia' + '.jpg'"
+                        :alt="imgName"
+                        width="20"
+                        height="14"
+                      />
               </label>
             </div>
 
