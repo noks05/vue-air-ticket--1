@@ -99,7 +99,7 @@
                   {{ selectedDefault.to.format }}
                 </span>
                 <img
-                        :src="'src/assets/images/icons/' + 'russia' + '.jpg'"
+                        :src="testImg"
                         :alt="imgName"
                         width="20"
                         height="14"
@@ -577,6 +577,7 @@ import ReverseIcon from "@/assets/images/icons/iconsComp/ReverseIcon.vue";
 import UserIcon from "@/assets/images/icons/iconsComp/UserIcon.vue";
 import CancelIcon from "@/assets/images/icons/iconsComp/CancelIcon.vue";
 
+
 export default {
   components: {
     PageHeader,
@@ -598,6 +599,7 @@ export default {
   },
   data() {
     return {
+      testImg: new URL('../assets/images/icons/russia.jpg', import.meta.url).href,
       popoverDatePicker: false,
       category: "",
       search: false,
