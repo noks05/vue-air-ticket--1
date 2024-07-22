@@ -66,7 +66,7 @@
       </div>
     </div>
     <div class="serach-result-field">
-      <ticket v-for="item in data" :data="item" />
+      <!-- <ticket v-for="item in data" :data="item" />  -->
       <defaultT />
     </div>
   </div>

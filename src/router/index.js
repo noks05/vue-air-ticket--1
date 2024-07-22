@@ -3,6 +3,9 @@ import HomeView from "../views/home-component.vue";
 import loginVue from "@/views/pages/login.vue";
 import flyghtTicketsVue from "@/views/flyght-tickets.vue";
 import flyghtTicketsVue2 from "@/views/flyght-tickets2.vue";
+import NewPassword from "@/components/elements/password/NewPassword.vue";
+import RemindPassword from "@/components/elements/password/RemindPassword.vue";
+import PersonalArea from "@/views/personal-area.vue";
 import operationVue from "@/views/operation.vue";
 
 const router = createRouter({
@@ -97,6 +100,21 @@ const router = createRouter({
       path: "/operation/:id",
       name: "operation show",
       component: () => import("@/views/operation/operation_id.vue"),
+    },
+    {
+      path: "/new-password",
+      name: "new password",
+      component: NewPassword,
+    },
+    {
+      path: "/remind-password",
+      name: "remind password",
+      component: RemindPassword,
+    },
+    {
+      path: "/personal-area",
+      name: "personal area",
+      component: PersonalArea,
     },
   ],
   scrollBehavior() {

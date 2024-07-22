@@ -445,3 +445,29 @@ export const homeData = {
     },
   ],
 };
+
+export const personalAreaData = {
+  categories: [
+    {
+      name: "Профиль",
+      elements: [
+        { name: "Личные данные", path: "userData" },
+        { name: "Пароль", path: "userData" },
+        { name: "Адреса доставки", path: "userData" },
+        { name: "Выход", path: "userData" },
+      ],
+    },
+    {
+      name: "Заказы",
+      path: "order",
+    },
+    {
+      name: "Операции",
+      path: "operation",
+    },
+    {
+      name: "Избранное",
+      path: "favorites",
+    },
+  ],
+};

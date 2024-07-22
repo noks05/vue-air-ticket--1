@@ -1,6 +1,6 @@
 <template>
   <div class="dropdown cart-dropdown">
-    <router-link to="#" class="dropdown-toggle">
+    <router-link to="/basket" class="dropdown-toggle">
       <div class="icon">
         <!-- <i class="icon-shopping-cart"></i> -->
         <!-- <img src="../../../../assets/newImg/icons/cart.svg" alt="cart"> -->
