@@ -9,18 +9,21 @@
     </div>
 
     <ul class="p-area-widget-list">
-      <li v-for="(item, id) in sidebarData.categories" :key="id">
-        <a
-          :href="item.path"
-          :class="['p-area-big-text', { collapsed: true }]"
-          @click.prevent="slideState = !slideState"
+      <li v-for="(item, id) in sidebarCategories" :key="id">
+        <router-link
+          :to="{ path: $route.path, query: {page: item.name} }"
+          class="p-area-big-text"
+          @click.prevent="() => switchContent(item.path)"
           v-if="!item.elements"
         >
           {{ item.name }}
-        </a>
+        </router-link>
 
         <div v-if="item.elements">
-          <div class="p-area-big-text p-area-list-title" @click.prevent="slideState = !slideState">
+          <div
+            class="p-area-big-text p-area-list-title"
+            @click.prevent="slideState = !slideState"
+          >
             <span>
               {{ item.name }}
             </span>
@@ -33,15 +36,15 @@
           </div>
 
           <div class="p-area-widget-list">
-            <a
+            <router-link
               v-for="elem in item.elements"
               :key="elem"
-              :href="elem.path"
-              :class="['p-area-small-text', { collapsed: true }]"
+              :to="{ path: $route.path, query: {page: elem.name} }"
+              class="p-area-small-text"
               @click.prevent="slideState = !slideState"
             >
               {{ elem.name }}
-            </a>
+            </router-link>
           </div>
         </div>
       </li>
@@ -64,30 +67,43 @@ export default {
   data: function () {
     return {
       slideState: true,
-      loaded: true,
-      priceValues: [0, 1000],
-      priceSliderConfig: {
-        connect: true,
-        step: 50,
-        margin: 100,
-        range: {
-          min: 0,
-          max: 1000,
-        },
-      },
+      // loaded: true,
+      // priceValues: [0, 1000],
+      // priceSliderConfig: {
+      //   connect: true,
+      //   step: 50,
+      //   margin: 100,
+      //   range: {
+      //     min: 0,
+      //     max: 1000,
+      //   },
+      // },
       toggleStates: [true, true, true, true, true],
-      sidebarData: personalAreaData,
+      sidebarCategories: personalAreaData.categories,
     };
   },
-  components: {
-    Slider,
+  methods: {
+    switchContent(nameContent) {
+      const justObj = this.sidebarCategories.reduce((acc, it) => {
+        if (it.elements) {
+          acc = [...acc, ...it.elements];
+        } else {
+          acc = [...acc, it];
+        }
+        return acc;
+      }, []);
+      return justObj.find(obj => {
+        return String(obj.path) === String(nameContent);
+      });
+    },
   },
 };
 </script>
 <style src="@vueform/slider/themes/default.css"></style>
 <style scoped>
 .p-area-wrap {
-  max-width: 281px;
+  min-width: 172px;
+  max-width: 172px;
   padding: 24px;
   border: 1px solid #f4f7ff;
   border-radius: 7px;
@@ -119,11 +135,15 @@ export default {
   flex-direction: column;
   gap: 16px;
 }
-.p-area-list-title{
+.p-area-widget-list > li{
+  display: flex;
+}
+.p-area-list-title {
   margin-bottom: 16px;
+  cursor: pointer;
 }
 .p-area-widget-sub-title {
-  display: inline-block;
+  display: block;
   margin-left: 20px;
   font-family: Gilroy-Medium !important;
   font-weight: 500;
@@ -141,7 +161,7 @@ export default {
   line-height: 100%;
   color: var(--text_color);
 }
-.p-area-big-text>span{
+.p-area-big-text > span {
   font-family: Gilroy-Medium !important;
 }
 .p-area-small-text {
@@ -152,7 +172,7 @@ export default {
   line-height: 100%;
   color: #797979;
 }
-.p-area-small-text:hover{
+.p-area-small-text:hover {
   color: var(--text_color);
 }
 .p-area-small-text.p-area-small-text--active {

@@ -18,10 +18,11 @@
   </nav>
 
   <div class="container p-area-container">
-    <h2 class="p-area-title">{{ title }}</h2>
+    <h2 class="p-area-title">{{ $route.query.page }}</h2>
 
     <div class="p-area-content">
       <Sidebar/>
+      <PersonalAreaContent/>
     </div>
   </div>
 
@@ -30,11 +31,13 @@
 <script>
 import headerDef from "@/components/partial/headers/HeaderDefault.vue";
 import Sidebar from "@/components/partial/personal-area/SidebarPersonalArea.vue";
+import PersonalAreaContent from "@/components/partial/personal-area/ContentPersonalArea.vue";
 
 export default {
   components: {
     headerDef,
     Sidebar,
+    PersonalAreaContent,
   },
   data(){
     return{
@@ -43,11 +46,8 @@ export default {
   },
   computed:{
      crumbs(){
-      return ['Заказы']
+      return [String(this.$route.query.page)]
      },
-     title(){
-      return 'Заказы'
-     }
   }
 }
 </script>
@@ -69,5 +69,10 @@ export default {
   font-size: 24px;
   line-height: 100%;
   color: #000;
+}
+.p-area-content{
+  display: flex;
+  justify-content: space-between;
+  gap: clamp(20px, 10vw, 129px);
 }
 </style>

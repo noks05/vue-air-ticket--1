@@ -452,9 +452,9 @@ export const personalAreaData = {
       name: "Профиль",
       elements: [
         { name: "Личные данные", path: "userData" },
-        { name: "Пароль", path: "userData" },
-        { name: "Адреса доставки", path: "userData" },
-        { name: "Выход", path: "userData" },
+        { name: "Пароль", path: "password" },
+        { name: "Адреса доставки", path: "addressDelivery" },
+        { name: "Выход", path: "signOut" },
       ],
     },
     {
