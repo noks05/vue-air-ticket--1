@@ -1,27 +1,29 @@
 <template>
-  <ul class="list">
-    <li class="card" v-for="card in cards" :key="card.id">
-      <div class="box">
-        <div class="box-top">
-          <img
-            :src="'src/assets/images/personal-area/' + card.nameImg"
-            :alt="card.altImg"
-          />
+  <ul class="favor-list">
+    <li class="favor-card" v-for="card in cards" :key="card.id">
+      <div class="favor-box">
+        <div class="favor-box-top">
+          <div class="favor-img-wrap">
+            <img
+              :src="'src/assets/images/personal-area/' + card.nameImg"
+              :alt="card.altImg"
+            />
+          </div>
 
-          <span class="box-marker" v-if="card.marker">
+          <span class="favor-box-marker" v-if="card.marker">
             {{ card.marker.text }}
           </span>
         </div>
 
-        <div class="box-bottom">
+        <div class="favor-box-bottom">
           <h3>
             {{ card.title }}
           </h3>
 
-          <div class="box-btns-wrap">
+          <div class="favor-box-btns-wrap">
             <button
               :class="[
-                'box-action',
+                'favor-box-action',
                 card.action === 'В корзину' ? 'box-action_basket' : '',
               ]"
               type="button"
@@ -30,7 +32,7 @@
               <span>{{ card.action }}</span>
             </button>
 
-            <button class="box-favorites" type="button">
+            <button class="favor-box-favorites" type="button">
               <HeartIcon />
             </button>
           </div>
@@ -99,16 +101,27 @@ export default {
 </script>
 
 <style scoped>
-.list {
+.favor-list {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   margin-bottom: 40px;
 }
-.card {
+.favor-card {
   width: calc((100% - 20px * 3) / 4);
 }
-.box {
+.favor-box-top{
+  position: relative;
+  margin-bottom: 8px;
+  padding-top: 40px;
+  padding-bottom: 32px;
+}
+.favor-img-wrap{
+  display: flex;
+  border-radius: 7px;
+  overflow: hidden;
+}
+.favor-box {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -119,9 +132,11 @@ export default {
   border-radius: 7px;
   background-color: #fff;
 }
-.box-marker {
+.favor-box-marker {
+  position: absolute;
+  left: 0;
+  bottom: 0;
   display: inline-block;
-  margin-bottom: 8px;
   padding: 4px 8px;
   border-radius: 7px;
   font-family: Gilroy-Bold !important;
@@ -130,11 +145,12 @@ export default {
   line-height: 100%;
   color: #fff;
   background-color: #ff997a;
+  z-index: 10;
 }
-.box-bottom{
+.favor-box-bottom{
   width: 100%;
 }
-.box-bottom > h3 {
+.favor-box-bottom > h3 {
   margin-bottom: 8px;
   font-family: Gilroy-Medium !important;
   font-weight: 500;
@@ -142,15 +158,16 @@ export default {
   line-height: 100%;
   color: var(--text_color);
 }
-.box-btns-wrap {
+.favor-box-btns-wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.box-action {
+.favor-box-action {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   padding: 12px 15px;
   border-radius: 7px;
   font-family: Gilroy-Medium !important;
@@ -160,11 +177,11 @@ export default {
   color: #fff;
   background-color: var(--primary_bg);
 }
-.box-action_basket {
+.favor-box-action_basket {
   justify-content: space-between;
   gap: 8px;
 }
-.box-favorites {
+.favor-box-favorites {
   display: flex;
   padding: 0;
   width: 16px;

@@ -1,7 +1,7 @@
 <template>
-  <div class="wrap">
+  <div class="p-area-content-wrap">
     <div v-if="$route.query.titlePage === 'Операции'">
-      <h1>Операции</h1>
+      <OperationPA />
     </div>
     <div v-if="$route.query.titlePage === 'Заказы'">
       <OrderPA />
@@ -15,11 +15,13 @@
 <script>
 import OrderPA from "./pages-personal-area/OrderPA.vue";
 import FavoritesPA from "./pages-personal-area/FavoritesPA.vue";
+import OperationPA from "./pages-personal-area/OperationPA.vue";
 
 export default {
   components: {
     OrderPA,
     FavoritesPA,
+    OperationPA,
   },
   props: {},
   data: function () {
@@ -30,6 +32,8 @@ export default {
 </script>
 
 <style scoped>
-.wrap{
+.p-area-content-wrap{
   width: 100%;
-}</style>
+  max-width: 884px;
+}
+</style>

@@ -14,57 +14,30 @@
     <thead>
       <tr>
         <th>Дата</th>
-        <th>Номер</th>
-        <th>Статус</th>
-        <th>Описание</th>
-        <th>Бонусами</th>
-        <th>Деньгами</th>
-        <th>Сумма</th>
+        <th>Списание</th>
+        <th>Бонусы</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>28.03.2024</td>
-        <td>777355791</td>
-        <td>Аннулирован</td>
-        <td>
-          Подарочный сертификат МВидео, 100 Подарочный сертификат Детский мир,
-          100
-          <label class="input-file">
-            <input class="visually-hidden" type="file" />
-            <span>Скачать</span>
-          </label>
-        </td>
-        <td>481,67-</td>
-        <td>481,67-</td>
-        <td>481,67-</td>
+        <td>Сгорание по сроку</td>
+        <td>Списано: 481,67</td>
       </tr>
       <tr>
         <td>28.03.2024</td>
-        <td>777355791</td>
-        <td>Аннулирован</td>
-        <td>
-          ЖД Москва - Казань 31.07.2024
-          <label class="input-file">
-            <input class="visually-hidden" type="file" />
-            <span>Скачать</span>
-          </label>
-        </td>
-        <td>481,67-</td>
-        <td>481,67-</td>
-        <td>481,67-</td>
+        <td>Заказ №5135</td>
+        <td>Списано: 481,67</td>
       </tr>
       <tr>
         <td>28.03.2024</td>
-        <td>777355791</td>
-        <td>Аннулирован</td>
-        <td>
-          Кружка 350 мл черная Бариста PP.L.Proff Cuisine ТК: СДЭК, трек-номер:
-          10000000999
-        </td>
-        <td>481,67-</td>
-        <td>481,67-</td>
-        <td>481,67-</td>
+        <td>Корректировка баланса</td>
+        <td>Списано: 481,67</td>
+      </tr>
+      <tr>
+        <td>28.03.2024</td>
+        <td>За участие в акции</td>
+        <td>Списано: 481,67</td>
       </tr>
     </tbody>
   </table>
@@ -73,8 +46,8 @@
 </template>
 
 <script>
-import ArrowDownIcon from "@/assets/images/icons/iconsComp/ArrowDownIcon.vue";
 import Pagination from "@/components/elements/Pagination.vue";
+import ArrowDownIcon from "@/assets/images/icons/iconsComp/ArrowDownIcon.vue";
 
 export default {
   components: {
@@ -124,6 +97,7 @@ export default {
 .table tbody tr {
   border-top: 2px solid #f4f7ff;
 }
+
 .table tbody tr:last-child {
   border-bottom: 2px solid #f4f7ff;
 }
@@ -133,7 +107,7 @@ export default {
   padding-block: 24px;
   font-family: Gilroy-Regular !important;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 130%;
   color: var(--text_color);
 }
@@ -173,19 +147,23 @@ export default {
 .filter-orders .vs__dropdown-toggle {
   border: none;
 }
+
 .filter-orders .vs__selected-options {
   display: flex;
   align-items: center;
 }
+
 .filter-orders .vs__selected-options > span {
   margin: 0;
   padding: 0;
   max-width: 63px;
   display: inline-block;
 }
+
 .filter-orders .vs__selected-options > span {
   margin: 0;
 }
+
 .filter-orders .vs__selected-options > .vs__selected,
 .filter-orders .vs__selected-options > input {
   font-family: Gilroy-Medium !important;
@@ -197,11 +175,16 @@ export default {
   overflow: hidden;
   text-wrap: nowrap;
 }
+
 .filter-orders .vs__selected-options > .vs__selected + input {
   margin: 0;
   padding: 0;
   height: 0;
   width: 0;
   border: 0;
+}
+
+.filter-orders .vs__open-indicator {
+  fill: none;
 }
 </style>

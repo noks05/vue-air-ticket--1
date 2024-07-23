@@ -102,8 +102,8 @@ export default {
 <style src="@vueform/slider/themes/default.css"></style>
 <style scoped>
 .p-area-wrap {
-  min-width: 172px;
-  max-width: 172px;
+  min-width: 281px;
+  max-width: 281px;
   padding: 24px;
   border: 1px solid #f4f7ff;
   border-radius: 7px;
