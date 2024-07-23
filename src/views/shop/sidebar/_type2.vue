@@ -116,10 +116,10 @@
   import ShopListOne from "@/components/partial/shop/list/SidebarList.vue";
   import ShopSidebarOne from "@/components/partial/shop/sidebar/SidebarWithout.vue";
   import Pagination from "@/components/elements/Pagination.vue";
-  
+
   import Repository, { baseUrl } from "@/repositories/repository.js";
   import { scrollToPageContent } from "@/utilities/common";
-  
+
   export default {
     components: {
       PageHeader,
@@ -1776,7 +1776,7 @@
       //   } else {
       //     this.pageTitle = "Category";
       //   }
-  
+
       //   this.loaded = false;
       //   await Repository.get(`${baseUrl}/shop`, {
       //     params: {
@@ -1790,7 +1790,7 @@
       //       this.products = response.data.products;
       //       this.totalCount = response.data.totalCount;
       //       this.loaded = true;
-  
+
       //       if (samePage) {
       //         scrollToPageContent();
       //       }
@@ -1828,4 +1828,3 @@
     border-radius: 8px !important;
   }
   </style>
-  

@@ -64,14 +64,23 @@
       </tr>
     </tbody>
   </table>
+
+  <pagination :per-page="perPage" :total="totalCount"></pagination>
 </template>
 
 <script>
+import Pagination from '@/components/elements/Pagination.vue';
+
 export default {
+  components:{
+    Pagination,
+  },
   data() {
     return {
       filterOptions: ["Optionnnn 1", "Option 3", "Option 3"],
       filterSelected: null,
+      perPage: 5,
+      totalCount: 30,
     };
   },
 };
@@ -104,6 +113,13 @@ export default {
 
 .table thead th:not(:last-child) {
   padding-right: 20px;
+}
+
+.table tbody tr {
+ border-top: 2px solid #f4f7ff;
+}
+.table tbody tr:last-child {
+ border-bottom: 2px solid #f4f7ff;
 }
 
 .table tbody td {

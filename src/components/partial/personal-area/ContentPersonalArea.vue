@@ -1,12 +1,12 @@
 <template>
   <div class="wrap">
-    <div v-if="$route.query.page === 'Операции'">
+    <div v-if="$route.query.titlePage === 'Операции'">
       <h1>operation</h1>
     </div>
-    <div v-if="$route.query.page === 'Заказы'">
+    <div v-if="$route.query.titlePage === 'Заказы'">
       <OrderPersonalArea />
     </div>
-    <div v-if="$route.query.page === 'Избранное'">
+    <div v-if="$route.query.titlePage === 'Избранное'">
       <h1>password</h1>
     </div>
   </div>

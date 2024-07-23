@@ -18,7 +18,7 @@
   </nav>
 
   <div class="container p-area-container">
-    <h2 class="p-area-title">{{ $route.query.page }}</h2>
+    <h2 class="p-area-title">{{ $route.query.titlePage }}</h2>
 
     <div class="p-area-content">
       <Sidebar/>
@@ -46,7 +46,7 @@ export default {
   },
   computed:{
      crumbs(){
-      return [String(this.$route.query.page)]
+      return [String(this.$route.query.titlePage)]
      },
   }
 }
@@ -61,7 +61,7 @@ export default {
 .p-area-container{
   margin-bottom: 60px;
 }
-.p-area-title{  
+.p-area-title{
   margin: 0;
   margin-bottom: 16px;
   font-family: Gilroy-Medium !important;

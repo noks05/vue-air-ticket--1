@@ -11,7 +11,7 @@
     <ul class="p-area-widget-list">
       <li v-for="(item, id) in sidebarCategories" :key="id">
         <router-link
-          :to="{ path: $route.path, query: {page: item.name} }"
+          :to="{ path: $route.path, query: {titlePage: item.name} }"
           class="p-area-big-text"
           @click.prevent="() => switchContent(item.path)"
           v-if="!item.elements"
@@ -39,7 +39,7 @@
             <router-link
               v-for="elem in item.elements"
               :key="elem"
-              :to="{ path: $route.path, query: {page: elem.name} }"
+              :to="{ path: $route.path, query: {titlePage: elem.name} }"
               class="p-area-small-text"
               @click.prevent="slideState = !slideState"
             >
