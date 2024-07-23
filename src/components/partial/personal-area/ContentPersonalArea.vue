@@ -1,23 +1,25 @@
 <template>
   <div class="wrap">
     <div v-if="$route.query.titlePage === 'Операции'">
-      <h1>operation</h1>
+      <h1>Операции</h1>
     </div>
     <div v-if="$route.query.titlePage === 'Заказы'">
-      <OrderPersonalArea />
+      <OrderPA />
     </div>
     <div v-if="$route.query.titlePage === 'Избранное'">
-      <h1>password</h1>
+      <FavoritesPA />
     </div>
   </div>
 </template>
 
 <script>
-import OrderPersonalArea from "./pages-personal-area/OrderPersonalArea.vue";
+import OrderPA from "./pages-personal-area/OrderPA.vue";
+import FavoritesPA from "./pages-personal-area/FavoritesPA.vue";
 
 export default {
   components: {
-    OrderPersonalArea,
+    OrderPA,
+    FavoritesPA,
   },
   props: {},
   data: function () {
@@ -27,4 +29,7 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.wrap{
+  width: 100%;
+}</style>
