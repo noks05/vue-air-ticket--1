@@ -23,6 +23,7 @@
         </span>
         <div class="new-pass-input-wrap">
           <input
+            name="password"
             type="password"
             placeholder="Пароль"
             @blur.stop="(e) => showEye(e.target)"
@@ -43,6 +44,7 @@
         <span class="pass-input-label"> Повторите пароль </span>
         <div class="new-pass-input-wrap">
           <input
+            name="password repeat"
             type="password"
             placeholder="Пароль"
             @blur.stop="(e) => showEye(e.target)"

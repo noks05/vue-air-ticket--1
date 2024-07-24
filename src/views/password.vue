@@ -2,8 +2,8 @@
   <headerDef />
 
   <div class="pass-container">
-    <NewPassword />
-    <!-- <RemindPassword /> -->
+    <RemindPassword v-if="!$route.query.code"/>
+    <NewPassword v-if="$route.query.code === 'testGetCode'"/>
   </div>
 </template>
 
@@ -11,7 +11,6 @@
 import headerDef from "@/components/partial/headers/HeaderDefault.vue";
 import NewPassword from "@/components/elements/password/NewPassword.vue";
 import RemindPassword from "@/components/elements/password/RemindPassword.vue";
-
 export default {
   components: {
     headerDef,
@@ -22,6 +21,8 @@ export default {
     return {};
   },
   computed: {},
+  mounted(){
+  }
 };
 </script>
 
