@@ -229,7 +229,7 @@
             <main-menu></main-menu>
           </div>
           <div class="header-right">
-            <div class="container-truncate">
+            <div class="container-truncate" ref="containerTruncate">
               <button class="btn-truncate" type="button" @click="(e)=>activeDropdown(e.target)">
                 <img
                   src="../../../assets/newImg/icons/user_icon.svg"
@@ -238,10 +238,10 @@
                 Александр: 3300.00
               </button>
 
-              <div class="list-truncate">
+              <div class="list-truncate" @click="(e)=>removeDropdown(e.target)">
                 <ul>
                   <li>
-                    <a class="link-truncate" href="#">
+                    <a class="link-truncate" href="/password">
                       <UserBlackIcon />
                       <span>Профиль</span>
                     </a>
@@ -325,9 +325,16 @@ export default {
     RouterFind() {
       // console.log(this.$route);
     },
-    activeDropdown(target){
-      const contr = target.closest('.container-truncate')
-      contr.classList.toggle('container-truncate--active')
+    activeDropdown(){
+      const elem = this.$refs.containerTruncate
+      elem.classList.toggle('container-truncate--active')
+    },
+    removeDropdown(target){
+      const linkTruncate = target.closest('.link-truncate')
+      if(linkTruncate){
+        const elem = this.$refs.containerTruncate
+        elem.classList.remove('container-truncate--active')
+      }
     }
   },
 };

@@ -46,6 +46,13 @@ export default {
       },
       false
     );
+    window.addEventListener("click", (e) => {
+      const clickInDropdown = e.target.closest(".container-truncate");
+      if (!clickInDropdown) {
+        const userDropdown = document.querySelector(".container-truncate");
+        userDropdown.classList.remove("container-truncate--active");
+      }
+    });
   },
   methods: {
     scrollTop: function () {

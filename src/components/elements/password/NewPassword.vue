@@ -1,16 +1,169 @@
 <template>
-    <headerDef />
-    NewPassword
+  <div class="pass-wrap new-pass-wrap">
+    <h2>Введите 6-значный код и новый пароль</h2>
+
+    <form @submit.prevent="() => {}">
+      <div
+        class="new-pass-inputs"
+        @input.stop="(e) => checkValueInput(e.target)"
+      >
+        <input class="new-pass-input" type="text" />
+        <input class="new-pass-input" type="text" />
+        <input class="new-pass-input" type="text" />
+        <input class="new-pass-input" type="text" />
+        <input class="new-pass-input" type="text" />
+        <input class="new-pass-input" type="text" />
+        <input class="new-pass-input" type="text" />
+      </div>
+
+      <label>
+        <span class="pass-input-label">
+          Введите новый пароль (Не менее 6 символов, цифр — не менее 1, строчных
+          букв — не менее 1, прописных букв — не менее 1)
+        </span>
+        <div class="new-pass-input-wrap">
+          <input
+            type="password"
+            placeholder="Пароль"
+            @blur.stop="(e) => showEye(e.target)"
+            @input.stop="(e) => showEye(e.target)"
+          />
+          <button
+            class="new-pass-eye"
+            type="button"
+            @click.stop="(e) => switchTypeInput(e)"
+          >
+            <EyeIcon class="new-pass-eye__eye" />
+            <EyeCloseIcon class="new-pass-eye__eye-close" />
+          </button>
+        </div>
+      </label>
+
+      <label>
+        <span class="pass-input-label"> Повторите пароль </span>
+        <div class="new-pass-input-wrap">
+          <input
+            type="password"
+            placeholder="Пароль"
+            @blur.stop="(e) => showEye(e.target)"
+            @input.stop="(e) => showEye(e.target)"
+          />
+          <button
+            class="new-pass-eye"
+            type="button"
+            @click.stop="(e) => switchTypeInput(e)"
+          >
+            <EyeIcon class="new-pass-eye__eye" />
+            <EyeBlackIcon class="new-pass-eye__eye-close" />
+          </button>
+        </div>
+      </label>
+
+      <button class="pass-btn" type="submit">Готово</button>
+    </form>
+  </div>
 </template>
 
 <script>
-import PageHeader from '../PageHeader.vue';
+import EyeIcon from "@/assets/images/icons/iconsComp/EyeIcon.vue";
+import PageHeader from "../PageHeader.vue";
+import EyeCloseIcon from "@/assets/images/icons/iconsComp/EyeCloseIcon.vue";
 
 export default {
-    components: {
-        PageHeader,
-    }
-}
+  components: {
+    PageHeader,
+    EyeIcon,
+    EyeCloseIcon,
+  },
+  methods: {
+    checkValueInput(target) {
+      const length = target.value.trim().length;
+      target.value = target.value.trim();
+      const prevEl = target.previousElementSibling;
+      const nextEl = target.nextElementSibling;
+      // проверка на цифры
+
+      if (length < 1 && prevEl) {
+        prevEl.focus();
+      } else if (length === 1 && nextEl) {
+        nextEl.focus();
+      } else if (length > 1) {
+        target.value = target.value[0].trim();
+      }
+    },
+    moveToNext(currentInput, nextInputId) {
+      if (currentInput.value.length === 1) {
+        document.getElementById(nextInputId).focus();
+      }
+    },
+    showEye(target) {
+      const length = target.value.length;
+      const check = length > 0;
+      target.classList.toggle("input--active", check);
+    },
+    switchTypeInput(e) {
+      const elem = e.currentTarget;
+      elem.classList.toggle("show-password--active");
+      const typeInput = elem.previousElementSibling.type;
+      elem.previousElementSibling.type =
+        typeInput === "text" ? "password" : "text";
+    },
+  },
+};
 </script>
 
-<style scoped></style>
+<style scoped>
+.new-pass-wrap {
+  margin-block: 52px;
+  max-width: 296px;
+}
+.new-pass-wrap h2 {
+  margin-bottom: 32px;
+}
+.new-pass-wrap label {
+  position: relative;
+}
+.new-pass-wrap input {
+  padding-right: 40px;
+}
+.new-pass-input-wrap {
+  position: relative;
+  width: 100%;
+}
+.new-pass-eye {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  display: none;
+  transform: translateY(-50%);
+}
+input.input--active + .new-pass-eye {
+  display: flex;
+}
+.new-pass-eye__eye-close,
+.new-pass-input-wrap .new-pass-eye.show-password--active .new-pass-eye__eye {
+  display: none;
+}
+.new-pass-input-wrap
+  .new-pass-eye.show-password--active
+  .new-pass-eye__eye-close {
+  display: block;
+}
+input.input--active {
+  background-color: var(--light_gray);
+}
+/* поле для пин-кода  */
+.new-pass-inputs {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+.new-pass-inputs input.new-pass-input {
+  padding-inline: 12px;
+  text-align: center;
+}
+.new-pass-input {
+  width: 38px;
+}
+</style>

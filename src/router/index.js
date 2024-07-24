@@ -7,6 +7,7 @@ import NewPassword from "@/components/elements/password/NewPassword.vue";
 import RemindPassword from "@/components/elements/password/RemindPassword.vue";
 import PersonalArea from "@/views/personal-area.vue";
 import operationVue from "@/views/operation.vue";
+import Password from "@/views/password.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -102,14 +103,9 @@ const router = createRouter({
       component: () => import("@/views/operation/operation_id.vue"),
     },
     {
-      path: "/new-password",
-      name: "new password",
-      component: NewPassword,
-    },
-    {
-      path: "/remind-password",
-      name: "remind password",
-      component: RemindPassword,
+      path: "/password",
+      name: "password",
+      component: Password,
     },
     {
       path: "/personal-area",
