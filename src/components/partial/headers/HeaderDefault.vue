@@ -105,7 +105,6 @@
               src="../../../assets/newImg/logotypes/logo.svg"
               class="bg-transparent"
               alt="Molla Logo"
-
             />
           </router-link>
         </div>
@@ -113,7 +112,6 @@
           <header-search></header-search>
         </div>
         <div class="header-right">
-          
           <wishlist-menu></wishlist-menu>
           <cart-menu></cart-menu>
         </div>
@@ -230,14 +228,51 @@
           <div class="header-center">
             <main-menu></main-menu>
           </div>
-          <div class="header-right overflow-hidden">
-            <p class="text-truncate">
-              <img
-                src="../../../assets/newImg/icons/user_icon.svg"
-                alt="user"
-              />
-              Александр: 3300.00
-            </p>
+          <div class="header-right">
+            <div class="container-truncate">
+              <button class="btn-truncate" type="button" @click="(e)=>activeDropdown(e.target)">
+                <img
+                  src="../../../assets/newImg/icons/user_icon.svg"
+                  alt="user"
+                />
+                Александр: 3300.00
+              </button>
+
+              <div class="list-truncate">
+                <ul>
+                  <li>
+                    <a class="link-truncate" href="#">
+                      <UserBlackIcon />
+                      <span>Профиль</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="link-truncate" href="#">
+                      <FavoriteEmptyIcon />
+                      <span>Избранное</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="link-truncate" href="#">
+                      <ListIcon />
+                      <span>Заказы</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="link-truncate" href="#">
+                      <OperationsIcon />
+                      <span>Операции</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="link-truncate" href="#">
+                      <ExitIcon />
+                      <span>Выход</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -251,6 +286,11 @@ import WishlistMenu from "../headers/shared/WishlistMenu.vue";
 import MainMenu from "../headers/shared/MainMenu.vue";
 import HeaderSearch from "../headers/shared/HeaderSearch.vue";
 import StickyHeader from "../../elements/StickyHeader.vue";
+import UserBlackIcon from "@/assets/images/icons/iconsComp/UserBlackIcon.vue";
+import FavoriteEmptyIcon from "@/assets/images/icons/iconsComp/FavoriteEmptyIcon.vue";
+import ListIcon from "@/assets/images/icons/iconsComp/ListIcon.vue";
+import OperationsIcon from "@/assets/images/icons/iconsComp/OperationsIcon.vue";
+import ExitIcon from "@/assets/images/icons/iconsComp/ExitIcon.vue";
 
 export default {
   components: {
@@ -259,6 +299,11 @@ export default {
     MainMenu,
     HeaderSearch,
     StickyHeader,
+    UserBlackIcon,
+    FavoriteEmptyIcon,
+    ListIcon,
+    OperationsIcon,
+    ExitIcon,
   },
   computed: {
     isFullwidth: function () {
@@ -280,10 +325,18 @@ export default {
     RouterFind() {
       // console.log(this.$route);
     },
+    activeDropdown(target){
+      const contr = target.closest('.container-truncate')
+      contr.classList.toggle('container-truncate--active')
+    }
   },
 };
 </script>
 <style scoped>
+.header-right {
+  overflow: visible;
+}
+
 .dropdown-toggle {
   justify-content: space-between;
   border-top-right-radius: 0.8rem;
@@ -319,8 +372,8 @@ export default {
 }
 
 .logIn:hover {
-  fill: var(--primary_bg)!important;
-  color: var(--primary_bg)!important;
+  fill: var(--primary_bg) !important;
+  color: var(--primary_bg) !important;
 }
 
 .logIn:hover svg path {
@@ -364,15 +417,76 @@ export default {
   display: block;
 }
 
-.text-truncate {
-  display: flex;
-  gap: 5px;
-  font-family: Gilroy-Medium !important;
-  color: #000;
+.container-truncate {
+  position: relative;
 }
 
+.btn-truncate {
+  display: flex;
+  gap: 5px;
+  padding: 0;
+  font-family: Gilroy-Medium !important;
+  color: #000;
+  transition: color 0.2s;
+}
+
+.btn-truncate:hover {
+  color: var(--primary_bg);
+}
+
+.list-truncate {
+  position: absolute;
+  left: 50%;
+  top: 40px;
+  min-width: 265px;
+  max-width: 265px;
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 7px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  transition: opacity 0.3s;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+.list-truncate ul {
+  margin: 0;
+}
+.list-truncate li:not(:last-child) {
+  margin-bottom: 19px;
+}
+.link-truncate {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: Gilroy-Regular !important;
+  font-weight: 400;
+  line-height: 100%;
+  color: var(--text_color);
+}
+.link-truncate:hover {
+  color: var(--primary_bg);
+}
+.container-truncate.container-truncate--active .list-truncate {
+  display: block;
+  opacity: 1;
+}
 .mobile-menu-cos {
   width: 50px;
   height: 50px;
+}
+</style>
+
+<style>
+
+.link-truncate svg path {
+  transition: fill 0.2s, stroke 0.2s;
+}
+.link-truncate:hover svg path {
+  stroke: var(--primary_bg);
+}
+.list-truncate li:nth-last-child(2):hover svg path {
+  stroke: inherit;
+  fill: var(--primary_bg);
 }
 </style>
