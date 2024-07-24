@@ -5,7 +5,7 @@
     <form @submit.prevent="() => {}">
       <div
         class="new-pass-inputs"
-        @input.stop="(e) => checkValueInput(e.target)"
+        @input.stop="(e) => checkPinCode(e.target)"
       >
         <input class="new-pass-input" type="text" />
         <input class="new-pass-input" type="text" />
@@ -76,12 +76,13 @@ export default {
     EyeCloseIcon,
   },
   methods: {
-    checkValueInput(target) {
-      const length = target.value.trim().length;
-      target.value = target.value.trim();
+    checkPinCode(target) {
+      const value = target.value.trim().replace(/[\D+]/g, '')
+      const length = value.length;
+      target.value = value;
       const prevEl = target.previousElementSibling;
       const nextEl = target.nextElementSibling;
-      // проверка на цифры
+
 
       if (length < 1 && prevEl) {
         prevEl.focus();
