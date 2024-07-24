@@ -139,6 +139,7 @@ export default {
   display: inline-block;
   padding: 4px 8px;
   border-radius: 7px;
+  text-wrap: nowrap;
   font-family: Gilroy-Bold !important;
   font-weight: 700;
   font-size: 12px;
