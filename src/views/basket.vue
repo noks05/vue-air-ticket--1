@@ -31,21 +31,24 @@
 
   <div class="order-container">
     <OrderProductTicket
-      v-if="$route.query.order === 'Оформление заказа'"
+      v-if="!$route.query.orderConfirm"
     />
-    <!-- <OrderProductTicket
-      v-if="$route.path.order === 'Подтверждение заказа'"
-    /> -->
+    <OrderConfirm
+      v-if="$route.query.orderConfirm"
+    />
   </div>
 </template>
 
 <script>
 import headerDef from "@/components/partial/headers/HeaderDefault.vue";
-import OrderProductTicket from "@/components/elements/order/OrderProductTicket.vue";
+import OrderProductTicket from "@/components/elements/order/product/OrderProductTicket.vue";
+import OrderConfirm from "@/components/elements/order/OrderConfirm.vue";
+
 export default {
   components: {
     headerDef,
     OrderProductTicket,
+    OrderConfirm,
   },
   data() {
     return {};
@@ -62,7 +65,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$route.query, this.crumbs)
+    console.log(this.$route.query.orderConfirm)
   },
 };
 </script>
