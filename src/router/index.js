@@ -3,11 +3,10 @@ import HomeView from "../views/home-component.vue";
 import loginVue from "@/views/pages/login.vue";
 import flyghtTicketsVue from "@/views/flyght-tickets.vue";
 import flyghtTicketsVue2 from "@/views/flyght-tickets2.vue";
-import NewPassword from "@/components/elements/password/NewPassword.vue";
-import RemindPassword from "@/components/elements/password/RemindPassword.vue";
 import PersonalArea from "@/views/personal-area.vue";
 import operationVue from "@/views/operation.vue";
 import Password from "@/views/password.vue";
+import Basket from "@/views/basket.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -111,6 +110,11 @@ const router = createRouter({
       path: "/personal-area",
       name: "personal area",
       component: PersonalArea,
+    },
+    {
+      path: "/basket",
+      name: "product basket",
+      component: Basket,
     },
   ],
   scrollBehavior() {

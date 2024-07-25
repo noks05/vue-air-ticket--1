@@ -27,22 +27,22 @@
           <router-link to="/">Главная</router-link>
         </li>
         <li class="breadcrumb-item">
-          <router-link to="/shop/sidebar/list">Личный кабинет</router-link>
+          <router-link :to="{path: $route.path}">Личный кабинет</router-link>
         </li>
         <li
           class="breadcrumb-item active"
           v-for="(crumb, id) in crumbs"
           :key="id"
         >
-          <router-link
-            to="/shop/sidebar/list"
+          <span
             :style="
               id + 1 === crumbs.length
                 ? 'color: #000 !important; text-transform: none !important'
                 : ''
             "
-            >{{ crumb }}</router-link
           >
+            {{ crumb }}
+          </span>
         </li>
       </ol>
     </div>
@@ -83,7 +83,10 @@ export default {
   },
   computed: {
     crumbs() {
-      return [String(this.$route.query.titlePage)];
+      const item = this.$route.query.titlePage;
+      const arr = [];
+      item && arr.push(item);
+      return arr;
     },
   },
 };
@@ -153,7 +156,6 @@ export default {
 </style>
 
 <style>
-
 .p-area-alert button svg {
   height: 17px;
   width: 17px;

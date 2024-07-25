@@ -445,6 +445,7 @@ export default {
   position: absolute;
   left: 50%;
   top: 40px;
+  display: none;
   min-width: 265px;
   max-width: 265px;
   padding: 16px;
@@ -455,6 +456,7 @@ export default {
   transition: opacity 0.3s;
   transform: translateX(-50%);
   z-index: 1000;
+  animation: showIn 0.3s;
 }
 .list-truncate ul {
   margin: 0;
@@ -477,6 +479,14 @@ export default {
 .container-truncate.container-truncate--active .list-truncate {
   display: block;
   opacity: 1;
+}
+@keyframes showIn {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
 }
 .mobile-menu-cos {
   width: 50px;
