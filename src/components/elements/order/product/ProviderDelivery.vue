@@ -119,6 +119,7 @@ input[type="radio"] {
 
 input[type="radio"]:checked + .delivery-provider-replace {
   border-width: 8px;
+  border-color: var(--primary_bg);
 }
 
 .delivery-provider-text p {

@@ -31,13 +31,16 @@
 
   <div class="order-container">
     <OrderProductTicket
-      v-if="!$route.query.orderConfirm && !$route.query.orderCer"
+      v-if="$route.query.order && !$route.query.orderConfirm"
     />
     <OrderConfirm
       v-if="$route.query.orderConfirm"
     />
     <OrderCertificate
       v-if="$route.query.orderCer"
+    />
+    <OrderAirTicket
+      v-if="$route.query.orderAir"
     />
   </div>
 </template>
@@ -47,6 +50,7 @@ import headerDef from "@/components/partial/headers/HeaderDefault.vue";
 import OrderProductTicket from "@/components/elements/order/product/OrderProductTicket.vue";
 import OrderConfirm from "@/components/elements/order/OrderConfirm.vue";
 import OrderCertificate from "@/components/elements/order/OrderCertificate.vue";
+import OrderAirTicket from "@/components/elements/order/air-ticket/OrderAirTicket.vue";
 
 export default {
   components: {
@@ -54,6 +58,7 @@ export default {
     OrderProductTicket,
     OrderConfirm,
     OrderCertificate,
+    OrderAirTicket,
   },
   data() {
     return {};
@@ -63,9 +68,11 @@ export default {
       const crumbsArr = [];
       const order = this.$route.query.order;
       const orderCer = this.$route.query.orderCer;
+      const orderAir = this.$route.query.orderAir;
       const orderConfirm = this.$route.query.orderConfirm;
       order && crumbsArr.push(['order',order])
       orderCer && crumbsArr.push(['orderCer',orderCer])
+      orderAir && crumbsArr.push(['orderAir',orderAir])
       orderConfirm && crumbsArr.push(['orderConfirm', orderConfirm])
 
       return crumbsArr;

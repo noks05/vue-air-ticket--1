@@ -230,7 +230,11 @@
           </div>
           <div class="header-right">
             <div class="container-truncate" ref="containerTruncate">
-              <button class="btn-truncate" type="button" @click="(e)=>activeDropdown(e.target)">
+              <button
+                class="btn-truncate"
+                type="button"
+                @click="(e) => activeDropdown(e.target)"
+              >
                 <img
                   src="../../../assets/newImg/icons/user_icon.svg"
                   alt="user"
@@ -238,7 +242,10 @@
                 Александр: 3300.00
               </button>
 
-              <div class="list-truncate" @click="(e)=>removeDropdown(e.target)">
+              <div
+                class="list-truncate"
+                @click="(e) => removeDropdown(e.target)"
+              >
                 <ul>
                   <li>
                     <router-link class="link-truncate" to="/password">
@@ -249,14 +256,23 @@
                   <li>
                     <router-link
                       class="link-truncate"
-                      :to="{path: '/basket', query: {orderCer:'Оформление заказа'}}"
+                      :to="{
+                        path: '/basket',
+                        query: { orderCer: 'Оформление заказа' },
+                      }"
                     >
                       <FavoriteEmptyIcon />
                       <span>Избранное</span>
                     </router-link>
                   </li>
                   <li>
-                    <router-link class="link-truncate" to="#">
+                    <router-link
+                      class="link-truncate"
+                      :to="{
+                        path: '/basket',
+                        query: { orderAir: 'Оформление авиабилета' },
+                      }"
+                    >
                       <ListIcon />
                       <span>Заказы</span>
                     </router-link>
@@ -328,17 +344,17 @@ export default {
     RouterFind() {
       // console.log(this.$route);
     },
-    activeDropdown(){
-      const elem = this.$refs.containerTruncate
-      elem.classList.toggle('container-truncate--active')
+    activeDropdown() {
+      const elem = this.$refs.containerTruncate;
+      elem.classList.toggle("container-truncate--active");
     },
-    removeDropdown(target){
-      const linkTruncate = target.closest('.link-truncate')
-      if(linkTruncate){
-        const elem = this.$refs.containerTruncate
-        elem.classList.remove('container-truncate--active')
+    removeDropdown(target) {
+      const linkTruncate = target.closest(".link-truncate");
+      if (linkTruncate) {
+        const elem = this.$refs.containerTruncate;
+        elem.classList.remove("container-truncate--active");
       }
-    }
+    },
   },
 };
 </script>
@@ -461,12 +477,15 @@ export default {
   z-index: 1000;
   animation: showIn 0.3s;
 }
+
 .list-truncate ul {
   margin: 0;
 }
+
 .list-truncate li:not(:last-child) {
   margin-bottom: 19px;
 }
+
 .link-truncate {
   display: flex;
   align-items: center;
@@ -476,21 +495,26 @@ export default {
   line-height: 100%;
   color: var(--text_color);
 }
+
 .link-truncate:hover {
   color: var(--primary_bg);
 }
+
 .container-truncate.container-truncate--active .list-truncate {
   display: block;
   opacity: 1;
 }
+
 @keyframes showIn {
-  0%{
+  0% {
     opacity: 0;
   }
-  100%{
+
+  100% {
     opacity: 1;
   }
 }
+
 .mobile-menu-cos {
   width: 50px;
   height: 50px;
@@ -498,13 +522,14 @@ export default {
 </style>
 
 <style>
-
 .link-truncate svg path {
   transition: fill 0.2s, stroke 0.2s;
 }
+
 .link-truncate:hover svg path {
   stroke: var(--primary_bg);
 }
+
 .list-truncate li:nth-last-child(2):hover svg path {
   stroke: inherit;
   fill: var(--primary_bg);

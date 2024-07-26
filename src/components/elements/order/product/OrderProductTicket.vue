@@ -2,111 +2,128 @@
   <div class="order-container">
     <h2>Оформление заказа</h2>
 
-    <form @submit.prevent="() => {}" @input.stop="(e) => activeCancel(e)" @click.stop="(e)=>clearInputValue(e)">
+    <form
+      @submit.prevent="() => {}"
+      @input.stop="(e) => activeCancel(e)"
+      @click.stop="(e) => clearInputValue(e)"
+    >
       <label class="order-input-container order-input-container-required">
         <span class="order-input-label"> ФИО </span>
-        <input class="order-input" name="ФИО" type="text" placeholder="Кириллицей" />
+        <input
+          class="order-input"
+          name="ФИО"
+          type="text"
+          placeholder="Кириллицей"
+        />
         <button class="order-clear" type="button">
           <CancelIcon />
         </button>
       </label>
 
       <label class="order-input-container order-input-container-required">
-        <span class="order-input-label">
-          Адрес электронной почты
-         </span>
-        <input class="order-input" name="email" type="text" placeholder="Введите эл. почту" />
+        <span class="order-input-label"> Адрес электронной почты </span>
+        <input
+          class="order-input"
+          name="email"
+          type="text"
+          placeholder="Введите эл. почту"
+        />
         <button class="order-clear" type="button">
           <CancelIcon />
         </button>
       </label>
 
       <label class="order-input-container order-input-container-required">
-        <span class="order-input-label">
-          Телефон
-         </span>
-        <input class="order-input" name="phone" type="text" placeholder="+7 (" />
+        <span class="order-input-label"> Телефон </span>
+        <input
+          class="order-input"
+          name="phone"
+          type="text"
+          placeholder="+7 ("
+        />
         <button class="order-clear" type="button">
           <CancelIcon />
         </button>
       </label>
 
-      <p class="order-paragraph">
-        Указать дополнительный номер телефона
-      </p>
+      <p class="order-paragraph">Указать дополнительный номер телефона</p>
 
-     <label class="order-input-container">
-       <span class="order-input-label">
-         Телефон дополнительный
-        </span>
-       <input class="order-input" name="add phone" type="text" placeholder="+7 (" />
-       <button class="order-clear" type="button">
-         <CancelIcon />
-       </button>
-     </label>
+      <label class="order-input-container">
+        <span class="order-input-label"> Телефон дополнительный </span>
+        <input
+          class="order-input"
+          name="add phone"
+          type="text"
+          placeholder="+7 ("
+        />
+        <button class="order-clear" type="button">
+          <CancelIcon />
+        </button>
+      </label>
 
-     <label class="order-input-container order-input-container-required">
-       <span class="order-input-label">
-        Город, улица, номер дома
-        </span>
-       <input class="order-input" name="address" type="text" placeholder="Введите адрес" />
-       <button class="order-clear" type="button">
-         <CancelIcon />
-       </button>
-     </label>
+      <label class="order-input-container order-input-container-required">
+        <span class="order-input-label"> Город, улица, номер дома </span>
+        <input
+          class="order-input"
+          name="address"
+          type="text"
+          placeholder="Введите адрес"
+        />
+        <button class="order-clear" type="button">
+          <CancelIcon />
+        </button>
+      </label>
 
-     <label class="order-input-container">
-       <span class="order-input-label">
-        Квартира
-        </span>
-       <input class="order-input" name="flat" type="text" placeholder="Введите номер квартиры" />
-       <button class="order-clear" type="button">
-         <CancelIcon />
-       </button>
-     </label>
+      <label class="order-input-container">
+        <span class="order-input-label"> Квартира </span>
+        <input
+          class="order-input"
+          name="flat"
+          type="text"
+          placeholder="Введите номер квартиры"
+        />
+        <button class="order-clear" type="button">
+          <CancelIcon />
+        </button>
+      </label>
 
       <div class="order-index">Индекс</div>
 
-      <MethodDelivery :products="[
+      <MethodDelivery
+        :products="[
           'Чайник Xiaomi Thermostatic Electric Kettle 2 CN, белый',
-          'Чайник Xiaomi Thermostatic Electric Kettle 2 CN, красный']" />
+          'Чайник Xiaomi Thermostatic Electric Kettle 2 CN, красный',
+        ]"
+      />
 
-      <MethodDelivery :products="[
-          'Микроволновая печь Bosch']" />
+      <MethodDelivery :products="['Микроволновая печь Bosch']" />
 
-          <ul class="order-amount">
-            <li>
-              <span class="order-price">
-                Цена подарка:
-              </span>
-              <span class="order-money">
-                475,66 бонусов
-              </span>
-            </li>
-            <li>
-              <span class="order-price">
-                Цена доставки:
-              </span>
-              <span class="order-money">
-                0,00 бонусов
-              </span>
-            </li>
-            <li>
-              <span class="order-price">
-                Итого с учетом доставки:
-              </span>
-              <span class="order-money">
-                475,66 бонусов
-              </span>
-            </li>
-          </ul>
+      <ul class="order-amount">
+        <li>
+          <span class="order-price"> Цена подарка: </span>
+          <span class="order-money"> 475,66 бонусов </span>
+        </li>
+        <li>
+          <span class="order-price"> Цена доставки: </span>
+          <span class="order-money"> 0,00 бонусов </span>
+        </li>
+        <li>
+          <span class="order-price"> Итого с учетом доставки: </span>
+          <span class="order-money"> 475,66 бонусов </span>
+        </li>
+      </ul>
 
       <!-- router-link для теста, так тут этой ссылки быть не должно  -->
-      <router-link :to="{
+      <router-link
+        :to="{
           path: $route.path,
           query: { ...$route.query, orderConfirm: 'Подтверждение заказа' },
-        }">
-        <button class="order-btn order-submit order-submit--disabled" type="submit">
+        }"
+      >
+        <button
+          class="order-btn order-submit order-submit--disabled"
+          type="submit"
+        >
           Оформить заказ
         </button>
       </router-link>
@@ -132,16 +149,14 @@ export default {
       e.target.classList.toggle("order-input--active", !!length);
     },
     clearInputValue(e) {
-      const clearBtn = e.target.closest('.order-clear')
-      if(clearBtn){
+      const clearBtn = e.target.closest(".order-clear");
+      if (clearBtn) {
         const input = clearBtn?.previousElementSibling;
         input.value = "";
         input.classList.remove("order-input--active");
       }
     },
   },
-  computed: {},
-  mounted() {},
 };
 </script>
 
@@ -284,14 +299,15 @@ export default {
   color: var(--grey-79);
 }
 
-.order-amount{
+.order-amount {
   display: flex;
   flex-direction: column;
   gap: 16px;
   margin-top: 24px;
   margin-bottom: 32px;
 }
-.order-amount li{
+
+.order-amount li {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -310,27 +326,28 @@ export default {
   color: var(--text_color);
 }
 
-.order-submit{
+.order-submit {
   display: block;
   margin-left: auto;
 }
 
-.order-submit.order-submit--disabled{
+.order-submit.order-submit--disabled {
   opacity: 0.5;
   pointer-events: none;
 }
 
-.order-clear{
- height: 20px;
- width: 20px;
+.order-clear {
+  height: 20px;
+  width: 20px;
 }
 </style>
 
 <style>
-.order-clear svg  {
- height: 20px;
- width: 20px;
+.order-clear svg {
+  height: 20px;
+  width: 20px;
 }
+
 .order-clear svg path {
   stroke: #c8c8c8;
 }

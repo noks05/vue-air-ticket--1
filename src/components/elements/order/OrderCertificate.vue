@@ -188,6 +188,10 @@ export default {
   text-decoration: underline;
 }
 
+</style>
+
+<style>
+
 .certificate-policy input[type="checkbox"] {
   display: none;
 }
