@@ -31,10 +31,13 @@
 
   <div class="order-container">
     <OrderProductTicket
-      v-if="!$route.query.orderConfirm"
+      v-if="!$route.query.orderConfirm && !$route.query.orderCer"
     />
     <OrderConfirm
       v-if="$route.query.orderConfirm"
+    />
+    <OrderCertificate
+      v-if="$route.query.orderCer"
     />
   </div>
 </template>
@@ -43,12 +46,14 @@
 import headerDef from "@/components/partial/headers/HeaderDefault.vue";
 import OrderProductTicket from "@/components/elements/order/product/OrderProductTicket.vue";
 import OrderConfirm from "@/components/elements/order/OrderConfirm.vue";
+import OrderCertificate from "@/components/elements/order/OrderCertificate.vue";
 
 export default {
   components: {
     headerDef,
     OrderProductTicket,
     OrderConfirm,
+    OrderCertificate,
   },
   data() {
     return {};
@@ -57,15 +62,23 @@ export default {
     crumbs() {
       const crumbsArr = [];
       const order = this.$route.query.order;
+      const orderCer = this.$route.query.orderCer;
       const orderConfirm = this.$route.query.orderConfirm;
       order && crumbsArr.push(['order',order])
+      orderCer && crumbsArr.push(['orderCer',orderCer])
       orderConfirm && crumbsArr.push(['orderConfirm', orderConfirm])
 
       return crumbsArr;
-    }
+    },
+    checkQuery1(){
+      return this.$route.query.order === 'Оформление заказа'
+    },
+    checkQuery2(){
+      return this.$route.query.order === 'Оформление заказа(сертификат)'
+    },
   },
   mounted() {
-    console.log(this.$route.query.orderConfirm)
+    console.log(this.$route.query)
   },
 };
 </script>

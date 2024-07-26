@@ -25,7 +25,7 @@
         <span class="order-input-label">
           Телефон
          </span>
-        <input class="order-input" name="phone" type="text" placeholder="" />
+        <input class="order-input" name="phone" type="text" placeholder="+7 (" />
         <button class="order-clear" type="button">
           <CancelIcon />
         </button>
@@ -39,7 +39,7 @@
        <span class="order-input-label">
          Телефон дополнительный
         </span>
-       <input class="order-input" name="add phone" type="text" placeholder="" />
+       <input class="order-input" name="add phone" type="text" placeholder="+7 (" />
        <button class="order-clear" type="button">
          <CancelIcon />
        </button>
@@ -133,9 +133,11 @@ export default {
     },
     clearInputValue(e) {
       const clearBtn = e.target.closest('.order-clear')
-      const input = clearBtn?.previousElementSibling
-      input.value = '';
-      input.classList.remove("order-input--active");
+      if(clearBtn){
+        const input = clearBtn?.previousElementSibling;
+        input.value = "";
+        input.classList.remove("order-input--active");
+      }
     },
   },
   computed: {},

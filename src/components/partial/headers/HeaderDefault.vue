@@ -241,34 +241,37 @@
               <div class="list-truncate" @click="(e)=>removeDropdown(e.target)">
                 <ul>
                   <li>
-                    <a class="link-truncate" href="/password">
+                    <router-link class="link-truncate" to="/password">
                       <UserBlackIcon />
                       <span>Профиль</span>
-                    </a>
+                    </router-link>
                   </li>
                   <li>
-                    <a class="link-truncate" href="#">
+                    <router-link
+                      class="link-truncate"
+                      :to="{path: '/basket', query: {orderCer:'Оформление заказа'}}"
+                    >
                       <FavoriteEmptyIcon />
                       <span>Избранное</span>
-                    </a>
+                    </router-link>
                   </li>
                   <li>
-                    <a class="link-truncate" href="#">
+                    <router-link class="link-truncate" to="#">
                       <ListIcon />
                       <span>Заказы</span>
-                    </a>
+                    </router-link>
                   </li>
                   <li>
-                    <a class="link-truncate" href="#">
+                    <router-link class="link-truncate" to="#">
                       <OperationsIcon />
                       <span>Операции</span>
-                    </a>
+                    </router-link>
                   </li>
                   <li>
-                    <a class="link-truncate" href="#">
+                    <router-link class="link-truncate" to="#">
                       <ExitIcon />
                       <span>Выход</span>
-                    </a>
+                    </router-link>
                   </li>
                 </ul>
               </div>

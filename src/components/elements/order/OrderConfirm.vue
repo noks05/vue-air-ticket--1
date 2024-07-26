@@ -122,9 +122,11 @@ export default {
     },
     clearInputValue(e) {
       const clearBtn = e.target.closest(".order-clear");
-      const input = clearBtn?.previousElementSibling;
-      input.value = "";
-      input.classList.remove("order-input--active");
+      if(clearBtn){
+        const input = clearBtn?.previousElementSibling;
+        input.value = "";
+        input.classList.remove("order-input--active");
+      }
     },
   },
   computed: {},
