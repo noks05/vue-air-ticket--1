@@ -1,14 +1,69 @@
 <template>
-  <v-select
-    class="filter-orders"
-    v-model="filterSelected"
-    :options="filterOptions"
-    placeholder="Фильтр"
-  >
-    <template #open-indicator="{ attributes }">
-      <ArrowDownIcon v-bind="attributes" />
-    </template>
-  </v-select>
+  <div class="operation-top">
+    <div class="operation-datepicker-wrap" v-if="filterActive">
+      <VDatePicker
+        class="date-picker operation-date-picker dropdown"
+        :columns="tablet ? 1 : 2"
+        locale="ru-RU"
+        v-model.range="selectedDate"
+      >
+        <template #day-content="{ day, dayEvents }">
+          <div :class="['dp-day-custom']" v-on="dayEvents">
+            <span class="dp-day-custom__day">{{ day.day }}</span>
+            <!-- <span
+              :class="[
+                'dp-day-custom__price',
+                day.weekday === 4 || day.weekday === 5
+                  ? 'dp-day-custom__price--green'
+                  : '',
+              ]"
+              >{{ prices[day.month][day.day] }}</span> -->
+          </div>
+        </template>
+        <template #default="props">
+          <label class="operation-label">
+            <input
+              type="text"
+              name="date-from"
+              placeholder="Дата от"
+              :value="formatDate(selectedDate.start)"
+              @click.stop="props.togglePopover"
+              @focusin="console.log(props.locale)"
+            />
+            <CalendarIcon class="search-form-field__img" />
+          </label>
+          <label class="operation-label">
+            <input
+              type="text"
+              name="date-to"
+              placeholder="Дата до"
+              :value="formatDate(selectedDate.end)"
+              @click="props.togglePopover"
+            />
+            <CalendarIcon class="search-form-field__img" />
+          </label>
+        </template>
+        <template #footer>
+          <div class="date-picker__mobile-title" v-if="mobile">Когда</div>
+          <button class="search-filter__item date-picker__btn" type="button">
+            <PathIcon v-if="!mobile" />
+            Обратный билет не нужен
+          </button>
+        </template>
+      </VDatePicker>
+
+      <button class="order-btn" type="button">Показать</button>
+    </div>
+
+    <button
+      :class="['operation-btn', filterActive ? 'operation-btn--active' : '']"
+      type="button"
+      @click.stop="filterActive = !filterActive"
+    >
+      <span>Фильтр</span>
+      <ArrowDownIcon class="operation-filter-icon" />
+    </button>
+  </div>
 
   <table class="table">
     <thead>
@@ -48,22 +103,205 @@
 <script>
 import Pagination from "@/components/elements/Pagination.vue";
 import ArrowDownIcon from "@/assets/images/icons/iconsComp/ArrowDownIcon.vue";
+import CalendarIcon from "@/assets/images/icons/iconsComp/CalendarIcon.vue";
+import PathIcon from "@/assets/images/icons/iconsComp/PathIcon.vue";
+import { getFormatMonth } from "@/utilities/calendar";
 
 export default {
   components: {
     Pagination,
     ArrowDownIcon,
+    CalendarIcon,
+    PathIcon,
   },
   data() {
     return {
-      filterOptions: ["Optionnnn 1", "Option 3", "Option 3"],
-      filterSelected: null,
       perPage: 5,
       totalCount: 30,
+      filterActive: false,
+      selectedDate: {
+        start: null,
+        end: null,
+      },
+      windowWidth: window.innerWidth,
+      // prices: [
+      //   ["15 995", "", "", "13 995", "15 995"],
+      //   ["15 995", "", "", "15 995", "14 995"],
+      //   ["15 995", "", "", "13 995", "15 995"],
+      //   ["15 995", "", "", "15 995", "14 995"],
+      //   ["15 995", "", "", "13 995", "15 995"],
+      //   ["15 995", "", "", "15 995", "14 995"],
+      //   ["15 995", "", "", "13 995", "15 995"],
+      //   ["15 995", "", "", "15 995", "14 995"],
+      //   ["15 995", "", "", "13 995", "15 995"],
+      //   ["15 995", "", "", "15 995", "14 995"],
+      //   ["15 995", "", "", "13 995", "15 995"],
+      //   ["15 995", "", "", "15 995", "14 995"],
+      //   ["15 995", "", "", "15 995", "14 995"],
+      // ],
     };
+  },
+  computed: {
+    mobile() {
+      let result = this.windowWidth <= 576;
+      return result;
+    },
+    tablet() {
+      let result = this.windowWidth <= 992;
+      return result;
+    },
+  },
+  methods: {
+    formatDate(date) {
+      if (!date) return null;
+      let days = ["вс", "пн", "вт", "ср", "чт", "пт", "сб"];
+      let month = date.toLocaleString("ru-RU", { month: "long" });
+      month = getFormatMonth(Number(date.getMonth()));
+      let day = date.getDate();
+      let dayWeek = days[Number(date.getDay())];
+      return day + " " + month + ", " + dayWeek;
+    },
   },
 };
 </script>
+
+<style scoped>
+.operation-label{
+  position: relative;
+  margin-bottom: 0;
+}
+
+.operation-label input{
+  height: 40px;
+  width: 118px;
+  padding-inline: 16px;
+  border: var(--border-grey);
+  border-radius: var(--bdrs-7);
+  font-family: Gilroy-Regular !important;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  color: var(--text_color);
+}
+
+.operation-label input:focus{
+  outline: none;
+  border-color: var(--primary_bg);
+}
+
+.operation-label input[placeholder="Дата от"]{
+  border-radius: var(--bdrs-7) 0 0 var(--bdrs-7);
+}
+
+.operation-label input[placeholder="Дата до"]{
+  border-radius: 0 var(--bdrs-7) var(--bdrs-7) 0;
+}
+
+.operation-label svg{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 16px;
+}
+
+.operation-top {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.operation-datepicker-wrap{
+  display: flex;
+  align-items: center;
+}
+
+.operation-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 123px;
+  width: 100%;
+  height: 40px;
+  padding: 12px 16px;
+  border-radius: var(--bdrs-7);
+  border: var(--border-grey);
+}
+
+.operation-btn.operation-btn--active {
+  width: fit-content;
+}
+
+.operation-btn.operation-btn--active span {
+  display: none;
+}
+
+.operation-btn.operation-btn--active .operation-filter-icon {
+  transform: rotateZ(180deg);
+}
+
+.operation-btn span {
+  font-family: Gilroy-Medium !important;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  color: var(--grey-79);
+}
+
+.order-btn {
+  margin-left: 20px;
+}
+
+.dropdown {
+  padding: 2.4rem;
+  border: var(--border-grey);
+  border-radius: 0 0 7px 7px;
+  background-color: #fff;
+  box-shadow: var(--shadow-light);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.dropdown.transfers-dropdown {
+  right: 123px;
+}
+
+.date-picker__day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.date-picker__selected {
+  background-color: red;
+  border-radius: 4px;
+}
+
+.date-picker__price {
+  font-family: Gilroy-Medium;
+  font-weight: 400;
+  font-size: 10px;
+  color: #797979;
+}
+
+.date-picker__price_b {
+  color: #7dd2ea;
+}
+
+.date-picker__mobile-title {
+  font-size: 16px;
+  font-weight: 500 !important;
+  font-family: Gilroy-Medium !important;
+  color: #333;
+}
+
+.search-filter__item.date-picker__btn {
+  gap: 8px;
+  margin-left: auto;
+  margin-top: 23px;
+  font-size: 16px;
+}
+</style>
 
 <style>
 .table {
@@ -141,9 +379,7 @@ export default {
   border-radius: 7px;
   border: 1px solid #e6e6e6;
 }
-</style>
 
-<style>
 .filter-orders .vs__dropdown-toggle {
   border: none;
 }
