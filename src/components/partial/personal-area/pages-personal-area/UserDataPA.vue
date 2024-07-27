@@ -95,20 +95,8 @@
     <h4 class="user-data-title">Все пользователи</h4>
 
     <ul class="user-data-list">
-      <li>
-        <div class="user-data-name">Мой друг</div>
-
-        <div class="user-data-edit">
-          <button class="user-data-pen" type="button">
-            <PenIcon />
-          </button>
-          <button class="user-data-clear" type="button">
-            <CancelBoldIcon />
-          </button>
-        </div>
-      </li>
-      <li>
-        <div class="user-data-name">Мой друг2</div>
+      <li v-for="it in items" :key="it">
+        <div class="user-data-name">{{ it }}</div>
 
         <div class="user-data-edit">
           <button class="user-data-pen" type="button">
@@ -139,7 +127,9 @@ export default {
     PenIcon,
   },
   data() {
-    return {};
+    return {
+      items: ['Друг1', 'Друг2']
+    };
   },
   methods: {
     activeCancel(e) {
@@ -168,16 +158,9 @@ export default {
   color: #000;
 }
 
-.user-data-btns {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 16px;
-}
+</style>
 
-.user-data-btns button {
-  margin-left: 0;
-}
+<style>
 
 .user-data-list {
   margin-bottom: 16px;
@@ -216,7 +199,18 @@ export default {
   height: 20px;
 }
 
-.user-data-cancel-form{
+.user-data-btns {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.user-data-btns button {
+  margin-left: 0;
+}
+
+button.user-data-cancel-form{
   background-color: #fff;
   color: var(--primary_bg);
   border: 1px solid var(--primary_bg);
@@ -227,14 +221,4 @@ export default {
   margin-left: auto;
 }
 
-</style>
-
-<style>
-/* .user-data-clear svg path {
-  stroke: #C8C8C8;
-}
-.user-data-clear svg  {
-  height: 15px;
-  width: 15px;
-} */
 </style>

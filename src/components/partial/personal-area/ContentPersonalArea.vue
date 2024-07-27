@@ -12,6 +12,12 @@
     <div v-if="$route.query.titlePage === 'Личные данные'">
       <UserDataPA />
     </div>
+    <div v-if="$route.query.titlePage === 'Адреса доставки' && !$route.query.titleAddress">
+      <AddressDeliveryPA />
+    </div>
+    <div v-if="$route.query.titlePage === 'Адреса доставки'&& $route.query.titleAddress">
+      <AddressAddPA />
+    </div>
   </div>
 </template>
 
@@ -20,6 +26,8 @@ import OrderPA from "./pages-personal-area/OrderPA.vue";
 import FavoritesPA from "./pages-personal-area/FavoritesPA.vue";
 import OperationPA from "./pages-personal-area/OperationPA.vue";
 import UserDataPA from "./pages-personal-area/UserDataPA.vue";
+import AddressDeliveryPA from "./pages-personal-area/AddressDeliveryPA.vue";
+import AddressAddPA from "./pages-personal-area/AddressAddPA.vue";
 
 export default {
   components: {
@@ -27,6 +35,8 @@ export default {
     FavoritesPA,
     OperationPA,
     UserDataPA,
+    AddressDeliveryPA,
+    AddressAddPA,
   },
   props: {},
   data: function () {

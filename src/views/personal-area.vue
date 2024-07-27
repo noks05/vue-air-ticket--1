@@ -84,8 +84,10 @@ export default {
   computed: {
     crumbs() {
       const item = this.$route.query.titlePage;
+      const addAddress = this.$route.query.titleAddress;
       const arr = [];
       item && arr.push(item);
+      addAddress && arr.push(addAddress);
       return arr;
     },
   },
