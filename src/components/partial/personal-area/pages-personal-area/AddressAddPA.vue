@@ -34,8 +34,8 @@
           @option:selecting="markChoice"
         >
           <template #open-indicator="{ attributes }">
-            <button v-bind="attributes" class="order-clear" type="button">
-              <ArrowDown1Icon />
+            <button class="select-arrow-down" type="button">
+              <ArrowDownLittleIcon v-bind="attributes"  />
             </button>
           </template>
           <template #option="{ label, state }">
@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import ArrowDown1Icon from "@/assets/images/icons/iconsComp/ArrowDown1Icon.vue";
+import ArrowDownLittleIcon from "@/assets/images/icons/iconsComp/ArrowDownLittleIcon.vue";
 import CancelBoldIcon from "@/assets/images/icons/iconsComp/CancelBoldIcon.vue";
 import CancelIcon from "@/assets/images/icons/iconsComp/CancelIcon.vue";
 import PenIcon from "@/assets/images/icons/iconsComp/PenIcon.vue";
@@ -86,6 +86,7 @@ export default {
     CancelBoldIcon,
     CancelIcon,
     PenIcon,
+    ArrowDownLittleIcon,
   },
   data() {
     return {
@@ -121,7 +122,6 @@ export default {
     clearInputValue(e) {
       const clearBtn = e.target.closest(".order-clear");
       if (clearBtn) {
-        console.log(clearBtn);
         const input = clearBtn?.previousElementSibling;
         input.value = "";
         input.classList.remove("order-input--active");
@@ -145,19 +145,6 @@ export default {
       console.log(selectedItem);
     },
   },
-  mounted() {
-    const run = () => {
-      setTimeout(() => {
-        const it = document.querySelector(".vs__dropdown-menu");
-        // if (it)  console.log(it.querySelectorAll('.vs__dropdown-option'))
-        if (it) console.log(it.innerHTML);
-        else console.log(it);
-
-        run();
-      }, 2000);
-    };
-    run();
-  },
 };
 </script>
 
@@ -168,6 +155,19 @@ position: relative;
 
 .address-add-select {
   margin-bottom: 16px;
+}
+
+.address-add-select .select-arrow-down {
+  padding: 0;
+}
+
+.address-add-select .select-arrow-down svg{
+  height: 20px;
+  width: 20px;
+}
+
+.address-add-select .vs__open-indicator{
+  fill: #fff;
 }
 
 .address-add-select .vs__dropdown-toggle {
@@ -209,6 +209,10 @@ position: relative;
   margin-inline: 0;
 }
 
+.address-add-select .vs__actions {
+  padding-top: 0;
+}
+
 .address-add-select .select-option {
   position: relative;
   display: flex;
@@ -232,5 +236,9 @@ position: relative;
   .vs__dropdown-option.vs__dropdown-option--highlight
   .select-option {
   color: var(--text_color);
+}
+
+.vs__clear{
+  display: none;
 }
 </style>

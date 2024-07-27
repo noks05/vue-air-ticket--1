@@ -40,31 +40,55 @@
       </button>
     </label>
 
-    <label class="order-input-container order-input-container-required">
-      <span class="order-input-label"> Страна </span>
-      <input
-        class="order-input"
-        name="Страна"
-        type="text"
-        placeholder=""
-      />
-      <button class="order-clear" type="button">
-        <CancelIcon />
-      </button>
-    </label>
+    <div class="address-add-select-wrap">
+        <span class="order-input-label"> Страна </span>
+        <v-select
+          class="address-add-select order-input-container-required"
+          v-model="selectedCountry.value"
+          :options="optionsCountries"
+          @option:selected="(option) => (selectedCountry.value = option.value)"
+          @option:selecting="(sel)=>markChoice(sel,'optionsCountries')"
+        >
+          <template #open-indicator="{ attributes }">
+            <button class="select-arrow-down" type="button">
+              <ArrowDownLittleIcon v-bind="attributes"  />
+            </button>
+          </template>
+          <template #option="{ label, state }">
+            <div
+              :class="['select-option', state ? 'select-option--highlight' : '']"
+            >
+              {{ label }}
+            </div>
+          </template>
+        </v-select>
+      </div>
 
-    <label class="order-input-container order-input-container-required">
-      <span class="order-input-label"> Тип документа </span>
-      <input
-        class="order-input"
-        name="Тип документа"
-        type="text"
-        placeholder=""
-      />
-      <button class="order-clear" type="button">
-        <CancelIcon />
-      </button>
-    </label>
+      <div class="address-add-select-wrap">
+        <span class="order-input-label">
+          Тип документа
+         </span>
+        <v-select
+          class="address-add-select order-input-container-required"
+          v-model="selectedTypeDoc.value"
+          :options="optionsTypeDoc"
+          @option:selected="(option) => (selectedTypeDoc.value = option.value)"
+          @option:selecting="(sel)=>markChoice(sel,'optionsTypeDoc')"
+        >
+          <template #open-indicator="{ attributes }">
+            <button class="select-arrow-down" type="button">
+              <ArrowDownLittleIcon v-bind="attributes"  />
+            </button>
+          </template>
+          <template #option="{ label, state }">
+            <div
+              :class="['select-option', state ? 'select-option--highlight' : '']"
+            >
+              {{ label }}
+            </div>
+          </template>
+        </v-select>
+      </div>
 
     <label class="order-input-container order-input-container-required">
       <span class="order-input-label"> Номер документа </span>
@@ -105,6 +129,7 @@
 
 <script>
 import ArrowDown1Icon from "@/assets/images/icons/iconsComp/ArrowDown1Icon.vue";
+import ArrowDownLittleIcon from "@/assets/images/icons/iconsComp/ArrowDownLittleIcon.vue";
 import CancelIcon from "@/assets/images/icons/iconsComp/CancelIcon.vue";
 
 export default {
@@ -114,10 +139,53 @@ export default {
   components: {
     CancelIcon,
     ArrowDown1Icon,
+    ArrowDownLittleIcon,
   },
   data() {
     return {
       showProviderList: false,
+      selectedCountry: { label: "", value: "" },
+      optionsCountries: [
+        {
+          id: 0,
+          state: false,
+          label: "Екатеринбург",
+          value: "Екатеринбург",
+        },
+        {
+          id: 1,
+          state: false,
+          label: "Москва",
+          value: "Москва",
+        },
+        {
+          id: 2,
+          state: false,
+          label: "Волгоград",
+          value: "Волгоград",
+        },
+      ],
+      selectedTypeDoc: { label: "", value: "" },
+      optionsTypeDoc: [
+        {
+          id: 0,
+          state: false,
+          label: "Свидетельство о рождении",
+          value: "Свидетельство о рождении",
+        },
+        {
+          id: 1,
+          state: false,
+          label: "Паспорт",
+          value: "Паспорт",
+        },
+        {
+          id: 2,
+          state: false,
+          label: "Водительское удостоверение",
+          value: "Водительское удостоверение",
+        },
+      ],
     };
   },
   methods: {
@@ -132,6 +200,11 @@ export default {
         input.value = "";
         input.classList.remove("order-input--active");
       }
+    },
+    markChoice(selectedItem, nameOptions) {
+      this[nameOptions].forEach((obj) => (obj.state = false));
+      this[nameOptions][selectedItem.id].state = true;
+      console.log(selectedItem);
     },
   },
 };
