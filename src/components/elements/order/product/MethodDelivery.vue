@@ -22,7 +22,6 @@
     <div class="delivery-bottom" v-if="choiceDelivery">
       <div
         class="delivery-methods"
-        @click.stop="himselfExport = !himselfExport"
       >
         <button
           :class="[
@@ -30,6 +29,7 @@
             himselfExport ? 'delivery-btn--active' : '',
           ]"
           type="button"
+          @click.stop="himselfExport = true"
         >
           Самовывоз
         </button>
@@ -39,6 +39,7 @@
             !himselfExport ? 'delivery-btn--active' : '',
           ]"
           type="button"
+          @click.stop="himselfExport = false"
         >
           Курьером
         </button>
@@ -80,7 +81,7 @@ export default {
 .delivery-top {
   display: flex;
   justify-content: space-between;
-  padding: 24px;
+  padding: 23px;
 }
 
 .delivery-products {
@@ -101,6 +102,7 @@ export default {
 .delivery-bottom {
   position: relative;
   padding: 24px;
+  padding-bottom: 20px;
 }
 
 .delivery-bottom::before {
@@ -119,16 +121,19 @@ export default {
   display: flex;
   justify-content: flex-end;
 }
+.delivery-methods button{
+  margin: 0;
+}
 
 .order-btn.delivery-btn {
-  color: var(--primary_bg);
-  background-color: var(--light_gray);
+  color: #fff;
+  background-color: var(--primary_bg);
 }
 
 .order-btn.delivery-btn:hover,
 .order-btn.delivery-btn--active {
-  color: #fff;
-  background-color: var(--primary_bg);
+  color: var(--primary_bg);
+  background-color: var(--light_gray);
 }
 </style>
 

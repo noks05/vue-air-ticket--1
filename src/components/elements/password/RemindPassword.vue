@@ -2,7 +2,13 @@
   <div class="pass-wrap remind-pass-wrap">
     <h2>Напомнить пароль</h2>
 
-    <div class="remind-pass-switch-wrap" @click="methodGetCode = !methodGetCode">
+    <div
+      :class="[
+          'remind-pass-switch-wrap',
+          methodGetCode ? 'remind-pass-switch-wrap_mb' : '',
+        ]"
+      @click="methodGetCode = !methodGetCode"
+    >
       <button
         :class="[
           'remind-pass-switch',
@@ -36,7 +42,7 @@
       </label>
 
       <label v-if="!methodGetCode">
-        <span class="pass-input-label">
+        <span class="pass-input-label pass-input-label_ls">
           Введите номер участника (11 цифр)
         </span>
         <input name="member" type="text" placeholder="00000000000" />
@@ -77,24 +83,34 @@ export default {
   max-width: 376px;
   margin-block: 89px;
 }
+
+.remind-pass-wrap a {
+  display: flex;
+  margin-top: -17px;
+}
+
 .remind-pass-wrap h2 {
   margin-bottom: 40px;
 }
+
 .remind-pass-wrap form {
   max-width: 281px;
 }
+
 .remind-pass-wrap input::placeholder {
   color: #c8c8c8;
 }
+
 .remind-pass-switch-wrap {
   display: flex;
-  gap: 28px;
-  margin-bottom: 51px;
+  gap: 27px;
+  margin-bottom: 55px;
 }
+
 .remind-pass-switch {
   display: flex;
   align-items: center;
-  gap: 11px;
+  gap: 9px;
   padding: 0;
   text-wrap: nowrap;
   font-size: 14px;
@@ -104,15 +120,24 @@ export default {
   color: var(--grey-79);
   transition: color 0.2s;
 }
+
 .remind-pass-switch_primary,
 .remind-pass-switch:hover {
   color: var(--primary_bg);
 }
+
 .remind-pass-input-label {
-  margin-top: 8px;
+  margin-top: 7px;
   margin-bottom: 0;
   text-align: center;
   line-height: 120%;
+}
+.pass-input-label_ls {
+  letter-spacing: -0.3px;
+  margin-bottom: 8px;
+}
+.remind-pass-switch-wrap_mb{
+  margin-bottom: 51px;
 }
 </style>
 
@@ -120,6 +145,7 @@ export default {
 .remind-pass-switch:hover svg path {
   transition: stroke 0.2s;
 }
+
 .remind-pass-switch_primary svg path,
 .remind-pass-switch:hover svg path {
   stroke: var(--primary_bg);

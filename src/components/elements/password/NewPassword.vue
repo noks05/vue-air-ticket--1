@@ -1,6 +1,8 @@
 <template>
   <div class="pass-wrap new-pass-wrap">
-    <h2>Введите 6-значный код и новый пароль</h2>
+    <h2>
+      Введите 6-значный код и новый пароль
+    </h2>
 
     <form @submit.prevent="() => {}">
       <div
@@ -13,11 +15,10 @@
         <input class="new-pass-input" type="text" />
         <input class="new-pass-input" type="text" />
         <input class="new-pass-input" type="text" />
-        <input class="new-pass-input" type="text" />
       </div>
 
       <label>
-        <span class="pass-input-label">
+        <span class="pass-input-label new-pass-input-label">
           Введите новый пароль (Не менее 6 символов, цифр — не менее 1, строчных
           букв — не менее 1, прописных букв — не менее 1)
         </span>
@@ -41,7 +42,7 @@
       </label>
 
       <label>
-        <span class="pass-input-label"> Повторите пароль </span>
+        <span class="pass-input-label new-pass-input-label"> Повторите пароль </span>
         <div class="new-pass-input-wrap">
           <input
             name="password repeat"
@@ -61,7 +62,7 @@
         </div>
       </label>
 
-      <button class="pass-btn" type="submit">Готово</button>
+      <button class="pass-btn new-pass-btn" type="submit">Готово</button>
     </form>
   </div>
 </template>
@@ -118,10 +119,11 @@ export default {
 <style scoped>
 .new-pass-wrap {
   margin-block: 52px;
-  max-width: 296px;
+  max-width: 282px;
 }
 .new-pass-wrap h2 {
   margin-bottom: 32px;
+  max-width: 255px;
 }
 .new-pass-wrap label {
   position: relative;
@@ -138,7 +140,14 @@ export default {
   top: 50%;
   right: 15px;
   display: none;
+  padding: 0;
   transform: translateY(-50%);
+}
+.new-pass-input-label {
+  letter-spacing: -0.2px;
+}
+.new-pass-btn {
+  margin-top: 31px;
 }
 input.input--active + .new-pass-eye {
   display: flex;

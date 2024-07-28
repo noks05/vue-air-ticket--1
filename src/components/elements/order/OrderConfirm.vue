@@ -1,105 +1,107 @@
 <template>
-  <div class="order-container">
-    <h2>Подтверждение заказа</h2>
+  <div class="container">
+    <div class="order-wrap">
+      <h2>Подтверждение заказа</h2>
 
-    <form
-      @submit.prevent="() => {}"
-      @input.stop="(e) => activeCancel(e)"
-      @click.stop="(e) => clearInputValue(e)"
-    >
-      <div class="confirm-box">
-        <h3>Способ получения</h3>
-        <ul class="order-amount">
-          <li>
-            <p class="order-price">
-              Курьером до двери Boxberry 02.07.2024, Волгоградская обл.,
-              г.Волжский, ул.Маяковского, д.166, кв.33
-            </p>
-          </li>
-          <li>
-            <p class="order-price">
-              Семёнов Александр Иванович, +7 909 379-48-88, ghdhd@gmail.com
-            </p>
-          </li>
-        </ul>
-      </div>
-
-      <div class="confirm-box">
-        <h3>Ваш заказ</h3>
-        <ul class="order-amount confirm-amount">
-          <li>
-            <span class="order-price">
-              1 х Отдельностоящая микроволновая печь CASO M 20 EASY
-            </span>
-            <span class="order-money"> 800 354,50 бонусов </span>
-          </li>
-          <li>
-            <span class="order-price"> 1 х Детский мир, номинал 100 </span>
-            <span class="order-money"> 317,46 бонусов </span>
-          </li>
-          <li>
-            <span class="order-price">
-              1 х Отдельностоящая микроволновая печь CASO M 20 EASY
-            </span>
-            <span class="order-money"> 800 354,50 бонусов </span>
-          </li>
-        </ul>
-      </div>
-
-      <div class="confirm-box">
-        <h3>Способ оплаты</h3>
-        <ul class="order-amount">
-          <li>
-            <span class="order-price"> Стоимость товаров: </span>
-            <span class="order-money"> 800 354,50 бонусов </span>
-          </li>
-          <li>
-            <span class="order-price"> Стоимость доставки: </span>
-            <span class="order-money"> 317,46 бонусов </span>
-          </li>
-          <li>
-            <span class="order-price">
-              Стоимость заказа с учётом доставки:
-            </span>
-            <span class="order-money"> 3 592,06 бонусов </span>
-          </li>
-          <li class="confirm-red-text">
-            <span class="order-price"> Вам не хватает </span>
-            <span class="order-money"> 0,00 ₽ </span>
-          </li>
-          <li>
-            <span class="order-price"> Вы оплачиваете бонусами: </span>
-            <span class="order-money"> 3 592,06 бонусов </span>
-          </li>
-          <li>
-            <span class="order-price"> Вы оплачиваете банковской картой: </span>
-            <span class="order-money"> 0,00 ₽ </span>
-          </li>
-        </ul>
-
-        <!-- slider  -->
-        <div class="confirm-slider">
-          <Slider
-            v-model="rangeValue"
-          />
-          <span class="confirm-slider-text">
-            <span>Деньги</span>
-            <span>Баллы</span>
-          </span>
+      <form
+        @submit.prevent="() => {}"
+        @input.stop="(e) => activeCancel(e)"
+        @click.stop="(e) => clearInputValue(e)"
+      >
+        <div class="confirm-box confirm-box_pb">
+          <h3>Способ получения</h3>
+          <ul class="order-amount">
+            <li>
+              <p class="order-price">
+                Курьером до двери Boxberry 02.07.2024, Волгоградская обл.,
+                г.Волжский, ул.Маяковского, д.166, кв.33
+              </p>
+            </li>
+            <li>
+              <p class="order-price">
+                Семёнов Александр Иванович, +7 909 379-48-88, ghdhd@gmail.com
+              </p>
+            </li>
+          </ul>
         </div>
 
-        <div class="confirm-pay">
-          <p class="confirm-policy order-price">
-            Нажимая “Оплатить” вы соглашаетесь с 
-            <a class="order-price" href="#">
-              публичной офертой агента Безопасность платежей
-            </a>
-          </p>
-
-          <button class="order-btn" type="button">Оплатить</button>
+        <div class="confirm-box confirm-box_pb1">
+          <h3 class="confirm-box-h3_mb">Ваш заказ</h3>
+          <ul class="order-amount confirm-amount">
+            <li>
+              <span class="order-price">
+                1 х Отдельностоящая микроволновая печь CASO M 20 EASY
+              </span>
+              <span class="order-money"> 800 354,50 бонусов </span>
+            </li>
+            <li>
+              <span class="order-price"> 1 х Детский мир, номинал 100 </span>
+              <span class="order-money"> 317,46 бонусов </span>
+            </li>
+            <li>
+              <span class="order-price">
+                1 х Отдельностоящая микроволновая печь CASO M 20 EASY
+              </span>
+              <span class="order-money"> 800 354,50 бонусов </span>
+            </li>
+          </ul>
         </div>
-      </div>
-    </form>
+
+        <div class="confirm-box">
+          <h3>Способ оплаты</h3>
+          <ul class="order-amount order-amount_pb">
+            <li>
+              <span class="order-price"> Стоимость товаров: </span>
+              <span class="order-money"> 800 354,50 бонусов </span>
+            </li>
+            <li>
+              <span class="order-price"> Стоимость доставки: </span>
+              <span class="order-money"> 317,46 бонусов </span>
+            </li>
+            <li>
+              <span class="order-price">
+                Стоимость заказа с учётом доставки:
+              </span>
+              <span class="order-money"> 3 592,06 бонусов </span>
+            </li>
+            <li class="confirm-red-text">
+              <span class="order-price"> Вам не хватает </span>
+              <span class="order-money"> 0,00 ₽ </span>
+            </li>
+            <li>
+              <span class="order-price"> Вы оплачиваете бонусами: </span>
+              <span class="order-money"> 3 592,06 бонусов </span>
+            </li>
+            <li>
+              <span class="order-price"> Вы оплачиваете банковской картой: </span>
+              <span class="order-money"> 0,00 ₽ </span>
+            </li>
+          </ul>
+
+          <!-- slider  -->
+          <div class="confirm-slider">
+            <Slider
+              v-model="rangeValue"
+            />
+            <span class="confirm-slider-text">
+              <span>Деньги</span>
+              <span>Баллы</span>
+            </span>
+          </div>
+
+          <div class="confirm-pay">
+            <p class="confirm-policy order-price">
+              Нажимая “Оплатить” вы соглашаетесь с 
+              <a class="order-price" href="#">
+                публичной офертой агента Безопасность платежей
+              </a>
+            </p>
+
+            <button class="order-btn" type="button">Оплатить</button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -135,14 +137,42 @@ export default {
 </script>
 
 <style scoped>
+.order-wrap{
+  max-width: 783px;
+}
+
+.order-amount{
+  margin-bottom: 0;
+}
+
+.order-amount_pb{
+  margin-bottom: 17px;
+}
+
 .confirm-box {
+  margin-bottom: 16px;
   padding: 24px;
   border-radius: var(--bdrs-7);
-  box-shadow: var(--shadow-light);
+  letter-spacing: 0;
+  -webkit-box-shadow: -1px 1px 4px 2px rgba(34, 60, 80, 0.06);
+  -moz-box-shadow: -1px 1px 4px 2px rgba(34, 60, 80, 0.06);
+  box-shadow: -1px 1px 4px 2px rgba(34, 60, 80, 0.06);
+}
+
+.confirm-box_mb{
+  /* padding-bottom: px; */
+}
+
+.confirm-box_pb{
+  padding-bottom: 32px;
+}
+.confirm-box_pb1{
+  padding-bottom: 22px;
 }
 
 .confirm-box h3 {
   margin-bottom: 24px;
+  letter-spacing: 0;
   font-size: 18px;
   font-family: Gilroy-Medium !important;
   font-weight: 500;
@@ -150,11 +180,19 @@ export default {
   color: var(--text_color);
 }
 
+.confirm-box h3.confirm-box-h3_mb {
+  margin-bottom: 16px;
+}
+
 .confirm-pay {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 16px;
+}
+
+.confirm-pay button{
+  margin-left: 0;
 }
 
 .confirm-policy {
@@ -165,11 +203,13 @@ export default {
 
 .confirm-policy a {
   font-size: 12px;
+  line-height: 125%;
   text-decoration: underline;
 }
 
 .confirm-amount {
   gap: 0;
+  margin-top: 0;
 }
 
 .confirm-amount li {
@@ -181,7 +221,7 @@ export default {
 }
 
 .confirm-slider{
-  margin-bottom: 24px;
+  margin-bottom: 17px;
 }
 
 .confirm-slider-text{
@@ -194,6 +234,7 @@ export default {
 .confirm-slider-text span{
   font-family: Gilroy-Medium !important;
   font-weight: 500;
+  font-size: 16px;
 }
 
 .confirm-red-text span{

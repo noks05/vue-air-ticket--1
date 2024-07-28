@@ -253,7 +253,7 @@ export default {
   margin-bottom: 8px;
 }
 .air-ticket-sex {
-  margin-top: 20px;
+  margin-top: 13px;
 }
 .air-ticket-sex ul{
   display: flex;

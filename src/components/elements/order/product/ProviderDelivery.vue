@@ -56,15 +56,15 @@ export default {
 </script>
 
 <style>
-.delivery-provider{
-  padding: 16px 24px;
+.delivery-provider {
+  padding: 20px 22px;
 }
 
 .delivery-provider-btn {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 106px;
+  max-width: 104px;
   width: 100%;
   padding: 0;
   font-size: 16px;
@@ -80,6 +80,7 @@ export default {
 
 .delivery-provider-list {
   height: 0;
+  padding-top: 2px;
   overflow: hidden;
   transition: height 0.2s;
 }
@@ -90,7 +91,8 @@ export default {
 
 .delivery-provider-item {
   display: flex;
-  gap: 15px;
+  gap: 24px;
+  margin-bottom: 0;
   padding-block: 16px;
   opacity: 0;
   transition: opacity 0.3s;
@@ -118,7 +120,7 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked + .delivery-provider-replace {
-  border-width: 8px;
+  border-width: 7px;
   border-color: var(--primary_bg);
 }
 

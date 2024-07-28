@@ -236,6 +236,10 @@ export default {
   display: none;
 }
 
+.operation-filter-icon {
+  transition: transform 0.3s;
+}
+
 .operation-btn.operation-btn--active .operation-filter-icon {
   transform: rotateZ(180deg);
 }

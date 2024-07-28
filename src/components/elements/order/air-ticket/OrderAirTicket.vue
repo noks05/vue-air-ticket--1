@@ -1,19 +1,19 @@
 <template>
-  <div class="order-container">
-    <h2>Оформление авиабилета</h2>
+  <div class="container">
+    <div class="order-wrap air-ticket">
+      <h2>Оформление авиабилета</h2>
 
-    <form
-      @submit.prevent="() => {}"
-      @input.stop="(e) => activeCancel(e)"
-      @click.stop="(e) => clearInputValue(e)"
-    >
-
+      <form
+        @submit.prevent="() => {}"
+        @input.stop="(e) => activeCancel(e)"
+        @click.stop="(e) => clearInputValue(e)"
+      >
         <h3 class="air-ticket-h3">Контактные данные</h3>
 
         <label class="order-input-container order-input-container-required">
           <span class="order-input-label"> Адрес электронной почты </span>
           <input
-            class="order-input"
+            class="order-input air-ticket-input_h"
             name="email"
             type="text"
             placeholder="Введите эл. почту"
@@ -26,7 +26,7 @@
         <label class="order-input-container order-input-container-required">
           <span class="order-input-label"> Телефон </span>
           <input
-            class="order-input"
+            class="order-input air-ticket-input_h"
             name="phone"
             type="text"
             placeholder="+7 ("
@@ -36,40 +36,33 @@
           </button>
         </label>
 
-      <h3 class="air-ticket-h3">Данные о пассажирах</h3>
+        <h3 class="air-ticket-h3 air-ticket-h3_mt">Данные о пассажирах</h3>
 
-      <DataPassenger class="air-ticket-block" title="Взрослый" />
-      <DataPassenger class="air-ticket-block" title="Ребёнок" />
-      <DataPassenger class="air-ticket-block" title="Младенец" />
+        <DataPassenger class="air-ticket-block" title="Взрослый" />
+        <DataPassenger class="air-ticket-block" title="Ребёнок" />
+        <DataPassenger class="air-ticket-block" title="Младенец" />
 
-      <label class="order-input-container order-input-container-required">
-        <span class="order-input-label"> Страна </span>
-        <input class="order-input" name="address" type="text" placeholder="" />
-        <button class="order-clear" type="button">
-          <CancelIcon />
+        <p class="certificate-policy order-price">
+          <label>
+            <input type="checkbox" />
+            <span class="certificate-checkbox-marker"></span>
+            <span> Подтверждаю правильность введённых данных </span>
+          </label>
+        </p>
+
+        <div class="air-ticket-amount">
+          <span class="air-ticket-amount-text"> Сумма заказа: </span>
+          <span class="air-ticket-amount-money"> 475,66 бонусов </span>
+        </div>
+
+        <button
+          class="order-btn order-submit order-submit--disabled"
+          type="submit"
+        >
+          Забронировать и оплатить
         </button>
-      </label>
-
-      <p class="certificate-policy order-price">
-        <label>
-          <input type="checkbox" />
-          <span class="certificate-checkbox-marker"></span>
-          <span> Подтверждаю правильность введённых данных </span>
-        </label>
-      </p>
-
-      <div class="air-ticket-amount">
-        <span class="air-ticket-amount-text"> Сумма заказа: </span>
-        <span class="air-ticket-amount-money"> 475,66 бонусов </span>
-      </div>
-
-      <button
-        class="order-btn order-submit order-submit--disabled"
-        type="submit"
-      >
-        Забронировать и оплатить
-      </button>
-    </form>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -104,16 +97,25 @@ export default {
 </script>
 
 <style scoped>
-.air-ticket-h3{
+.air-ticket-h3 {
   margin-bottom: 16px;
   font-size: 20px;
   font-family: Gilroy-Medium !important;
   font-weight: 500;
   line-height: 100%;
+  letter-spacing: 0;
   color: #000;
 }
 
-.air-ticket-block{
+.air-ticket-h3_mt {
+  margin-top: 40px;
+}
+
+.air-ticket-input_h {
+  height: 68px;
+}
+
+.air-ticket-block {
   margin-bottom: 16px;
 }
 
@@ -123,10 +125,11 @@ export default {
 
 .air-ticket-amount {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 32px;
+  margin-bottom: 30px;
 }
+
 .air-ticket-amount-text {
   font-size: 18px;
   font-family: Gilroy-Medium !important;
@@ -134,11 +137,27 @@ export default {
   line-height: 100%;
   color: var(--text_color);
 }
+
 .air-ticket-amount-money {
   font-size: 24px;
   font-family: Gilroy-SemiBold !important;
   font-weight: 600;
   line-height: 100%;
   color: var(--text_color);
+}
+</style>
+
+
+<style>
+.air-ticket h2 {
+  margin-bottom: 23px;
+}
+
+.air-ticket .address-add-select {
+  margin-bottom: 0;
+}
+
+.air-ticket .address-add-select-wrap:not(:last-child) {
+  margin-bottom: 8px;
 }
 </style>

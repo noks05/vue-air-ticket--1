@@ -449,6 +449,7 @@ export default {
 
 .btn-truncate {
   display: flex;
+  align-items: center;
   gap: 5px;
   padding: 0;
   font-family: Gilroy-Medium !important;
@@ -462,7 +463,7 @@ export default {
 
 .list-truncate {
   position: absolute;
-  left: 50%;
+  left: 53%;
   top: 40px;
   display: none;
   min-width: 265px;
@@ -470,7 +471,9 @@ export default {
   padding: 16px;
   background-color: #fff;
   border-radius: 7px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0px 1px 13px -2px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 1px 13px -2px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 1px 13px -2px rgba(34, 60, 80, 0.2);
   opacity: 0;
   transition: opacity 0.3s;
   transform: translateX(-50%);
@@ -483,7 +486,11 @@ export default {
 }
 
 .list-truncate li:not(:last-child) {
-  margin-bottom: 19px;
+  margin-bottom: 18px;
+}
+
+.list-truncate li svg {
+  width: 20px;
 }
 
 .link-truncate {

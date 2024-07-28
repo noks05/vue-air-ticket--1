@@ -43,6 +43,7 @@ export default {
   font-family: Gilroy-Medium !important;
   font-weight: 500;
   line-height: 100%;
+  letter-spacing: 0;
   color: var(--text_color);
 }
 .pass-wrap label {

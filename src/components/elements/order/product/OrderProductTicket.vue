@@ -1,133 +1,135 @@
 <template>
-  <div class="order-container">
-    <h2>Оформление заказа</h2>
+  <div class="container">
+    <div class="order-wrap">
+      <h2>Оформление заказа</h2>
 
-    <form
-      @submit.prevent="() => {}"
-      @input.stop="(e) => activeCancel(e)"
-      @click.stop="(e) => clearInputValue(e)"
-    >
-      <label class="order-input-container order-input-container-required">
-        <span class="order-input-label"> ФИО </span>
-        <input
-          class="order-input"
-          name="ФИО"
-          type="text"
-          placeholder="Кириллицей"
-        />
-        <button class="order-clear" type="button">
-          <CancelIcon />
-        </button>
-      </label>
-
-      <label class="order-input-container order-input-container-required">
-        <span class="order-input-label"> Адрес электронной почты </span>
-        <input
-          class="order-input"
-          name="email"
-          type="text"
-          placeholder="Введите эл. почту"
-        />
-        <button class="order-clear" type="button">
-          <CancelIcon />
-        </button>
-      </label>
-
-      <label class="order-input-container order-input-container-required">
-        <span class="order-input-label"> Телефон </span>
-        <input
-          class="order-input"
-          name="phone"
-          type="text"
-          placeholder="+7 ("
-        />
-        <button class="order-clear" type="button">
-          <CancelIcon />
-        </button>
-      </label>
-
-      <p class="order-paragraph">Указать дополнительный номер телефона</p>
-
-      <label class="order-input-container">
-        <span class="order-input-label"> Телефон дополнительный </span>
-        <input
-          class="order-input"
-          name="add phone"
-          type="text"
-          placeholder="+7 ("
-        />
-        <button class="order-clear" type="button">
-          <CancelIcon />
-        </button>
-      </label>
-
-      <label class="order-input-container order-input-container-required">
-        <span class="order-input-label"> Город, улица, номер дома </span>
-        <input
-          class="order-input"
-          name="address"
-          type="text"
-          placeholder="Введите адрес"
-        />
-        <button class="order-clear" type="button">
-          <CancelIcon />
-        </button>
-      </label>
-
-      <label class="order-input-container">
-        <span class="order-input-label"> Квартира </span>
-        <input
-          class="order-input"
-          name="flat"
-          type="text"
-          placeholder="Введите номер квартиры"
-        />
-        <button class="order-clear" type="button">
-          <CancelIcon />
-        </button>
-      </label>
-
-      <div class="order-index">Индекс</div>
-
-      <MethodDelivery
-        :products="[
-          'Чайник Xiaomi Thermostatic Electric Kettle 2 CN, белый',
-          'Чайник Xiaomi Thermostatic Electric Kettle 2 CN, красный',
-        ]"
-      />
-
-      <MethodDelivery :products="['Микроволновая печь Bosch']" />
-
-      <ul class="order-amount">
-        <li>
-          <span class="order-price"> Цена подарка: </span>
-          <span class="order-money"> 475,66 бонусов </span>
-        </li>
-        <li>
-          <span class="order-price"> Цена доставки: </span>
-          <span class="order-money"> 0,00 бонусов </span>
-        </li>
-        <li>
-          <span class="order-price"> Итого с учетом доставки: </span>
-          <span class="order-money"> 475,66 бонусов </span>
-        </li>
-      </ul>
-
-      <!-- router-link для теста, так тут этой ссылки быть не должно  -->
-      <router-link
-        :to="{
-          path: $route.path,
-          query: { ...$route.query, orderConfirm: 'Подтверждение заказа' },
-        }"
+      <form
+        @submit.prevent="() => {}"
+        @input.stop="(e) => activeCancel(e)"
+        @click.stop="(e) => clearInputValue(e)"
       >
-        <button
-          class="order-btn order-submit order-submit--disabled"
-          type="submit"
+        <label class="order-input-container order-input-container-required">
+          <span class="order-input-label"> ФИО </span>
+          <input
+            class="order-input"
+            name="ФИО"
+            type="text"
+            placeholder="Кириллицей"
+          />
+          <button class="order-clear" type="button">
+            <CancelIcon />
+          </button>
+        </label>
+
+        <label class="order-input-container order-input-container-required">
+          <span class="order-input-label"> Адрес электронной почты </span>
+          <input
+            class="order-input"
+            name="email"
+            type="text"
+            placeholder="Введите эл. почту"
+          />
+          <button class="order-clear" type="button">
+            <CancelIcon />
+          </button>
+        </label>
+
+        <label class="order-input-container order-input-container-required">
+          <span class="order-input-label"> Телефон </span>
+          <input
+            class="order-input"
+            name="phone"
+            type="text"
+            placeholder="+7 ("
+          />
+          <button class="order-clear" type="button">
+            <CancelIcon />
+          </button>
+        </label>
+
+        <p class="order-paragraph">Указать дополнительный номер телефона</p>
+
+        <label class="order-input-container">
+          <span class="order-input-label"> Телефон дополнительный </span>
+          <input
+            class="order-input"
+            name="add phone"
+            type="text"
+            placeholder="+7 ("
+          />
+          <button class="order-clear" type="button">
+            <CancelIcon />
+          </button>
+        </label>
+
+        <label class="order-input-container order-input-container-required">
+          <span class="order-input-label"> Город, улица, номер дома </span>
+          <input
+            class="order-input"
+            name="address"
+            type="text"
+            placeholder="Введите адрес"
+          />
+          <button class="order-clear" type="button">
+            <CancelIcon />
+          </button>
+        </label>
+
+        <label class="order-input-container">
+          <span class="order-input-label"> Квартира </span>
+          <input
+            class="order-input"
+            name="flat"
+            type="text"
+            placeholder="Введите номер квартиры"
+          />
+          <button class="order-clear" type="button">
+            <CancelIcon />
+          </button>
+        </label>
+
+        <div class="order-index">Индекс</div>
+
+        <MethodDelivery
+          :products="[
+            'Чайник Xiaomi Thermostatic Electric Kettle 2 CN, белый',
+            'Чайник Xiaomi Thermostatic Electric Kettle 2 CN, красный',
+          ]"
+        />
+
+        <MethodDelivery :products="['Микроволновая печь Bosch']" />
+
+        <ul class="order-amount">
+          <li>
+            <span class="order-price"> Цена подарка: </span>
+            <span class="order-money"> 475,66 бонусов </span>
+          </li>
+          <li>
+            <span class="order-price"> Цена доставки: </span>
+            <span class="order-money"> 0,00 бонусов </span>
+          </li>
+          <li>
+            <span class="order-price"> Итого с учетом доставки: </span>
+            <span class="order-money"> 475,66 бонусов </span>
+          </li>
+        </ul>
+
+        <!-- router-link для теста, так тут этой ссылки быть не должно  -->
+        <router-link
+          :to="{
+            path: $route.path,
+            query: { ...$route.query, orderConfirm: 'Подтверждение заказа' },
+          }"
         >
-          Оформить заказ
-        </button>
-      </router-link>
-    </form>
+          <button
+            class="order-btn order-submit order-submit--disabled"
+            type="submit"
+          >
+            Оформить заказ
+          </button>
+        </router-link>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -161,20 +163,20 @@ export default {
 </script>
 
 <style>
-.order-container {
+.order-wrap {
   width: 100%;
   max-width: 883px;
-  margin-inline: auto;
-  margin-top: 16px;
+  margin-top: -26px;
   margin-bottom: 60px;
 }
 
-.order-container h2 {
+.order-wrap h2 {
   margin-bottom: 24px;
   font-size: 24px;
   font-family: Gilroy-Medium !important;
   font-weight: 500;
   line-height: 100%;
+  letter-spacing: 0;
   color: #000;
 }
 
@@ -200,7 +202,7 @@ export default {
 }
 
 .order-input-container:not(:last-child) {
-  margin-bottom: 16px;
+  margin-bottom: 17px;
 }
 
 .order-input-label {
@@ -218,7 +220,7 @@ export default {
 .order-input {
   position: relative;
   width: 100%;
-  height: 64px;
+  height: 66px;
   padding-top: 16px;
   padding-left: 16px;
   padding-right: 70px;
@@ -262,7 +264,7 @@ export default {
 
 .order-paragraph {
   padding: 0;
-  margin-top: 8px;
+  margin-top: -9px;
   margin-bottom: 16px;
   font-size: 14px;
   font-family: Gilroy-SemiBold !important;
@@ -290,12 +292,15 @@ export default {
 
 .order-index {
   height: 48px;
+  margin-top: -6px;
+  margin-bottom: 41px;
   padding: 16px;
   border-radius: var(--bdrs-7);
   font-size: 16px;
   font-family: Gilroy-SemiBold !important;
   font-weight: 600;
   line-height: 100%;
+  background-color: var(--light_gray);
   color: var(--grey-79);
 }
 

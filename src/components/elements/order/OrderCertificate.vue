@@ -1,96 +1,98 @@
 <template>
-  <div class="order-container">
-    <h2>Оформление заказа</h2>
+  <div class="container">
+   <div class="order-wrap certificate-wrap">
+      <h2>Оформление заказа</h2>
 
-    <form
-      @submit.prevent="() => {}"
-      @input.stop="(e) => activeCancel(e)"
-      @click.stop="(e) => clearInputValue(e)"
-    >
-      <label class="order-input-container order-input-container-required">
-        <span class="order-input-label"> ФИО </span>
-        <input
-          class="order-input"
-          name="ФИО"
-          type="text"
-          placeholder="Кириллицей"
-        />
-        <button class="order-clear" type="button">
-          <CancelIcon />
-        </button>
-      </label>
-
-      <label class="order-input-container order-input-container-required">
-        <span class="order-input-label"> Адрес электронной почты </span>
-        <input
-          class="order-input"
-          name="email"
-          type="text"
-          placeholder="Введите эл. почту"
-        />
-        <button class="order-clear" type="button">
-          <CancelIcon />
-        </button>
-      </label>
-
-      <label class="order-input-container order-input-container-required">
-        <span class="order-input-label"> Телефон </span>
-        <input
-          class="order-input"
-          name="phone"
-          type="text"
-          placeholder="+7 ("
-        />
-        <button class="order-clear" type="button">
-          <CancelIcon />
-        </button>
-      </label>
-
-      <div class="certificate-delivery">
-        <div class="certificate-delivery-title">Способ доставки</div>
-
-        <div class="certificate-delivery-content">
-          <span class="certificate-marker delivery-provider-replace"></span>
-          <p>
-            Подарочный сертификат доступен для скачивания на странице «Заказы»
-            в течении 60 минут после оплаты
-          </p>
-        </div>
-      </div>
-
-      <ul class="order-amount">
-        <li>
-          <span class="order-price"> Цена подарка: </span>
-          <span class="order-money"> 475,66 бонусов </span>
-        </li>
-        <li>
-          <span class="order-price"> Цена доставки: </span>
-          <span class="order-money"> 0,00 бонусов </span>
-        </li>
-        <li>
-          <span class="order-price"> Итого с учетом доставки: </span>
-          <span class="order-money"> 475,66 бонусов </span>
-        </li>
-      </ul>
-
-      <p class="certificate-policy order-price">
-        <label>
-          <input type="checkbox" />
-          <span class="certificate-checkbox-marker"></span>
-          <span> Согласен с условиями </span>
-        </label>
-        <router-link class="certificate-link" to="#">
-          Ограничение использования сертификата
-        </router-link>
-      </p>
-
-      <button
-        class="order-btn order-submit order-submit--disabled"
-        type="submit"
+      <form
+        @submit.prevent="() => {}"
+        @input.stop="(e) => activeCancel(e)"
+        @click.stop="(e) => clearInputValue(e)"
       >
-        Оформить заказ
-      </button>
-    </form>
+        <label class="order-input-container order-input-container-required">
+          <span class="order-input-label"> ФИО </span>
+          <input
+            class="order-input"
+            name="ФИО"
+            type="text"
+            placeholder="Кириллицей"
+          />
+          <button class="order-clear" type="button">
+            <CancelIcon />
+          </button>
+        </label>
+
+        <label class="order-input-container order-input-container-required">
+          <span class="order-input-label"> Адрес электронной почты </span>
+          <input
+            class="order-input"
+            name="email"
+            type="text"
+            placeholder="Введите эл. почту"
+          />
+          <button class="order-clear" type="button">
+            <CancelIcon />
+          </button>
+        </label>
+
+        <label class="order-input-container order-input-container-required">
+          <span class="order-input-label"> Телефон </span>
+          <input
+            class="order-input"
+            name="phone"
+            type="text"
+            placeholder="+7 ("
+          />
+          <button class="order-clear" type="button">
+            <CancelIcon />
+          </button>
+        </label>
+
+        <div class="certificate-delivery">
+          <div class="certificate-delivery-title">Способ доставки</div>
+
+          <div class="certificate-delivery-content">
+            <span class="certificate-marker delivery-provider-replace"></span>
+            <p>
+              Подарочный сертификат доступен для скачивания на странице «Заказы»
+              в течении 60 минут после оплаты
+            </p>
+          </div>
+        </div>
+
+        <ul class="order-amount">
+          <li>
+            <span class="order-price"> Цена подарка: </span>
+            <span class="order-money"> 475,66 бонусов </span>
+          </li>
+          <li>
+            <span class="order-price"> Цена доставки: </span>
+            <span class="order-money"> 0,00 бонусов </span>
+          </li>
+          <li>
+            <span class="order-price"> Итого с учетом доставки: </span>
+            <span class="order-money"> 475,66 бонусов </span>
+          </li>
+        </ul>
+
+        <p class="certificate-policy order-price">
+          <label>
+            <input type="checkbox" />
+            <span class="certificate-checkbox-marker"></span>
+            <span> Согласен с условиями </span>
+          </label>
+          <router-link class="certificate-link" to="#">
+            Ограничение использования сертификата
+          </router-link>
+        </p>
+
+        <button
+          class="order-btn order-submit order-submit--disabled"
+          type="submit"
+        >
+          Оформить заказ
+        </button>
+      </form>
+   </div>
   </div>
 </template>
 
@@ -127,9 +129,18 @@ export default {
 </script>
 
 <style>
+.certificate-wrap h2{
+  margin-bottom: 16px;
+}
+
+.certificate-wrap .order-amount{
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
 .certificate-delivery {
   margin-top: 40px;
-  margin-bottom: 24px;
+  margin-bottom: 23px;
   border-bottom: var(--border-grey);
 }
 
@@ -165,13 +176,13 @@ export default {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 32px;
+  margin-bottom: 33px;
 }
 
 .certificate-policy label {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
   margin-bottom: 0;
   cursor: pointer;
 }
