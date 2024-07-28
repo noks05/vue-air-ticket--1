@@ -19,7 +19,14 @@
           {{ item.name }}
         </router-link>
 
-        <div v-if="item.elements">
+        <div
+          :class="[
+            'p-area-widget-list_w',
+            'p-area-dropdown-wrap',
+            slideState ? 'p-area-dropdown-wrap--active' : '',
+          ]"
+          v-if="item.elements"
+        >
           <div
             class="p-area-big-text p-area-list-title"
             @click.prevent="slideState = !slideState"
@@ -35,7 +42,7 @@
             />
           </div>
 
-          <div class="p-area-widget-list">
+          <div class="p-area-widget-list p-area-dropdown-list">
             <router-link
               v-for="elem in item.elements"
               :key="elem"
@@ -98,14 +105,16 @@ export default {
   min-width: 281px;
   max-width: 281px;
   padding: 24px;
+  padding-block: 30px;
   border: 1px solid #f4f7ff;
   border-radius: 7px;
   background-color: #fff;
 }
 
 .p-area-widget {
-  margin-bottom: 16px;
-  padding: 16px 8px;
+  margin-bottom: 13px;
+  padding: 19px 12px;
+  padding-bottom: 15px;
   border-radius: 7px;
   background-color: #fef4f1;
 }
@@ -114,7 +123,7 @@ export default {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   font-family: Gilroy-Bold !important;
   font-weight: 700;
   font-size: 12px;
@@ -131,6 +140,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-top: 18px;
 }
 
 .p-area-widget-list > li {
@@ -138,8 +148,39 @@ export default {
 }
 
 .p-area-list-title {
-  margin-bottom: 16px;
+  padding-right: 5px;
   cursor: pointer;
+}
+
+.p-area-dropdown-wrap {
+  height: auto;
+  overflow: hidden;
+  transition: height 0.3s;
+}
+
+.p-area-dropdown-wrap.p-area-dropdown-wrap--active {
+  height: 100%;
+}
+
+.p-area-dropdown-list {
+  display: none;
+  animation: fadeIn 0.3s;
+}
+
+.p-area-dropdown-wrap.p-area-dropdown-wrap--active .p-area-dropdown-list {
+  display: flex;
+}
+
+.p-area-dropdown-wrap .rotated_icon {
+  transition: transform 0.3s;
+}
+
+.p-area-dropdown-wrap.p-area-dropdown-wrap--active .rotated_icon {
+  transform: rotateZ(0deg);
+}
+
+.p-area-widget-list_w {
+  width: 100%;
 }
 
 .p-area-widget-sub-title {

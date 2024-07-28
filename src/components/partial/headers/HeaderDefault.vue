@@ -478,7 +478,7 @@ export default {
   transition: opacity 0.3s;
   transform: translateX(-50%);
   z-index: 1000;
-  animation: showIn 0.3s;
+  animation: fadeIn 0.3s;
 }
 
 .list-truncate ul {
@@ -510,16 +510,6 @@ export default {
 .container-truncate.container-truncate--active .list-truncate {
   display: block;
   opacity: 1;
-}
-
-@keyframes showIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
 }
 
 .mobile-menu-cos {

@@ -94,6 +94,40 @@ export default {
           title: "Яндекс Практикум",
           action: "Уже в корзине",
         },
+        {
+          id: 5,
+          nameImg: "yandex-sale.jpg",
+          altImg: "yandex sale",
+          marker: false,
+          title: "Яндекс Практикум",
+          action: "В корзину",
+        },
+        {
+          id: 6,
+          nameImg: "yandex-sale.jpg",
+          altImg: "yandex sale",
+          marker: false,
+          title: "Яндекс Практикум",
+          action: "Уже в корзине",
+        },
+        {
+          id: 7,
+          nameImg: "yandex-sale.jpg",
+          altImg: "yandex sale",
+          marker: {
+            text: "Нет в наличии",
+          },
+          title: "Яндекс Практикум",
+          action: "Похожее",
+        },
+        {
+          id: 8,
+          nameImg: "yandex-sale.jpg",
+          altImg: "yandex sale",
+          marker: false,
+          title: "Яндекс Практикум",
+          action: "Уже в корзине",
+        },
       ],
     };
   },
@@ -104,8 +138,9 @@ export default {
 .favor-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  margin-bottom: 40px;
+  column-gap: 20px;
+  row-gap: 13px;
+  margin-bottom: 37px;
 }
 .favor-card {
   width: calc((100% - 20px * 3) / 4);
@@ -152,7 +187,8 @@ export default {
   width: 100%;
 }
 .favor-box-bottom > h3 {
-  margin-bottom: 8px;
+  margin-bottom: 9px;
+  letter-spacing: 0;
   font-family: Gilroy-Medium !important;
   font-weight: 500;
   font-size: 16px;
@@ -169,7 +205,9 @@ export default {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 12px 15px;
+  width: 100%;
+  max-width: 137px;
+  padding: 11px 15px;
   border-radius: 7px;
   font-family: Gilroy-Medium !important;
   font-weight: 500;

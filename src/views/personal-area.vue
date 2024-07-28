@@ -114,7 +114,7 @@ export default {
 }
 .p-area-content {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   gap: 20px;
 }
 
