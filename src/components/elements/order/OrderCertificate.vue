@@ -78,11 +78,13 @@
           <label>
             <input type="checkbox" />
             <span class="certificate-checkbox-marker"></span>
-            <span> Согласен с условиями </span>
           </label>
-          <router-link class="certificate-link" to="#">
-            Ограничение использования сертификата
-          </router-link>
+          <span class="certificate-policy-text">
+            <span> Согласен с условиями </span>
+            <router-link class="certificate-link" to="#">
+              Ограничение использования сертификата
+            </router-link>
+          </span>
         </p>
 
         <button
@@ -175,7 +177,7 @@ export default {
 .certificate-policy {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
   margin-bottom: 33px;
 }
 
@@ -227,5 +229,46 @@ export default {
   input[type="checkbox"]:checked
   + .certificate-checkbox-marker {
   background-color: var(--primary_bg);
+}
+
+.certificate-policy-text{
+  display: flex;
+  gap: 16px;
+}
+
+@media (max-width: 576px) {
+  .certificate-delivery-content {
+    gap: 14px;
+    padding: 8px 0;
+    align-items: initial;
+  }
+
+  .certificate-delivery-title {
+    margin-bottom: 26px;
+  }
+
+  .certificate-delivery {
+    border-bottom: none;
+    margin-bottom: 7px;
+  }
+
+  .certificate-wrap .order-amount {
+    margin-bottom: 32px;
+  }
+
+  .certificate-policy{
+    margin-bottom: 37px;
+    gap: 8px;
+  }
+
+  .certificate-policy-text{
+    gap: 0;
+    flex-direction: column;
+  }
+
+  .order-submit{
+    margin-left: 0;
+    width: 100%;
+  }
 }
 </style>

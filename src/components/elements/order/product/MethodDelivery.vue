@@ -135,5 +135,11 @@ export default {
   color: var(--primary_bg);
   background-color: var(--light_gray);
 }
+
+@media (max-width: 576px) {
+  .delivery-top{
+    flex-direction: column;
+  }
+}
 </style>
 

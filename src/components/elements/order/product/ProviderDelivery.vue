@@ -24,7 +24,7 @@
             <span class="delivery-provider-replace"></span>
             <div class="delivery-provider-text">
               <p class="delivery-provider-address">
-                Воронеж, 20-летия Октября ул., д. 101
+                Воронеж, 20-летия Октября ул., д.101
               </p>
               <p class="delivery-provider-date">
                 Ожидаемая дата доставки - 24.06.2024, Стоимость доставки -

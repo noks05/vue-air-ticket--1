@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container order-product-ticket">
     <div class="order-wrap">
       <h2>Оформление заказа</h2>
 
@@ -166,8 +166,11 @@ export default {
 .order-wrap {
   width: 100%;
   max-width: 883px;
-  margin-top: -26px;
   margin-bottom: 60px;
+}
+
+.order-product-ticket .order-wrap {
+  margin-top: -26px;
 }
 
 .order-wrap h2 {
@@ -355,5 +358,93 @@ export default {
 
 .order-clear svg path {
   stroke: #c8c8c8;
+}
+
+@media (max-width: 576px) {
+
+  .order-wrap h2 {
+    font-size: 22px;
+  }
+  .order-product-ticket .order-wrap {
+    margin-top: 0;
+  }
+  .order-product-ticket .order-container container{
+    padding-inline: 16px;
+  }
+
+  .order-product-ticket .order-wrap h2{
+    margin-bottom: 16px;
+    font-size: 22px;
+  }
+
+  .order-product-ticket .order-index{
+    margin-bottom: 36px;
+  }
+
+  .order-product-ticket .delivery-top{
+    padding: 15px;
+  }
+
+  .order-product-ticket .delivery-products {
+    margin-bottom: 12px;
+  }
+
+  .order-product-ticket .delivery-products p{
+    font-family: Gilroy-Medium !important;
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  .order-product-ticket button{
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .order-product-ticket .delivery-bottom {
+    padding-top: 16px;
+    padding-inline: 15px;
+  }
+
+  .order-product-ticket .delivery-provider {
+    padding-inline: 0;
+    /* padding-top: 28px;   */
+  }
+
+  .order-product-ticket .delivery-provider:last-child {
+    padding-bottom: 12px;
+  }
+
+  .order-product-ticket .delivery-provider-item {
+    gap: 17px;
+    padding-left: 0;
+    padding-bottom: 17px;
+  }
+
+  .order-product-ticket .delivery-provider-item:last-child {
+    padding-bottom: 0;
+  }
+
+  .order-product-ticket .delivery-provider-address {
+    font-size: 14px;
+    line-height: 113%;
+  }
+
+  .order-product-ticket .delivery-provider-date {
+    line-height: 113%;
+    font-size: 13px;
+  }
+
+  .order-product-ticket .order-amount {
+    margin-bottom: 25px;
+    margin-top: 27px;
+  }
+
+  .order-amount .order-price{
+    font-size: 14px;
+  }
+
+  .order-amount .order-money{
+    font-size: 16px;
+  }
 }
 </style>

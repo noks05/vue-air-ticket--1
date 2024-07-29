@@ -13,9 +13,21 @@
         <li class="breadcrumb-item">
           <router-link :to="{ path: $route.path }">Корзина</router-link>
         </li>
-        <li class="breadcrumb-item active" v-for="(crumb, index) in crumbs" :key="index">
+        <li
+          :class="[
+            'breadcrumb-item active',
+            'breadcrumb-item_mobile',
+            'breadcrumb-item_arrow-none',
+            index + 1 === crumbs.length ? 'active' : '',
+            crumbs[index + 1] && crumbs[index + 1][0] === 'orderConfirm'
+              ? 'breadcrumb-item_none'
+              : '',
+          ]"
+          v-for="(crumb, index) in crumbs"
+          :key="index"
+        >
           <router-link
-            :to="{path: $route.path, query:{[crumb[0]]: crumb[1]}}"
+            :to="{ path: $route.path, query: { [crumb[0]]: crumb[1] } }"
             :style="
               index + 1 === crumbs.length
                 ? 'color: #000 !important; text-transform: none !important; pointer-events: none;'
@@ -33,15 +45,9 @@
     <OrderProductTicket
       v-if="$route.query.order && !$route.query.orderConfirm"
     />
-    <OrderConfirm
-      v-if="$route.query.orderConfirm"
-    />
-    <OrderCertificate
-      v-if="$route.query.orderCer"
-    />
-    <OrderAirTicket
-      v-if="$route.query.orderAir"
-    />
+    <OrderConfirm v-if="$route.query.orderConfirm" />
+    <OrderCertificate v-if="$route.query.orderCer" />
+    <OrderAirTicket v-if="$route.query.orderAir" />
   </div>
 </template>
 
@@ -70,22 +76,22 @@ export default {
       const orderCer = this.$route.query.orderCer;
       const orderAir = this.$route.query.orderAir;
       const orderConfirm = this.$route.query.orderConfirm;
-      order && crumbsArr.push(['order',order])
-      orderCer && crumbsArr.push(['orderCer',orderCer])
-      orderAir && crumbsArr.push(['orderAir',orderAir])
-      orderConfirm && crumbsArr.push(['orderConfirm', orderConfirm])
+      order && crumbsArr.push(["order", order]);
+      orderCer && crumbsArr.push(["orderCer", orderCer]);
+      orderAir && crumbsArr.push(["orderAir", orderAir]);
+      orderConfirm && crumbsArr.push(["orderConfirm", orderConfirm]);
 
       return crumbsArr;
     },
-    checkQuery1(){
-      return this.$route.query.order === 'Оформление заказа'
+    checkQuery1() {
+      return this.$route.query.order === "Оформление заказа";
     },
-    checkQuery2(){
-      return this.$route.query.order === 'Оформление заказа(сертификат)'
+    checkQuery2() {
+      return this.$route.query.order === "Оформление заказа(сертификат)";
     },
   },
   mounted() {
-    console.log(this.$route.query)
+    console.log(this.$route.query);
   },
 };
 </script>
