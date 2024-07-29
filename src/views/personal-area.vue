@@ -27,34 +27,45 @@
           <router-link to="/">Главная</router-link>
         </li>
         <li class="breadcrumb-item">
-          <router-link :to="{path: $route.path}">Личный кабинет</router-link>
+          <router-link :to="{ path: $route.path }">Личный кабинет</router-link>
         </li>
         <li
-          class="breadcrumb-item active"
+          :class="['breadcrumb-item', id + 1 === crumbs.length ? 'active' : '']"
           v-for="(crumb, id) in crumbs"
           :key="id"
         >
-          <span
+          <router-link
             :style="
               id + 1 === crumbs.length
                 ? 'color: #000 !important; text-transform: none !important'
                 : ''
             "
+            :to="{ path: $route.path, query: { titlePage: crumb } }"
           >
             {{ crumb }}
-          </span>
+          </router-link>
         </li>
       </ol>
     </div>
   </nav>
 
   <div class="container p-area-container">
-    <h2 class="p-area-title">{{ $route.query.titlePage }}</h2>
+    <h2
+      :class="[
+        'p-area-title',
+        $route.query.titlePage === 'Личные данные' ? 'p-area-title_data' : '',
+      ]"
+    >
+      {{ crumbs[crumbs.length - 1] }}
+    </h2>
 
     <div class="p-area-content">
       <Sidebar
         :class="[
           $route.query.titlePage === 'Заказы' ? 'p-area-sidebar_orders' : '',
+          $route.query.titlePage === 'Добавление адреса'
+            ? 'p-area-sidebar_add'
+            : '',
         ]"
       />
       <PersonalAreaContent />
@@ -91,27 +102,42 @@ export default {
       return arr;
     },
   },
+  mounted() {
+    console.log(this.$refs.query);
+  },
 };
 </script>
 
 <style scoped>
+.breadcrumb-item.active {
+  pointer-events: none;
+}
+
 .breadcrumb-nav_mt.breadcrumb-nav_mb {
   margin-bottom: 16px;
   border-bottom: none;
   border-top: 0.2rem solid rgba(235, 235, 235, 0.55);
 }
+
 .p-area-container {
   margin-bottom: 60px;
 }
+
 .p-area-title {
   margin: 0;
   margin-bottom: 16px;
+  letter-spacing: 0;
   font-family: Gilroy-Medium !important;
   font-weight: 500;
   font-size: 24px;
   line-height: 100%;
   color: #000;
 }
+
+.p-area-title_data{
+  margin-bottom: 24px;
+}
+
 .p-area-content {
   display: flex;
   /* justify-content: space-between; */
@@ -121,9 +147,11 @@ export default {
 .p-area-alerts {
   display: block;
 }
+
 .p-area-alerts:empty {
   display: none;
 }
+
 .p-area-alert {
   display: flex;
   align-items: center;
@@ -136,24 +164,35 @@ export default {
   line-height: 100%;
   color: #000;
 }
+
 .p-area-alert button {
   padding: 0;
   transition: filter 0.2s;
 }
+
 .p-area-alert button:hover {
   filter: brightness(0.5);
 }
+
 .p-area-alert_green {
   color: #5c8a67;
   background-color: #d4edda;
 }
+
 .p-area-alert_red {
   color: #833838;
   background-color: #ff997a;
 }
+
 .p-area-container .p-area-sidebar_orders {
+  letter-spacing: 0;
   min-width: 172px;
   max-width: 172px;
+  margin-top: -2px;
+}
+
+.p-area-container .p-area-sidebar_add .p-area-widget {
+  padding-block: 17px;
 }
 </style>
 
@@ -162,9 +201,11 @@ export default {
   height: 17px;
   width: 17px;
 }
+
 .p-area-alert_green svg path {
   stroke: #5c8a67;
 }
+
 .p-area-alert_red svg path {
   stroke: #833838;
 }

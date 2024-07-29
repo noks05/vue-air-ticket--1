@@ -123,16 +123,16 @@
 	}
 
 	.no-gutters {
-		
+
 		.col-xl-2-5col {
 		    -ms-flex: 0 0 calc(40% + 8px);
-			flex-basis: calc(40% + 8px); 
+			flex-basis: calc(40% + 8px);
 		    max-width: calc(40% + 8px);
 		}
 
 		.col-xl-3-5col {
 		    -ms-flex: 0 0 calc(60% - 8px);
-			flex-basis: calc(60% - 8px); 
+			flex-basis: calc(60% - 8px);
 		    max-width: calc(60% - 8px);
 		}
 	}

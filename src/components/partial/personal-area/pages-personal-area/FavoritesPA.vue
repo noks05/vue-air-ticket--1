@@ -139,7 +139,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   column-gap: 20px;
-  row-gap: 13px;
+  row-gap: 19px;
   margin-bottom: 37px;
 }
 .favor-card {
@@ -148,8 +148,8 @@ export default {
 .favor-box-top{
   position: relative;
   margin-bottom: 8px;
-  padding-top: 40px;
   padding-bottom: 32px;
+  padding-top: 34px;
 }
 .favor-img-wrap{
   display: flex;

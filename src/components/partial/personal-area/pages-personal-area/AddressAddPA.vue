@@ -149,6 +149,13 @@ export default {
 </script>
 
 <style>
+.address-add-wrap input{
+  height: 64px;
+}
+.address-add-wrap .order-input-container{
+  margin-bottom: 14px;
+}
+
 .address-add-select-wrap{
 position: relative;
 }
@@ -180,7 +187,7 @@ position: relative;
 }
 
 .address-add-select .vs__dropdown-menu {
-  padding-block: 10px;
+  padding-block: 20px;
   border-radius: 0 0 var(--bdrs-7) var(--bdrs-7);
   border: var(--border-grey);
   -webkit-box-shadow: -1px 5px 17px -4px rgba(34, 60, 80, 0.09);
@@ -190,6 +197,7 @@ position: relative;
 
 .address-add-select .vs__dropdown-menu li {
   color: #adadad;
+  padding-left: 22px;
 }
 
 .address-add-select .vs__search,
@@ -217,7 +225,7 @@ position: relative;
   position: relative;
   display: flex;
   align-items: center;
-  padding-block: 4px;
+  padding-block: 3px;
   font-size: 14px;
   line-height: 100%;
   font-family: Gilroy-Regular !important;

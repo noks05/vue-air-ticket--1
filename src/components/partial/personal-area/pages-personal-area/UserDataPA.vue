@@ -158,6 +158,14 @@ export default {
   color: #000;
 }
 
+.user-data-wrap form{
+  margin-bottom: 40px;
+}
+
+.user-data-wrap h4{
+  letter-spacing: 0;
+}
+
 </style>
 
 <style>
@@ -170,7 +178,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-block: 16px;
+  padding-block: 15px;
   border-bottom: 1px solid var(--light_gray);
   font-size: 16px;
   font-family: Gilroy-Regular !important;
@@ -204,6 +212,7 @@ export default {
   align-items: center;
   justify-content: flex-end;
   gap: 16px;
+  margin-top: 24px;
 }
 
 .user-data-btns button {

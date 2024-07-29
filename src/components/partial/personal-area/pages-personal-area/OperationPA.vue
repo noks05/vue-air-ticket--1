@@ -65,7 +65,7 @@
     </button>
   </div>
 
-  <table class="table">
+  <table class="table operation-table">
     <thead>
       <tr>
         <th>Дата</th>
@@ -173,7 +173,7 @@ export default {
 
 .operation-label input{
   height: 40px;
-  width: 118px;
+  width: 121px;
   padding-inline: 16px;
   border: var(--border-grey);
   border-radius: var(--bdrs-7);
@@ -204,6 +204,24 @@ export default {
   right: 16px;
 }
 
+.dropdown {
+  padding: 2.4rem;
+  border: var(--border-grey);
+  border-radius: 0 0 7px 7px;
+  background-color: #fff;
+  box-shadow: var(--shadow-light);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.dropdown.transfers-dropdown {
+  right: 123px;
+}
+
+</style>
+
+<style>
+
 .operation-top {
   display: flex;
   align-items: center;
@@ -220,10 +238,10 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 123px;
+  max-width: 125px;
   width: 100%;
   height: 40px;
-  padding: 12px 16px;
+  padding: 20px 15px;
   border-radius: var(--bdrs-7);
   border: var(--border-grey);
 }
@@ -237,6 +255,8 @@ export default {
 }
 
 .operation-filter-icon {
+  width: 20px;
+  height: 9px;
   transition: transform 0.3s;
 }
 
@@ -252,22 +272,20 @@ export default {
   color: var(--grey-79);
 }
 
+.operation-table{
+  margin-top: 5px;
+}
+
+.operation-table thead th:nth-child(1){
+  width: 38%;
+}
+
+.operation-table thead th:nth-child(2){
+  width: 33%;
+}
+
 .order-btn {
   margin-left: 20px;
-}
-
-.dropdown {
-  padding: 2.4rem;
-  border: var(--border-grey);
-  border-radius: 0 0 7px 7px;
-  background-color: #fff;
-  box-shadow: var(--shadow-light);
-  overflow: hidden;
-  z-index: 1000;
-}
-
-.dropdown.transfers-dropdown {
-  right: 123px;
 }
 
 .date-picker__day {
@@ -305,13 +323,12 @@ export default {
   margin-top: 23px;
   font-size: 16px;
 }
-</style>
 
-<style>
+
 .table {
   width: 100%;
   bottom: none;
-  margin-bottom: 40px;
+  margin-bottom: 37px;
 }
 
 .table thead th {
@@ -329,7 +346,7 @@ export default {
 }
 
 .table thead th {
-  padding-block: 20px;
+  padding-block: 18px;
 }
 
 .table thead th:not(:last-child) {
@@ -346,7 +363,7 @@ export default {
 
 .table tbody td {
   vertical-align: top;
-  padding-block: 24px;
+  padding-block: 23px;
   font-family: Gilroy-Regular !important;
   font-weight: 400;
   font-size: 13px;

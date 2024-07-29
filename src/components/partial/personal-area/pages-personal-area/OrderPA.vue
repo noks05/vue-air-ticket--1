@@ -1,24 +1,79 @@
 <template>
-  <v-select
-    class="filter-orders"
-    v-model="filterSelected"
-    :options="filterOptions"
-    placeholder="Фильтр"
-  >
-    <template #open-indicator="{ attributes }">
-      <ArrowDownIcon v-bind="attributes" />
-    </template>
-  </v-select>
+  <div class="operation-top">
+    <div class="operation-datepicker-wrap" v-if="filterActive">
+      <VDatePicker
+        class="date-picker operation-date-picker dropdown"
+        :columns="tablet ? 1 : 2"
+        locale="ru-RU"
+        v-model.range="selectedDate"
+      >
+        <template #day-content="{ day, dayEvents }">
+          <div :class="['dp-day-custom']" v-on="dayEvents">
+            <span class="dp-day-custom__day">{{ day.day }}</span>
+            <!-- <span
+              :class="[
+                'dp-day-custom__price',
+                day.weekday === 4 || day.weekday === 5
+                  ? 'dp-day-custom__price--green'
+                  : '',
+              ]"
+              >{{ prices[day.month][day.day] }}</span> -->
+          </div>
+        </template>
+        <template #default="props">
+          <label class="operation-label">
+            <input
+              type="text"
+              name="date-from"
+              placeholder="Дата от"
+              :value="formatDate(selectedDate.start)"
+              @click.stop="props.togglePopover"
+              @focusin="console.log(props.locale)"
+            />
+            <CalendarIcon class="search-form-field__img" />
+          </label>
+          <label class="operation-label">
+            <input
+              type="text"
+              name="date-to"
+              placeholder="Дата до"
+              :value="formatDate(selectedDate.end)"
+              @click="props.togglePopover"
+            />
+            <CalendarIcon class="search-form-field__img" />
+          </label>
+        </template>
+        <template #footer>
+          <div class="date-picker__mobile-title" v-if="mobile">Когда</div>
+          <button class="search-filter__item date-picker__btn" type="button">
+            <PathIcon v-if="!mobile" />
+            Обратный билет не нужен
+          </button>
+        </template>
+      </VDatePicker>
 
-  <table class="table">
+      <button class="order-btn" type="button">Показать</button>
+    </div>
+
+    <button
+      :class="['operation-btn', filterActive ? 'operation-btn--active' : '']"
+      type="button"
+      @click.stop="filterActive = !filterActive"
+    >
+      <span>Фильтр</span>
+      <ArrowDownIcon class="operation-filter-icon" />
+    </button>
+  </div>
+
+  <table class="table order-page-table">
     <thead>
       <tr>
         <th>Дата</th>
         <th>Номер</th>
         <th>Статус</th>
         <th>Описание</th>
-        <th>Бонусами</th>
-        <th>Деньгами</th>
+        <th class="order-text-end">Бонусами</th>
+        <th class="order-text-end">Деньгами</th>
         <th>Сумма</th>
       </tr>
     </thead>
@@ -28,8 +83,9 @@
         <td>777355791</td>
         <td>Аннулирован</td>
         <td>
-          Подарочный сертификат МВидео, 100 Подарочный сертификат Детский мир,
-          100
+          <p>1. Подарочный сертификат МВидео, 100</p>
+          <p>2. Подарочный сертификат Детский мир, 100</p>
+
           <label class="input-file">
             <input class="visually-hidden" type="file" />
             <span>Скачать</span>
@@ -86,14 +142,92 @@ export default {
       filterOptions: ["Optionnnn 1", "Option 3", "Option 3"],
       filterSelected: null,
       perPage: 5,
-      totalCount: 30,
+      totalCount: 30,      selectedDate: {
+        start: null,
+        end: null,
+      },
+      windowWidth: window.innerWidth,
+      // prices: [
+      //   ["15 995", "", "", "13 995", "15 995"],
+      //   ["15 995", "", "", "15 995", "14 995"],
+      //   ["15 995", "", "", "13 995", "15 995"],
+      //   ["15 995", "", "", "15 995", "14 995"],
+      //   ["15 995", "", "", "13 995", "15 995"],
+      //   ["15 995", "", "", "15 995", "14 995"],
+      //   ["15 995", "", "", "13 995", "15 995"],
+      //   ["15 995", "", "", "15 995", "14 995"],
+      //   ["15 995", "", "", "13 995", "15 995"],
+      //   ["15 995", "", "", "15 995", "14 995"],
+      //   ["15 995", "", "", "13 995", "15 995"],
+      //   ["15 995", "", "", "15 995", "14 995"],
+      //   ["15 995", "", "", "15 995", "14 995"],
+      // ],
     };
+  },
+  computed: {
+    mobile() {
+      let result = this.windowWidth <= 576;
+      return result;
+    },
+    tablet() {
+      let result = this.windowWidth <= 992;
+      return result;
+    },
+  },
+  methods: {
+    formatDate(date) {
+      if (!date) return null;
+      let days = ["вс", "пн", "вт", "ср", "чт", "пт", "сб"];
+      let month = date.toLocaleString("ru-RU", { month: "long" });
+      month = getFormatMonth(Number(date.getMonth()));
+      let day = date.getDate();
+      let dayWeek = days[Number(date.getDay())];
+      return day + " " + month + ", " + dayWeek;
+    },
   },
 };
 </script>
 
-<style>
+<style scoped>
+.order-page-table thead th:nth-child(1){
+  width: 14%;
+}
+.order-page-table thead th:nth-child(2){
+  width: 12%;
+}
+.order-page-table thead th:nth-child(3){
+  width: 12%;
+}
+.order-page-table thead th:nth-child(4){
+  width: 27%;
+}
+.order-page-table thead th:nth-child(5){
+  width: 12%;
+}
+.order-page-table thead th:nth-child(6){
+  width: 11%;
+}
+.order-page-table thead th:nth-child(7){
+  width: 12%;
+}
+
+.order-page-table thead th:nth-child(5),
+.order-page-table thead th:nth-child(6),
+.order-page-table thead th:nth-child(7),
+.order-page-table tbody td:nth-child(5),
+.order-page-table tbody td:nth-child(6),
+.order-page-table tbody td:nth-child(7){
+  text-align: end;
+  /* padding-right: 20px; */
+}
+
+.order-page-table thead th:nth-child(7),
+.order-page-table tbody td:nth-child(7){
+  padding-right: 22px;
+}
+
 .table {
+  margin-top: 10px;
   width: 100%;
   bottom: none;
   margin-bottom: 40px;
@@ -108,13 +242,16 @@ export default {
   color: var(--grey-79);
 }
 
-.table thead th:first-child,
+.table thead th:first-child {
+  padding-left: 25px;
+}
+
 .table thead th:last-child {
-  padding-left: 24px;
+  padding-left: 20px;
 }
 
 .table thead th {
-  padding-block: 20px;
+  padding-block: 14px;
 }
 
 .table thead th:not(:last-child) {
@@ -128,9 +265,21 @@ export default {
   border-bottom: 2px solid #f4f7ff;
 }
 
+.table tbody td p{
+  font-family: Gilroy-Regular !important;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 130%;
+  color: var(--text_color);
+}
+
+.table tbody td label{
+  margin-bottom: 0;
+}
+
 .table tbody td {
   vertical-align: top;
-  padding-block: 24px;
+  padding-block: 21px;
   font-family: Gilroy-Regular !important;
   font-weight: 400;
   font-size: 14px;
@@ -145,6 +294,14 @@ export default {
 
 .table tbody td:not(:last-child) {
   padding-right: 20px;
+}
+
+.order-text-end{
+  text-align: end;
+}
+
+.order-table-item_pr{
+  text-align: end;
 }
 
 .input-file {

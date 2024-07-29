@@ -1,5 +1,13 @@
 <template>
-  <div class="p-area-content-wrap">
+  <div
+    :class="[
+      'p-area-content-wrap',
+      $route.query.titlePage === 'Заказы' ? 'p-area-content-wrap_op' : '',
+      $route.query.titlePage === 'Адреса доставки' && !$route.query.titleAddress
+        ? 'p-area-content-wrap_op'
+        : '',
+    ]"
+  >
     <div v-if="$route.query.titlePage === 'Операции'">
       <OperationPA />
     </div>
@@ -12,10 +20,20 @@
     <div v-if="$route.query.titlePage === 'Личные данные'">
       <UserDataPA />
     </div>
-    <div v-if="$route.query.titlePage === 'Адреса доставки' && !$route.query.titleAddress">
+    <div
+      v-if="
+        $route.query.titlePage === 'Адреса доставки' &&
+        !$route.query.titleAddress
+      "
+    >
       <AddressDeliveryPA />
     </div>
-    <div v-if="$route.query.titlePage === 'Адреса доставки'&& $route.query.titleAddress">
+    <div
+      v-if="
+        $route.query.titlePage === 'Адреса доставки' &&
+        $route.query.titleAddress
+      "
+    >
       <AddressAddPA />
     </div>
   </div>
@@ -47,8 +65,11 @@ export default {
 </script>
 
 <style scoped>
-.p-area-content-wrap{
+.p-area-content-wrap {
   width: 100%;
   max-width: 884px;
+}
+.p-area-content-wrap_op {
+  margin-left: auto;
 }
 </style>

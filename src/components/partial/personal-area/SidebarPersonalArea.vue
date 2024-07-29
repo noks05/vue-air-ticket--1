@@ -29,7 +29,7 @@
         >
           <div
             class="p-area-big-text p-area-list-title"
-            @click.prevent="slideState = !slideState"
+            @click.stop="slideState = !slideState"
           >
             <span>
               {{ item.name }}
@@ -53,7 +53,6 @@
                   ? 'p-area-small-text_b'
                   : '',
               ]"
-              @click.prevent="slideState = !slideState"
             >
               {{ elem.name }}
             </router-link>
@@ -105,7 +104,6 @@ export default {
   min-width: 281px;
   max-width: 281px;
   padding: 24px;
-  padding-block: 30px;
   border: 1px solid #f4f7ff;
   border-radius: 7px;
   background-color: #fff;
@@ -114,6 +112,7 @@ export default {
 .p-area-widget {
   margin-bottom: 13px;
   padding: 19px 12px;
+  padding-right: 7px;
   padding-bottom: 15px;
   border-radius: 7px;
   background-color: #fef4f1;
@@ -172,11 +171,12 @@ export default {
 }
 
 .p-area-dropdown-wrap .rotated_icon {
+  transform: rotateZ(0deg);
   transition: transform 0.3s;
 }
 
 .p-area-dropdown-wrap.p-area-dropdown-wrap--active .rotated_icon {
-  transform: rotateZ(0deg);
+  transform: rotateZ(180deg);
 }
 
 .p-area-widget-list_w {

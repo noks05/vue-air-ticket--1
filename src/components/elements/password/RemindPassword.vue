@@ -4,9 +4,10 @@
 
     <div
       :class="[
-          'remind-pass-switch-wrap',
-          methodGetCode ? 'remind-pass-switch-wrap_mb' : '',
-        ]"
+        'remind-pass-switch-wrap',
+        methodGetCode ? 'remind-pass-switch-wrap_mb' : '',
+        !methodGetCode ? 'remind-pass-switch-wrap_member' : '',
+      ]"
       @click="methodGetCode = !methodGetCode"
     >
       <button
@@ -132,12 +133,53 @@ export default {
   text-align: center;
   line-height: 120%;
 }
+
 .pass-input-label_ls {
   letter-spacing: -0.3px;
   margin-bottom: 8px;
 }
-.remind-pass-switch-wrap_mb{
+
+.remind-pass-switch-wrap_mb {
   margin-bottom: 51px;
+}
+
+@media screen and (max-width: 480px) {
+  .new-pass-wrap {
+    max-width: 100%;
+    padding-inline: 16px;
+  }
+
+  .new-pass-inputs {
+    gap: 11px;
+    max-width: 286px;
+    margin-inline: auto;
+    justify-content: initial;
+  }
+
+  .remind-pass-switch {
+    flex-direction: column;
+  }
+
+  .remind-pass-wrap h2 {
+    font-size: 22px;
+    margin-bottom: 30px;
+  }
+
+  .remind-pass-switch-wrap {
+    gap: 32px;
+  }
+
+  .remind-pass-switch-wrap_mb {
+    margin-bottom: 42px;
+  }
+
+  .remind-pass-switch-wrap_member {
+    margin-bottom: 44px;
+  }
+
+  .remind-pass-wrap form {
+    max-width: 327px;
+  }
 }
 </style>
 
