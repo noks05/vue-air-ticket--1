@@ -25,7 +25,7 @@
           </ul>
         </div>
 
-        <div class="confirm-box confirm-box_pb1">
+        <div class="confirm-box confirm-box_pb1 confirm-box_price">
           <h3 class="confirm-box-h3_mb">Ваш заказ</h3>
           <ul class="order-amount confirm-amount">
             <li>
@@ -39,17 +39,15 @@
               <span class="order-money"> 317,46 бонусов </span>
             </li>
             <li>
-              <span class="order-price">
-                1 х Отдельностоящая микроволновая печь CASO M 20 EASY
-              </span>
-              <span class="order-money"> 800 354,50 бонусов </span>
+              <span class="order-price"> 1 х Детский мир, номинал 100 </span>
+              <span class="order-money"> 317,46 бонусов </span>
             </li>
           </ul>
         </div>
 
         <div class="confirm-box">
           <h3>Способ оплаты</h3>
-          <ul class="order-amount order-amount_pb">
+          <ul class="order-amount order-amount_pb confirm-box_price">
             <li>
               <span class="order-price"> Стоимость товаров: </span>
               <span class="order-money"> 800 354,50 бонусов </span>
@@ -73,16 +71,16 @@
               <span class="order-money"> 3 592,06 бонусов </span>
             </li>
             <li>
-              <span class="order-price"> Вы оплачиваете банковской картой: </span>
+              <span class="order-price">
+                Вы оплачиваете банковской картой:
+              </span>
               <span class="order-money"> 0,00 ₽ </span>
             </li>
           </ul>
 
           <!-- slider  -->
           <div class="confirm-slider">
-            <Slider
-              v-model="rangeValue"
-            />
+            <Slider v-model="rangeValue" />
             <span class="confirm-slider-text">
               <span>Деньги</span>
               <span>Баллы</span>
@@ -106,7 +104,7 @@
 </template>
 
 <script>
-import Slider from 'primevue/slider';
+import Slider from "primevue/slider";
 
 export default {
   components: {
@@ -124,7 +122,7 @@ export default {
     },
     clearInputValue(e) {
       const clearBtn = e.target.closest(".order-clear");
-      if(clearBtn){
+      if (clearBtn) {
         const input = clearBtn?.previousElementSibling;
         input.value = "";
         input.classList.remove("order-input--active");
@@ -137,15 +135,15 @@ export default {
 </script>
 
 <style scoped>
-.order-wrap{
+.order-wrap {
   max-width: 783px;
 }
 
-.order-amount{
+.order-amount {
   margin-bottom: 0;
 }
 
-.order-amount_pb{
+.order-amount_pb {
   margin-bottom: 17px;
 }
 
@@ -159,14 +157,15 @@ export default {
   box-shadow: -1px 1px 4px 2px rgba(34, 60, 80, 0.06);
 }
 
-.confirm-box_mb{
+.confirm-box_mb {
   /* padding-bottom: px; */
 }
 
-.confirm-box_pb{
+.confirm-box_pb {
   padding-bottom: 32px;
 }
-.confirm-box_pb1{
+
+.confirm-box_pb1 {
   padding-bottom: 22px;
 }
 
@@ -191,7 +190,7 @@ export default {
   gap: 16px;
 }
 
-.confirm-pay button{
+.confirm-pay button {
   margin-left: 0;
 }
 
@@ -220,33 +219,34 @@ export default {
   border-bottom: var(--border-grey);
 }
 
-.confirm-slider{
+.confirm-slider {
   margin-bottom: 17px;
 }
 
-.confirm-slider-text{
+.confirm-slider-text {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 }
 
-.confirm-slider-text span{
+.confirm-slider-text span {
   font-family: Gilroy-Medium !important;
   font-weight: 500;
   font-size: 16px;
 }
 
-.confirm-red-text span{
-  color: #E64646;
+.confirm-red-text span {
+  color: #e64646;
 }
 </style>
 
 <style>
 .confirm-box .p-slider {
   margin-bottom: 0.4rem;
-  background-color: #E6E6E6;
+  background-color: #e6e6e6;
 }
+
 /* .confirm-box .p-slider-range {
   height: 3px;
   background-color: var(--primary_bg);
@@ -254,5 +254,80 @@ export default {
 .confirm-box .p-slider-handle {
   height: 20px;
   width: 20px;
+}
+
+@media (max-width: 576px) {
+  .confirm-box {
+    padding: 15px;
+    padding-top: 10px;
+    padding-bottom: 14px;
+  }
+
+  .confirm-box .order-price {
+    max-width: 272px;
+  }
+
+  .confirm-box_pb1 {
+    padding-top: 17px;
+    margin-bottom: 14px;
+  }
+
+  .confirm-box_pb {
+    margin-bottom: 15px;
+  }
+
+  .confirm-box .order-money {
+    text-align: end;
+    font-size: 14px;
+  }
+
+  .confirm-box_price .order-price,
+  .confirm-box_price .order-price {
+    max-width: 155px;
+  }
+
+  .confirm-box .order-amount {
+    margin-top: 0;
+  }
+
+  .confirm-box h3.confirm-box-h3_mb {
+    margin-bottom: 15px;
+  }
+
+  .confirm-box .order-amount_pb {
+    margin-bottom: 22px;
+  }
+
+  .confirm-amount li {
+    align-items: flex-start;
+    padding-block: 8px;
+  }
+
+  .confirm-box .order-amount li{
+    align-items: flex-start;
+  }
+
+  .confirm-box .confirm-slider-text span {
+    font-size: 14px;
+    font-family: Gilroy-Regular !important;
+    font-weight: 400;
+  }
+
+  .confirm-slider {
+    margin-bottom: 10px;
+  }
+
+  .confirm-box .confirm-pay{
+    flex-direction: column-reverse;
+  }
+
+  .confirm-pay button{
+    width: 100%;
+  }
+
+  .confirm-box .confirm-policy {
+    max-width: 100%;
+    text-align: center;
+  }
 }
 </style>
