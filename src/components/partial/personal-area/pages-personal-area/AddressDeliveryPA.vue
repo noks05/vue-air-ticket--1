@@ -82,4 +82,8 @@ export default {
   line-height: 120%;
   color: var(--grey-79);
 }
+
+@media (max-width: 576px) {
+
+}
 </style>

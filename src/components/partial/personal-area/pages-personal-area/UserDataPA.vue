@@ -109,7 +109,7 @@
       </li>
     </ul>
 
-    <button class="order-btn" type="button" @click="() => {}">
+    <button class="order-btn user-data-btn" type="button" @click="() => {}">
       Добавить пользователя
     </button>
   </div>
@@ -166,10 +166,25 @@ export default {
   letter-spacing: 0;
 }
 
+@media (max-width: 576px) {
+  .user-data-wrap .order-input-container:not(:last-child) {
+    margin-bottom: 16px;
+  }
+  .user-data-wrap form {
+    margin-bottom: 37px;
+  }
+  .user-data-btn {
+    width: 100%;
+    margin-left: 0;
+    padding-block: 16px;
+  }
+  .user-data-list{
+    margin-bottom: 23px;
+  }
+}
 </style>
 
 <style>
-
 .user-data-list {
   margin-bottom: 16px;
 }
@@ -229,5 +244,4 @@ button.user-data-cancel-form{
   display: block;
   margin-left: auto;
 }
-
 </style>

@@ -27,20 +27,23 @@
       <div class="address-add-select-wrap">
         <span class="order-input-label"> Город, улица, номер дома </span>
         <v-select
-          class="address-add-select order-input-container-required"
+          class="address-add-select address-add-select_address order-input-container-required"
           v-model="selected.value"
           :options="options"
-          @option:selected="(option) => (selected.value = option.value)"
+          @option:selected="onSelectedOption"
           @option:selecting="markChoice"
         >
           <template #open-indicator="{ attributes }">
             <button class="select-arrow-down" type="button">
-              <ArrowDownLittleIcon v-bind="attributes"  />
+              <ArrowDownLittleIcon v-bind="attributes" />
             </button>
           </template>
           <template #option="{ label, state }">
             <div
-              :class="['select-option', state ? 'select-option--highlight' : '']"
+              :class="[
+                'select-option',
+                state ? 'select-option--highlight' : '',
+              ]"
             >
               {{ label }}
             </div>
@@ -142,22 +145,27 @@ export default {
     markChoice(selectedItem) {
       this.options.forEach((obj) => (obj.state = false));
       this.options[selectedItem.id].state = true;
-      console.log(selectedItem);
+    },
+    onSelectedOption(option){
+      this.selected.value = option.value;
+      this.$el.querySelector('.vs__dropdown-toggle').classList.add('vs__dropdown-toggle--active');
+      console.log(option)
     },
   },
 };
 </script>
 
 <style>
-.address-add-wrap input{
+.address-add-wrap input {
   height: 64px;
 }
-.address-add-wrap .order-input-container{
+
+.address-add-wrap .order-input-container {
   margin-bottom: 14px;
 }
 
-.address-add-select-wrap{
-position: relative;
+.address-add-select-wrap {
+  position: relative;
 }
 
 .address-add-select {
@@ -168,12 +176,12 @@ position: relative;
   padding: 0;
 }
 
-.address-add-select .select-arrow-down svg{
+.address-add-select .select-arrow-down svg {
   height: 20px;
   width: 20px;
 }
 
-.address-add-select .vs__open-indicator{
+.address-add-select .vs__open-indicator {
   fill: #fff;
 }
 
@@ -184,6 +192,11 @@ position: relative;
   /* padding-bottom: 0; */
   border-radius: var(--bdrs-7);
   border: var(--border-grey);
+}
+
+.address-add-select .vs__dropdown-toggle.vs__dropdown-toggle--active,
+.address-add-select .vs__dropdown-toggle:focus-within {
+  background-color: var(--light_gray);
 }
 
 .address-add-select .vs__dropdown-menu {
@@ -197,7 +210,7 @@ position: relative;
 
 .address-add-select .vs__dropdown-menu li {
   color: #adadad;
-  padding-left: 22px;
+  padding-left: 15px;
 }
 
 .address-add-select .vs__search,
@@ -212,9 +225,13 @@ position: relative;
 
 .address-add-select .vs__search,
 .address-add-select .vs__selected {
-  padding-top: 13px;
-  padding-inline: 4px;
+  padding-top: 16px;
+  padding-inline: 2px;
   margin-inline: 0;
+}
+
+.address-add-select .vs__selected {
+  background-color: var(--light_gray);
 }
 
 .address-add-select .vs__actions {
@@ -246,7 +263,18 @@ position: relative;
   color: var(--text_color);
 }
 
-.vs__clear{
+.vs__clear {
   display: none;
+}
+
+.user-data-btns button{
+  width: 100%;
+  padding-block: 14px;
+}
+
+@media (max-width: 576px) {
+  .address-add-select.address-add-select_address .vs__dropdown-toggle {
+    height: 80px;
+  }
 }
 </style>

@@ -3,7 +3,7 @@
 
   <div class="p-area-alerts">
     <p class="p-area-alert p-area-alert_green" v-if="closeAlert1">
-      Не забудьте потратить 3000,00 бонусов на витрине, иначе в начале
+      Не забудьте&nbsp;потратить&nbsp;3000.00&nbsp;бонусов на витрине, иначе в начале
       следующего месяца они сгорят.
       <button @click="closeAlert1 = !closeAlert1" type="button">
         <CancelIcon />
@@ -26,11 +26,19 @@
         <li class="breadcrumb-item">
           <router-link to="/">Главная</router-link>
         </li>
-        <li class="breadcrumb-item">
+        <li
+          class="breadcrumb-item breadcrumb-item_mobile breadcrumb-item_arrow"
+        >
           <router-link :to="{ path: $route.path }">Личный кабинет</router-link>
         </li>
         <li
-          :class="['breadcrumb-item', id + 1 === crumbs.length ? 'active' : '']"
+          :class="[
+            'breadcrumb-item',
+            'breadcrumb-item_mobile',
+            'breadcrumb-item_arrow-none',
+            id + 1 === crumbs.length ? 'active' : '',
+            $route.query.titleAddress && id === 0 ? 'breadcrumb-item_none' : '',
+          ]"
           v-for="(crumb, id) in crumbs"
           :key="id"
         >
@@ -67,6 +75,7 @@
             ? 'p-area-sidebar_add'
             : '',
         ]"
+        v-if="!mobile"
       />
       <PersonalAreaContent />
     </div>
@@ -90,6 +99,7 @@ export default {
     return {
       closeAlert1: true,
       closeAlert2: true,
+      windowWidth: window.innerWidth,
     };
   },
   computed: {
@@ -101,9 +111,17 @@ export default {
       addAddress && arr.push(addAddress);
       return arr;
     },
+    mobile() {
+      let result = this.windowWidth <= 576;
+      return result;
+    },
+    // tablet() {
+    //   let result = this.windowWidth <= 992;
+    //   return result;
+    // },
   },
   mounted() {
-    console.log(this.$refs.query);
+    console.log(this.windowWidth);
   },
 };
 </script>
@@ -134,7 +152,7 @@ export default {
   color: #000;
 }
 
-.p-area-title_data{
+.p-area-title_data {
   margin-bottom: 24px;
 }
 
@@ -208,5 +226,64 @@ export default {
 
 .p-area-alert_red svg path {
   stroke: #833838;
+}
+
+.breadcrumb-item {
+  display: flex;
+}
+.breadcrumb-item_arrow::after {
+  display: none;
+  color: #999999;
+  content: ">";
+  font-family: Gilroy-Medium;
+  padding-left: 0.7rem;
+  font-size: 1.5rem;
+  vertical-align: middle;
+  margin-top: -0.1rem;
+}
+
+.breadcrumb-item_none{
+  display: none;
+}
+
+@media (max-width: 576px) {
+  .breadcrumb-nav .container,
+  .p-area-container.container{
+    padding-inline: 16px;
+  }
+
+  .breadcrumb-nav_mt.breadcrumb-nav_mb{
+    margin-bottom: 18px !important;
+    border-bottom: var(--border-grey) !important;
+  }
+
+  .breadcrumb-item_mobile {
+    font-size: 14px;
+  }
+
+  .breadcrumb-item + .breadcrumb-item.breadcrumb-item_arrow-none::before {
+    display: none;
+  }
+  .breadcrumb-item + .breadcrumb-item.breadcrumb-item_arrow-none {
+    padding-left: 0;
+  }
+
+  .breadcrumb-item_arrow::after {
+    display: block;
+  }
+
+  .p-area-container .p-area-title {
+    font-size: 22px;
+  }
+
+  .address-delivery-descr{
+    margin-bottom: 24px;
+  }
+
+  .address-btn{
+    text-align: center;
+    width: 100%;
+    margin-left: 0;
+  }
 }
 </style>

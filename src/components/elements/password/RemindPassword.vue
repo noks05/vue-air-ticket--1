@@ -143,7 +143,7 @@ export default {
   margin-bottom: 51px;
 }
 
-@media screen and (max-width: 480px) {
+@media (max-width: 480px) {
   .new-pass-wrap {
     max-width: 100%;
     padding-inline: 16px;
