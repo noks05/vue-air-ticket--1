@@ -41,54 +41,52 @@
     </label>
 
     <div class="address-add-select-wrap">
-        <span class="order-input-label"> Страна </span>
-        <v-select
-          class="address-add-select order-input-container-required"
-          v-model="selectedCountry.value"
-          :options="optionsCountries"
-          @option:selected="(option) => (selectedCountry.value = option.value)"
-          @option:selecting="(sel)=>markChoice(sel,'optionsCountries')"
-        >
-          <template #open-indicator="{ attributes }">
-            <button class="select-arrow-down" type="button">
-              <ArrowDownLittleIcon v-bind="attributes"  />
-            </button>
-          </template>
-          <template #option="{ label, state }">
-            <div
-              :class="['select-option', state ? 'select-option--highlight' : '']"
-            >
-              {{ label }}
-            </div>
-          </template>
-        </v-select>
-      </div>
+      <span class="order-input-label"> Страна </span>
+      <v-select
+        class="address-add-select order-input-container-required"
+        v-model="selectedCountry.value"
+        :options="optionsCountries"
+        @option:selected="(option) => (selectedCountry.value = option.value)"
+        @option:selecting="(sel) => markChoice(sel, 'optionsCountries')"
+      >
+        <template #open-indicator="{ attributes }">
+          <button class="select-arrow-down" type="button">
+            <ArrowDownLittleIcon v-bind="attributes" />
+          </button>
+        </template>
+        <template #option="{ label, state }">
+          <div
+            :class="['select-option', state ? 'select-option--highlight' : '']"
+          >
+            {{ label }}
+          </div>
+        </template>
+      </v-select>
+    </div>
 
-      <div class="address-add-select-wrap">
-        <span class="order-input-label">
-          Тип документа
-         </span>
-        <v-select
-          class="address-add-select order-input-container-required"
-          v-model="selectedTypeDoc.value"
-          :options="optionsTypeDoc"
-          @option:selected="(option) => (selectedTypeDoc.value = option.value)"
-          @option:selecting="(sel)=>markChoice(sel,'optionsTypeDoc')"
-        >
-          <template #open-indicator="{ attributes }">
-            <button class="select-arrow-down" type="button">
-              <ArrowDownLittleIcon v-bind="attributes"  />
-            </button>
-          </template>
-          <template #option="{ label, state }">
-            <div
-              :class="['select-option', state ? 'select-option--highlight' : '']"
-            >
-              {{ label }}
-            </div>
-          </template>
-        </v-select>
-      </div>
+    <div class="address-add-select-wrap">
+      <span class="order-input-label"> Тип документа </span>
+      <v-select
+        class="address-add-select order-input-container-required"
+        v-model="selectedTypeDoc.value"
+        :options="optionsTypeDoc"
+        @option:selected="(option) => (selectedTypeDoc.value = option.value)"
+        @option:selecting="(sel) => markChoice(sel, 'optionsTypeDoc')"
+      >
+        <template #open-indicator="{ attributes }">
+          <button class="select-arrow-down" type="button">
+            <ArrowDownLittleIcon v-bind="attributes" />
+          </button>
+        </template>
+        <template #option="{ label, state }">
+          <div
+            :class="['select-option', state ? 'select-option--highlight' : '']"
+          >
+            {{ label }}
+          </div>
+        </template>
+      </v-select>
+    </div>
 
     <label class="order-input-container order-input-container-required">
       <span class="order-input-label"> Номер документа </span>
@@ -109,7 +107,7 @@
       <ul>
         <li>
           <label>
-            <input type="radio" :name="title" checked/>
+            <input type="radio" :name="title" checked />
             <span class="delivery-provider-replace air-ticket-replace"></span>
             <span class="air-ticket-sex-text"> Мужской </span>
           </label>
@@ -133,7 +131,7 @@ import ArrowDownLittleIcon from "@/assets/images/icons/iconsComp/ArrowDownLittle
 import CancelIcon from "@/assets/images/icons/iconsComp/CancelIcon.vue";
 
 export default {
-  props:{
+  props: {
     title: String,
   },
   components: {
@@ -211,10 +209,11 @@ export default {
 </script>
 
 <style scoped>
-.delivery-provider-btn{
+.delivery-provider-btn {
   max-width: 100%;
   margin-bottom: 20px;
 }
+
 .air-ticket-box {
   height: 68px;
   padding: 24px;
@@ -223,25 +222,31 @@ export default {
   overflow: hidden;
   animation: height 0.2s;
 }
+
 .air-ticket-box.delivery-provider--active {
   height: 100%;
 }
-.order-input-container{
+
+.order-input-container {
   opacity: 0;
   transition: opacity 0.2s;
 }
-.air-ticket-box.delivery-provider--active .order-input-container{
+
+.air-ticket-box.delivery-provider--active .order-input-container {
   opacity: 1;
 }
+
 @keyframes height {
   from {
     height: 68px;
   }
+
   to {
     height: 100%;
   }
 }
-.air-ticket-box h4{
+
+.air-ticket-box h4 {
   margin-bottom: 0;
   font-size: 18px;
   font-family: Gilroy-Medium !important;
@@ -249,32 +254,38 @@ export default {
   line-height: 100%;
   color: var(--primary_bg);
 }
-.air-ticket-box label:not(:last-child){
+
+.air-ticket-box label:not(:last-child) {
   margin-bottom: 8px;
 }
+
 .air-ticket-sex {
   margin-top: 13px;
 }
-.air-ticket-sex ul{
+
+.air-ticket-sex ul {
   display: flex;
   align-items: center;
   gap: 24px;
   margin-bottom: 0;
 }
-.air-ticket-sex label{
+
+.air-ticket-sex label {
   display: flex;
   align-items: center;
   gap: 8px;
   margin-bottom: 0;
   cursor: pointer;
 }
-.air-ticket-sex-text{
+
+.air-ticket-sex-text {
   font-size: 16px;
   font-family: Gilroy-Regular !important;
   font-weight: 400;
   line-height: 100%;
   color: #000;
 }
+
 .air-ticket-sex-title {
   margin-top: 8px;
   font-size: 14px;
@@ -283,7 +294,38 @@ export default {
   line-height: 100%;
   color: var(--text_color);
 }
+
 .air-ticket-replace {
   border: var(--border-grey);
+}
+
+@media (max-width: 576px) {
+  .air-ticket-box {
+    padding: 15px;
+  }
+
+  .delivery-provider .delivery-provider-btn{
+    margin-bottom: 0;
+  }
+
+  .delivery-provider--active .delivery-provider-btn{
+    margin-bottom: 16px;
+  }
+
+  .air-ticket-sex {
+    margin-top: 10px;
+  }
+
+  .air-ticket-sex ul{
+    gap: 53px;
+  }
+
+  .air-ticket-box{
+    height: 52px;
+  }
+
+  .air-ticket-box h4{
+    letter-spacing: 0.1px;
+  }
 }
 </style>

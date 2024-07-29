@@ -11,6 +11,19 @@
         <h3 class="air-ticket-h3">Контактные данные</h3>
 
         <label class="order-input-container order-input-container-required">
+          <span class="order-input-label"> ФИО </span>
+          <input
+            class="order-input"
+            name="ФИО"
+            type="text"
+            placeholder="Кириллицей"
+          />
+          <button class="order-clear" type="button">
+            <CancelIcon />
+          </button>
+        </label>
+
+        <label class="order-input-container order-input-container-required">
           <span class="order-input-label"> Адрес электронной почты </span>
           <input
             class="order-input air-ticket-input_h"
@@ -42,6 +55,11 @@
         <DataPassenger class="air-ticket-block" title="Ребёнок" />
         <DataPassenger class="air-ticket-block" title="Младенец" />
 
+        <div class="air-ticket-amount">
+          <span class="air-ticket-amount-text"> Сумма заказа: </span>
+          <span class="air-ticket-amount-money"> 475,66 бонусов </span>
+        </div>
+
         <p class="certificate-policy order-price">
           <label>
             <input type="checkbox" />
@@ -49,11 +67,6 @@
             <span> Подтверждаю правильность введённых данных </span>
           </label>
         </p>
-
-        <div class="air-ticket-amount">
-          <span class="air-ticket-amount-text"> Сумма заказа: </span>
-          <span class="air-ticket-amount-money"> 475,66 бонусов </span>
-        </div>
 
         <button
           class="order-btn order-submit order-submit--disabled"
@@ -144,6 +157,29 @@ export default {
   font-weight: 600;
   line-height: 100%;
   color: var(--text_color);
+}
+
+@media (max-width: 576px) {
+  .air-ticket h2 {
+    margin-bottom: 15px;
+  }
+
+  .air-ticket-h3 {
+    font-size: 18px;
+  }
+
+  .air-ticket-amount-money{
+    font-size: 20px;
+  }
+
+  .air-ticket-amount{
+    margin-top: 24px;
+    margin-bottom: 16px;
+  }
+
+  .air-ticket .certificate-policy {
+    margin-bottom: 21px;
+  }
 }
 </style>
 
