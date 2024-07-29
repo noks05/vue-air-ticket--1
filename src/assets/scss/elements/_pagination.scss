@@ -84,6 +84,9 @@
 }
 
 .page-item {
+  display: flex;
+  align-items: center;
+
 	& + .page-item {
 		margin-left: .4rem;
 	}

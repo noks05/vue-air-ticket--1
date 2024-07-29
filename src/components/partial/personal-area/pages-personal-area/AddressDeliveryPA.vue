@@ -83,7 +83,7 @@ export default {
   color: var(--grey-79);
 }
 
-@media (max-width: 576px) {
+@media (max-width: 1280px) {
 
 }
 </style>

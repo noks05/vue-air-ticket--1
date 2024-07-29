@@ -75,7 +75,7 @@
             ? 'p-area-sidebar_add'
             : '',
         ]"
-        v-if="!mobile"
+        v-if="!tablet"
       />
       <PersonalAreaContent />
     </div>
@@ -115,10 +115,16 @@ export default {
       let result = this.windowWidth <= 576;
       return result;
     },
-    // tablet() {
-    //   let result = this.windowWidth <= 992;
-    //   return result;
-    // },
+    tablet() {
+      let result = false;
+
+      if(this.$route.query.titlePage === 'Заказы'){
+         result = this.windowWidth <= 991;
+      }else{
+         result = this.windowWidth <= 768;
+      }
+      return result;
+    },
   },
   mounted() {
     console.log(this.windowWidth);

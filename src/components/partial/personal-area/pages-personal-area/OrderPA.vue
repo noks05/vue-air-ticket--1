@@ -65,7 +65,7 @@
     </button>
   </div>
 
-  <table class="table order-page-table">
+  <table class="table order-page-table" v-if="!tablet">
     <thead>
       <tr>
         <th>Дата</th>
@@ -125,6 +125,46 @@
     </tbody>
   </table>
 
+  <div class="order-page-table-mobile-wrap">
+    <div class="order-page-table-mobile" v-for="it in [1,2,3]" :key="it">
+      <div class="top">
+        <span class="date"> 28.03.2024 </span>
+
+        <span>
+          <span class="number"> №777355791 </span>
+
+          <span class="status"> , Аннулирован </span>
+        </span>
+      </div>
+
+      <p class="amount">Сумма заказа <span>110 000,00</span></p>
+
+      <p class="paid">
+        Оплачено бонусами <span class="paid-bonus">100 000,00</span>, оплачено
+        деньгами <span class="paid-money">10 000,00</span>
+      </p>
+
+      <ul class="text-bold">
+        <li
+          v-for="(text, i) in [
+            'Подарочный сертификат МВидео, 100',
+            'Подарочный сертификат Детский мир, 100',
+          ]"
+          :key="i"
+        >
+          {{ i + 1 }}. {{ text }}
+        </li>
+      </ul>
+
+      <p class="text-bold">
+        <label class="input-file">
+              <input class="visually-hidden" type="file" />
+              <span>Скачать</span>
+        </label>PIN для скачивания: 24509116
+      </p>
+    </div>
+  </div>
+
   <pagination :per-page="perPage" :total="totalCount"></pagination>
 </template>
 
@@ -142,7 +182,8 @@ export default {
       filterOptions: ["Optionnnn 1", "Option 3", "Option 3"],
       filterSelected: null,
       perPage: 5,
-      totalCount: 30,      selectedDate: {
+      totalCount: 30,
+      selectedDate: {
         start: null,
         end: null,
       },
@@ -189,25 +230,88 @@ export default {
 </script>
 
 <style scoped>
-.order-page-table thead th:nth-child(1){
+.order-page-table-mobile-wrap{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 31px;
+  margin-bottom: 35px;
+}
+
+.order-page-table-mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: var(--border-grey);
+}
+
+.order-page-table-mobile p.text-bold {
+  display: flex;
+  gap: 5px;
+  margin-top: -8px;
+}
+
+.order-page-table-mobile p.text-bold label{
+  margin-bottom: 0;
+}
+
+.order-page-table-mobile ul{
+  margin-bottom: 0;
+}
+
+.order-page-table-mobile .input-file{
+  margin-top: 0;
+}
+
+.order-page-table-mobile span,
+.order-page-table-mobile p,
+.order-page-table-mobile li{
+  font-family: Gilroy-Regular !important;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 130%;
+  color: var(--text_color);
+}
+
+.order-page-table-mobile .text-bold,
+.order-page-table-mobile .text-bold span,
+.order-page-table-mobile .text-bold li{
+  font-size: 14px;
+}
+
+.order-page-table-mobile .top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 18px;
+}
+
+.order-page-table thead th:nth-child(1) {
   width: 14%;
 }
-.order-page-table thead th:nth-child(2){
+
+.order-page-table thead th:nth-child(2) {
   width: 12%;
 }
-.order-page-table thead th:nth-child(3){
+
+.order-page-table thead th:nth-child(3) {
   width: 12%;
 }
-.order-page-table thead th:nth-child(4){
+
+.order-page-table thead th:nth-child(4) {
   width: 27%;
 }
-.order-page-table thead th:nth-child(5){
+
+.order-page-table thead th:nth-child(5) {
   width: 12%;
 }
-.order-page-table thead th:nth-child(6){
+
+.order-page-table thead th:nth-child(6) {
   width: 11%;
 }
-.order-page-table thead th:nth-child(7){
+
+.order-page-table thead th:nth-child(7) {
   width: 12%;
 }
 
@@ -216,13 +320,12 @@ export default {
 .order-page-table thead th:nth-child(7),
 .order-page-table tbody td:nth-child(5),
 .order-page-table tbody td:nth-child(6),
-.order-page-table tbody td:nth-child(7){
+.order-page-table tbody td:nth-child(7) {
   text-align: end;
-  /* padding-right: 20px; */
 }
 
 .order-page-table thead th:nth-child(7),
-.order-page-table tbody td:nth-child(7){
+.order-page-table tbody td:nth-child(7) {
   padding-right: 22px;
 }
 
@@ -261,11 +364,12 @@ export default {
 .table tbody tr {
   border-top: 2px solid #f4f7ff;
 }
+
 .table tbody tr:last-child {
   border-bottom: 2px solid #f4f7ff;
 }
 
-.table tbody td p{
+.table tbody td p {
   font-family: Gilroy-Regular !important;
   font-weight: 400;
   font-size: 14px;
@@ -273,7 +377,7 @@ export default {
   color: var(--text_color);
 }
 
-.table tbody td label{
+.table tbody td label {
   margin-bottom: 0;
 }
 
@@ -296,11 +400,11 @@ export default {
   padding-right: 20px;
 }
 
-.order-text-end{
+.order-text-end {
   text-align: end;
 }
 
-.order-table-item_pr{
+.order-table-item_pr {
   text-align: end;
 }
 
@@ -330,19 +434,23 @@ export default {
 .filter-orders .vs__dropdown-toggle {
   border: none;
 }
+
 .filter-orders .vs__selected-options {
   display: flex;
   align-items: center;
 }
+
 .filter-orders .vs__selected-options > span {
   margin: 0;
   padding: 0;
   max-width: 63px;
   display: inline-block;
 }
+
 .filter-orders .vs__selected-options > span {
   margin: 0;
 }
+
 .filter-orders .vs__selected-options > .vs__selected,
 .filter-orders .vs__selected-options > input {
   font-family: Gilroy-Medium !important;
@@ -354,6 +462,7 @@ export default {
   overflow: hidden;
   text-wrap: nowrap;
 }
+
 .filter-orders .vs__selected-options > .vs__selected + input {
   margin: 0;
   padding: 0;

@@ -21,27 +21,29 @@
           </div>
         </template>
         <template #default="props">
-          <label class="operation-label">
-            <input
-              type="text"
-              name="date-from"
-              placeholder="Дата от"
-              :value="formatDate(selectedDate.start)"
-              @click.stop="props.togglePopover"
-              @focusin="console.log(props.locale)"
-            />
-            <CalendarIcon class="search-form-field__img" />
-          </label>
-          <label class="operation-label">
-            <input
-              type="text"
-              name="date-to"
-              placeholder="Дата до"
-              :value="formatDate(selectedDate.end)"
-              @click="props.togglePopover"
-            />
-            <CalendarIcon class="search-form-field__img" />
-          </label>
+          <div class="operation-label-wrap">
+            <label class="operation-label">
+              <input
+                type="text"
+                name="date-from"
+                placeholder="Дата от"
+                :value="formatDate(selectedDate.start)"
+                @click.stop="props.togglePopover"
+                @focusin="console.log(props.locale)"
+              />
+              <CalendarIcon class="search-form-field__img" />
+            </label>
+            <label class="operation-label">
+              <input
+                type="text"
+                name="date-to"
+                placeholder="Дата до"
+                :value="formatDate(selectedDate.end)"
+                @click="props.togglePopover"
+              />
+              <CalendarIcon class="search-form-field__img" />
+            </label>
+          </div>
         </template>
         <template #footer>
           <div class="date-picker__mobile-title" v-if="mobile">Когда</div>
@@ -241,7 +243,7 @@ export default {
   max-width: 125px;
   width: 100%;
   height: 40px;
-  padding: 20px 15px;
+  padding: 12px 15px;
   border-radius: var(--bdrs-7);
   border: var(--border-grey);
 }
@@ -443,5 +445,84 @@ export default {
 
 .filter-orders .vs__open-indicator {
   fill: none;
+}
+</style>
+
+
+<style>
+@media (max-width: 576px) {
+  .operation-top{
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    gap: 15px;
+    margin-top: -40px;
+  }
+
+  .operation-datepicker-wrap{
+    gap: 8px;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .operation-datepicker-wrap .order-btn{
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .operation-label-wrap{
+    width: 100%;
+  }
+
+  .operation-label-wrap .operation-label {
+    width: 50%;
+  }
+
+  .operation-label-wrap .operation-label input{
+    width: 100%;
+  }
+
+  .operation-btn {
+    max-width: 108px;
+    padding: 12px 7px;
+  }
+
+  .operation-btn.operation-btn--active span {
+    display: block;
+  }
+
+  .operation-btn.operation-btn--active {
+    width: 100%;
+  }
+
+  .operation-table{
+    margin-top: 15px;
+  }
+
+  .operation-table thead{
+    display: none;
+  }
+
+  .operation-table tbody tr{
+    border-top: none;
+  }
+
+  .operation-table tbody td:first-child{
+    padding-left: 0;
+    width: 35%;
+  }
+
+  .operation-table tbody td:last-child{
+    width: 30%;
+  }
+
+  .operation-table tbody td{
+    height: 56px;
+    padding-block: 16px;
+    line-height: 100%;
+  }
+
+  .operation-table{
+    margin-top: 24px;
+  }
 }
 </style>

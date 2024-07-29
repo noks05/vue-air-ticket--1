@@ -2,17 +2,30 @@
   <nav aria-label="Page navigation" v-if="shouldRender">
     <ul class="pagination justify-content-center">
       <li class="page-item" :class="{ disabled: currentPage < 2 }">
-        <router-link class="page-link page-link-prev" :to="getPageUrl(currentPage - 1)" style="gap: 5px;">
+        <router-link
+          class="page-link page-link-prev"
+          :to="getPageUrl(currentPage - 1)"
+          style="gap: 5px"
+        >
           <span aria-hidden="true">
-            <img src="../../assets/newImg/icons/left.svg" alt="">
-            <!-- <i class="icon-long-arrow-left"></i> -->
-          </span>В начало
+            <img src="../../assets/newImg/icons/left.svg" alt="" />
+            <!-- <i class="icon-long-arrow-left"></i> --> </span
+          >В начало
         </router-link>
       </li>
       <template v-if="pagesToBeShown.length">
-        <li class="page-item" v-for="(page, index) in pagesToBeShown" :key="`page-${page}`">
-          <router-link class="page-link" :class="{ active: index === activeIndex }" :to="getPageUrl(page)">{{ page
-          }}</router-link>
+        <li
+          class="page-item"
+          v-for="(page, index) in pagesToBeShown"
+          :key="`page-${page}`"
+        >
+          <router-link
+            class="page-link"
+            :class="{ active: index === activeIndex }"
+            :to="getPageUrl(page)"
+            >{{ page }}</router-link
+          >
+          <span class="page-item-points" v-if="tablet">...</span>
         </li>
       </template>
 
@@ -21,11 +34,15 @@
       </li>
 
       <li class="page-item" :class="{ disabled: currentPage === lastPage }">
-        <router-link class="page-link page-link-next" :to="getPageUrl(currentPage + 1)" style="gap: 5px;">
+        <router-link
+          class="page-link page-link-next"
+          :to="getPageUrl(currentPage + 1)"
+          style="gap: 5px"
+        >
           Дальше
           <span aria-hidden="true">
             <!-- <i class="icon-long-arrow-right"></i> -->
-            <img src="../../assets/newImg/icons/right.svg" alt="">
+            <img src="../../assets/newImg/icons/right.svg" alt="" />
           </span>
         </router-link>
       </li>
@@ -40,8 +57,9 @@ export default {
   },
   data() {
     return {
-      activeIndex: 0
-    }
+      activeIndex: 0,
+      windowWidth: window.innerWidth,
+    };
   },
   computed: {
     shouldRender: function () {
@@ -68,18 +86,31 @@ export default {
         Math.floor(this.total / this.perPage) +
         (0 < this.total % this.perPage ? 1 : 0);
 
-      for (let i = -1; i < 2 && this.pageCount >= 3; i++) {
-        if (1 < this.currentPage && this.currentPage < this.pageCount)
-          pageNumbers.push(this.currentPage + i);
-        if (1 === this.currentPage) pageNumbers.push(this.currentPage + i + 1);
-        if (this.currentPage === this.pageCount)
-          pageNumbers.push(this.currentPage + i - 1);
+      if (!this.tablet) {
+        console.log(this.tablet);
+        for (let i = -1; i < 2 && this.pageCount >= 3; i++) {
+          if (1 < this.currentPage && this.currentPage < this.pageCount)
+            pageNumbers.push(this.currentPage + i);
+          if (1 === this.currentPage)
+            pageNumbers.push(this.currentPage + i + 1);
+          if (this.currentPage === this.pageCount)
+            pageNumbers.push(this.currentPage + i - 1);
+        }
+
+        for (let i = 0; i < this.pageCount && this.pageCount < 3; i++) {
+          pageNumbers.push(i + 1);
+        }
       }
 
-      for (let i = 0; i < this.pageCount && this.pageCount < 3; i++) {
-        pageNumbers.push(i + 1);
+      if (this.tablet) {
+        console.log("rrrrrrr");
+        pageNumbers.push(1);
       }
       return pageNumbers;
+    },
+    tablet() {
+      let result = this.windowWidth <= 992;
+      return result;
     },
   },
   methods: {
@@ -102,3 +133,15 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+@media (max-width: 991px) {
+  .page-item-points {
+    margin-left: 14px;
+  }
+
+  .page-item-total {
+    padding-left: 0;
+  }
+}
+</style>
