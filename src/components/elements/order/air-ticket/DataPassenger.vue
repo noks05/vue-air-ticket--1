@@ -210,8 +210,17 @@ export default {
 
 <style scoped>
 .delivery-provider-btn {
+  position: relative;
   max-width: 100%;
   margin-bottom: 20px;
+}
+
+.delivery-provider-btn::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background-color: transparent;
+  z-index: 10;
 }
 
 .air-ticket-box {
@@ -300,6 +309,10 @@ export default {
 }
 
 @media (max-width: 576px) {
+  .delivery-provider-btn::before {
+    inset: -15px;
+  }
+
   .air-ticket-box {
     padding: 15px;
   }
