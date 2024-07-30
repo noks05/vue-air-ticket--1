@@ -68,12 +68,18 @@
           </label>
         </p>
 
-        <button
-          class="order-btn order-submit order-submit--disabled"
-          type="submit"
-        >
-          Забронировать и оплатить
-        </button>
+        <router-link
+         :to="{
+            path: $route.path,
+            query: { orderCer: 'Оформление заказа' },
+          }">
+          <button
+            class="order-btn order-submit order-submit--disabled"
+            type="submit"
+          >
+            Забронировать и оплатить
+          </button>
+        </router-link>
       </form>
     </div>
   </div>
