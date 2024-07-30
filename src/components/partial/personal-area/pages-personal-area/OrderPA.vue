@@ -478,6 +478,11 @@ export default {
   border: 0;
 }
 
+.operation-top .vc-popover-content-wrapper {
+  left: -278px !important;
+  right: auto !important;
+  z-index: 1000 !important;
+}
 </style>
 
 
@@ -535,4 +540,5 @@ export default {
 .dp-day-custom__price.dp-day-custom__price--green {
   color: #7dd2ea;
 }
+
 </style>
