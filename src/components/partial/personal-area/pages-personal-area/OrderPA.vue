@@ -127,7 +127,7 @@
     </tbody>
   </table>
 
-  <div class="order-page-table-mobile-wrap">
+  <div class="order-page-table-mobile-wrap" v-if="tablet">
     <div class="order-page-table-mobile" v-for="it in [1, 2, 3]" :key="it">
       <div class="top">
         <span class="date"> 28.03.2024 </span>

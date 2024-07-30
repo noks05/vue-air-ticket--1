@@ -7,9 +7,17 @@
         locale="ru-RU"
         v-model.range="selectedDate"
       >
-        <template #day-content="{ day, dayEvents }">
-          <div :class="['dp-day-custom']" v-on="dayEvents">
-            <span class="dp-day-custom__day">{{ day.day }}</span>
+        <template #day-content="props">
+          <div
+            :class="{
+              'dp-day-custom': true,
+              'day-is-range': isDateInRange(props),
+              'day-is-range-start': isDateIsStart(props),
+              'day-is-range-end': isDateIsEnd(props),
+            }"
+            v-on="props.dayEvents"
+          >
+            <span class="dp-day-custom__day">{{ props.day.day }}</span>
             <!-- <span
               :class="[
                 'dp-day-custom__price',
@@ -29,7 +37,6 @@
                 placeholder="Дата от"
                 :value="formatDate(selectedDate.start)"
                 @click.stop="props.togglePopover"
-                @focusin="console.log(props.locale)"
               />
               <CalendarIcon class="search-form-field__img" />
             </label>
@@ -44,13 +51,6 @@
               <CalendarIcon class="search-form-field__img" />
             </label>
           </div>
-        </template>
-        <template #footer>
-          <div class="date-picker__mobile-title" v-if="mobile">Когда</div>
-          <button class="search-filter__item date-picker__btn" type="button">
-            <PathIcon v-if="!mobile" />
-            Обратный билет не нужен
-          </button>
         </template>
       </VDatePicker>
 
@@ -162,6 +162,32 @@ export default {
       let day = date.getDate();
       let dayWeek = days[Number(date.getDay())];
       return day + " " + month + ", " + dayWeek;
+    },
+    isDateInRange({ day }) {
+      if (!this.selectedDate.start || !this.selectedDate.end) {
+        return false;
+      }
+      return (
+        day &&
+        day.date > this.selectedDate.start &&
+        day.date < this.selectedDate.end
+      );
+    },
+    isDateIsStart({ day }) {
+      if (day.date && this.selectedDate.start) {
+        const result =
+          this.selectedDate.start.getTime() === day.date.getTime();
+        return result
+      }
+      return false
+    },
+    isDateIsEnd({ day }) {
+      if (day.date && this.selectedDate.end) {
+        const result =
+          this.selectedDate.end.getTime() === day.date.getTime();
+        return result
+      }
+      return false
     },
   },
 };
@@ -454,6 +480,100 @@ export default {
 .filter-orders .vs__open-indicator {
   fill: none;
 }
+
+.operation-top .vc-popover-content-wrapper {
+  left: -278px !important;
+  right: auto !important;
+  z-index: 1000 !important;
+}
+.dp-day-custom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  padding: 7px 6px;
+  border-radius: 4px !important;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.dp-day-custom:hover {
+  border-radius: 4px;
+  background-color: var(--primary_bg);
+}
+
+.vc-highlight {
+  height: 40px !important;
+}
+
+.vc-highlights + .dp-day-custom {
+  border-radius: 4px;
+}
+
+.dp-day-custom .dp-day-custom__day {
+  color: var(--grey-79) !important;
+}
+
+.vc-highlights + .day-is-range {
+  background-color: var(--light_gray) !important;
+}
+
+.vc-highlights + .day-is-range span {
+  color: var(--primary_bg) !important;
+}
+
+.dp-day-custom:hover .dp-day-custom__day,
+.vc-highlights + .dp-day-custom:hover span,
+/* .vc-highlights + .dp-day-custom span, */
+.vc-highlights + .day-is-range-start span,
+.vc-highlights + .day-is-range-end span {
+  color: #fff !important;
+}
+
+.vc-highlights + .day-is-range-start {
+  border-radius: 7px 0 0 7px !important;
+  overflow: hidden;
+  background-color: var(--primary_bg);
+}
+
+.vc-highlights + .day-is-range-end {
+  border-radius: 0 7px 7px 0 !important;
+  overflow: hidden;
+  background-color: var(--primary_bg);
+}
+
+.dp-day-custom__day {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 100%;
+}
+
+.dp-day-custom__price {
+  font-size: 10px;
+  line-height: 100%;
+  font-weight: 400;
+  color: #797979;
+}
+
+.dp-day-custom__price.dp-day-custom__price--green {
+  color: #7dd2ea;
+}
+@media (max-width: 992px) {
+  .operation-top .vc-popover-content-wrapper {
+    left: 0 !important;
+  }
+
+  .vc-date-picker-content .vc-container,
+  .operation-top .vc-popover-content.direction-bottom {
+    width: 360px;
+  }
+
+  .vc-date-picker-content .vc-container{
+    padding-top: 12px;
+  }
+}
 </style>
 
 
@@ -533,4 +653,7 @@ export default {
     margin-top: 24px;
   }
 }
+</style>
+<style scoped>
+
 </style>
