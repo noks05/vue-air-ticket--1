@@ -560,6 +560,7 @@ export default {
     display: flex;
     height: 56px;
     border-top: var(--border-grey);
+    border-bottom: none;
   }
   .header-bottom .header-left{
     display: none;

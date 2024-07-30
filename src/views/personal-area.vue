@@ -1,22 +1,6 @@
 <template>
   <headerDef />
 
-  <div class="p-area-alerts">
-    <p class="p-area-alert p-area-alert_green" v-if="closeAlert1">
-      Не забудьте&nbsp;потратить&nbsp;3000.00&nbsp;бонусов на витрине, иначе
-      в начале следующего месяца они сгорят.
-      <button @click="closeAlert1 = !closeAlert1" type="button">
-        <CancelIcon />
-      </button>
-    </p>
-    <p class="p-area-alert p-area-alert_red" v-if="closeAlert2">
-      Товар закончился.
-      <button @click="closeAlert2 = !closeAlert2" type="button">
-        <CancelIcon />
-      </button>
-    </p>
-  </div>
-
   <nav
     aria-label="breadcrumb"
     class="breadcrumb-nav breadcrumb-nav_mb breadcrumb-nav_mt"
@@ -57,6 +41,22 @@
       </ol>
     </div>
   </nav>
+
+  <div class="p-area-alerts" v-if="$route.query.titlePage === 'Избранное'">
+    <p class="p-area-alert p-area-alert_green" v-if="closeAlert1">
+      Не забудьте&nbsp;потратить&nbsp;3000.00&nbsp;бонусов на витрине, иначе
+      в начале следующего месяца они сгорят.
+      <button @click="closeAlert1 = !closeAlert1" type="button">
+        <CancelIcon />
+      </button>
+    </p>
+    <p class="p-area-alert p-area-alert_red" v-if="closeAlert2">
+      Товар закончился.
+      <button @click="closeAlert2 = !closeAlert2" type="button">
+        <CancelIcon />
+      </button>
+    </p>
+  </div>
 
   <div class="container p-area-container">
     <h2
@@ -169,7 +169,12 @@ export default {
 }
 
 .p-area-alerts {
+  position: absolute;
+  top: 199px;
+  left: 0;
   display: block;
+  width: 100%;
+  z-index: 100000;
 }
 
 .p-area-alerts:empty {
@@ -249,6 +254,7 @@ export default {
 }
 
 @media (max-width: 576px) {
+
   .breadcrumb-nav .container,
   .p-area-container.container {
     padding-inline: 16px;
@@ -257,6 +263,7 @@ export default {
   .breadcrumb-nav_mt.breadcrumb-nav_mb {
     margin-bottom: 18px !important;
     border-bottom: var(--border-grey) !important;
+    border-top: none!important;
   }
 
   .breadcrumb-item_mobile {
@@ -290,6 +297,10 @@ export default {
 
   .breadcrumb-item_none {
     display: none;
+  }
+
+  .p-area-alerts {
+      top: 245px!important;
   }
 }
 </style>
