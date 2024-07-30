@@ -52,13 +52,6 @@
             </label>
           </div>
         </template>
-        <template #footer>
-          <div class="date-picker__mobile-title" v-if="mobile">Когда</div>
-          <button class="search-filter__item date-picker__btn" type="button">
-            <PathIcon v-if="!mobile" />
-            Обратный билет не нужен
-          </button>
-        </template>
       </VDatePicker>
 
       <button class="order-btn" type="button">Показать</button>
@@ -180,7 +173,6 @@
 <script>
 import ArrowDownIcon from "@/assets/images/icons/iconsComp/ArrowDownIcon.vue";
 import CalendarIcon from "@/assets/images/icons/iconsComp/CalendarIcon.vue";
-import PathIcon from "@/assets/images/icons/iconsComp/PathIcon.vue";
 import Pagination from "@/components/elements/Pagination.vue";
 import { getFormatMonth } from "@/utilities/calendar";
 
@@ -189,7 +181,6 @@ export default {
     Pagination,
     ArrowDownIcon,
     CalendarIcon,
-    PathIcon,
   },
   data() {
     return {
@@ -516,6 +507,21 @@ export default {
   left: -278px !important;
   right: auto !important;
   z-index: 1000 !important;
+}
+
+@media (max-width: 992px) {
+  .operation-top .vc-popover-content-wrapper {
+    left: 0 !important;
+  }
+
+  .vc-date-picker-content .vc-container,
+  .operation-top .vc-popover-content.direction-bottom {
+    width: 360px;
+  }
+
+  .vc-date-picker-content .vc-container{
+    padding-top: 12px;
+  }
 }
 </style>
 

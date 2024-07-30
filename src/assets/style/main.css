@@ -355,7 +355,7 @@
   color: var(--primary_bg);
 }
 
-.vc-weekday {
+.vc-weekdays .vc-weekday {
   font-family: Gilroy-Medium;
   font-weight: 400;
   font-size: 14px;
@@ -368,8 +368,6 @@
 
 .vc-light.vc-attr, .vc-light .vc-attr {
   border-radius: 4px !important;
-  /* background-color: var(--primary_bg) !important;
-  --vc-highlight-solid-bg: var(--primary_bg) !important; */
 }
 
 .search-form-field .vc-popover-content-wrapper {
@@ -443,6 +441,10 @@
     bottom: 0 !important;
     top: 0 !important;
     transform: translateY(300px) !important;
+  }
+
+  .search-form-field .vc-popover-content-wrapper{
+  left: 0 !important;
   }
 
   .vc-popover-content.direction-bottom {

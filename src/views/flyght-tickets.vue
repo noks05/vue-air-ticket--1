@@ -97,17 +97,25 @@
               locale="ru-RU"
               v-model.range="selectedDate"
             >
-              <template #day-content="{ day, dayEvents }">
-                <div :class="{dpDayCustom: true, dayIsRange : isDateInRange(date) }" v-on="dayEvents">
-                  <span class="dp-day-custom__day">{{ day.day }}</span>
+              <template #day-content="props">
+                <div
+                :class="{
+              'dp-day-custom': true,
+              'day-is-range': isDateInRange(props),
+              'day-is-range-start': isDateIsStart(props),
+              'day-is-range-end': isDateIsEnd(props),
+            }"
+                  v-on="props.dayEvents"
+                >
+                  <span class="dp-day-custom__day">{{ props.day.day }}</span>
                   <span
                     :class="[
                       'dp-day-custom__price',
-                      day.weekday === 4 || day.weekday === 5
+                      props.day.weekday === 4 || props.day.weekday === 5
                         ? 'dp-day-custom__price--green'
                         : '',
                     ]"
-                    >{{ prices[day.month][day.day] }}</span
+                    >{{ prices[props.day.month][props.day.day] }}</span
                   >
                 </div>
               </template>
@@ -231,17 +239,23 @@
                   locale="ru-RU"
                   v-model.range="selectedDate"
                 >
-                  <template #day-content="{ day, dayEvents }">
-                    <div :class="['dp-day-custom']" v-on="dayEvents">
-                      <span class="dp-day-custom__day">{{ day.day }}</span>
+                  <template #day-content="props">
+                    <div
+                :class="{
+              'dp-day-custom': true,
+              'day-is-range': isDateInRange(props),
+              'day-is-range-start': isDateIsStart(props),
+              'day-is-range-end': isDateIsEnd(props)}"
+              v-on="props.dayEvents">
+                      <span class="dp-day-custom__day">{{ props.day.day }}</span>
                       <span
                         :class="[
                           'dp-day-custom__price',
-                          day.weekday === 4 || day.weekday === 5
+                          props.day.weekday === 4 || props.day.weekday === 5
                             ? 'dp-day-custom__price--green'
                             : '',
                         ]"
-                        >{{ prices[day.month][day.day] }}</span
+                        >{{ prices[props.day.month][props.day.day] }}</span
                       >
                     </div>
                   </template>
@@ -1011,12 +1025,30 @@ export default {
       let dayWeek = days[Number(date.getDay())];
       return day + " " + month + ", " + dayWeek;
     },
-    isDateInRange(date) {
-      if (!this.rangeStart || !this.rangeEnd) {
+    isDateInRange({ day }) {
+      if (!this.selectedDate.start || !this.selectedDate.end) {
         return false;
       }
-      return date > this.rangeStart && date < this.rangeEnd;
-    }
+      return (
+        day &&
+        day.date > this.selectedDate.start &&
+        day.date < this.selectedDate.end
+      );
+    },
+    isDateIsStart({ day }) {
+      if (day.date && this.selectedDate.start) {
+        const result = this.selectedDate.start.getTime() === day.date.getTime();
+        return result;
+      }
+      return false;
+    },
+    isDateIsEnd({ day }) {
+      if (day.date && this.selectedDate.end) {
+        const result = this.selectedDate.end.getTime() === day.date.getTime();
+        return result;
+      }
+      return false;
+    },
   },
 };
 </script>
@@ -1562,18 +1594,44 @@ search-form-field__pas {
   height: 40px !important;
 }
 
-.vc-highlights + .dp-day-custom {
-  border-radius: 4px;
-  /* height: 40px;
-  width: 40px; */
-  /* background-color: var(--primary_bg); */
-  color: #fff;
+.vc-highlight {
+  height: 40px !important;
 }
 
-.dp-day-custom:hover span,
+.vc-highlights + .dp-day-custom {
+  border-radius: 4px;
+}
+
+.dp-day-custom .dp-day-custom__day {
+  color: var(--grey-79) !important;
+}
+
+.vc-highlights + .day-is-range {
+  background-color: var(--light_gray) !important;
+}
+
+.vc-highlights + .day-is-range span {
+  color: var(--primary_bg) !important;
+}
+
+.dp-day-custom:hover .dp-day-custom__day,
 .vc-highlights + .dp-day-custom:hover span,
-.vc-highlights + .dp-day-custom span {
+/* .vc-highlights + .dp-day-custom span, */
+.vc-highlights + .day-is-range-start span,
+.vc-highlights + .day-is-range-end span {
   color: #fff !important;
+}
+
+.vc-highlights + .day-is-range-start {
+  border-radius: 7px 0 0 7px !important;
+  overflow: hidden;
+  background-color: var(--primary_bg);
+}
+
+.vc-highlights + .day-is-range-end {
+  border-radius: 0 7px 7px 0 !important;
+  overflow: hidden;
+  background-color: var(--primary_bg);
 }
 
 .dp-day-custom__day {
