@@ -173,6 +173,7 @@
 <script>
 import ArrowDownIcon from "@/assets/images/icons/iconsComp/ArrowDownIcon.vue";
 import CalendarIcon from "@/assets/images/icons/iconsComp/CalendarIcon.vue";
+import PathIcon from "@/assets/images/icons/iconsComp/PathIcon.vue";
 import Pagination from "@/components/elements/Pagination.vue";
 
 export default {
@@ -180,6 +181,7 @@ export default {
     Pagination,
     ArrowDownIcon,
     CalendarIcon,
+    PathIcon,
   },
   data() {
     return {
@@ -474,5 +476,63 @@ export default {
   height: 0;
   width: 0;
   border: 0;
+}
+
+</style>
+
+
+<style scoped>
+
+.dp-day-custom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  padding: 7px 6px;
+  border-radius: 4px !important;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.dp-day-custom:hover {
+  border-radius: 4px;
+  background-color: var(--primary_bg);
+}
+
+.vc-highlight {
+  height: 32px !important;
+}
+
+.vc-highlights + .dp-day-custom {
+  border-radius: 4px;
+  /* height: 40px;
+  width: 40px; */
+  /* background-color: var(--primary_bg); */
+  color: #fff;
+}
+
+.dp-day-custom:hover span,
+.vc-highlights + .dp-day-custom:hover span,
+.vc-highlights + .dp-day-custom span {
+  color: #fff !important;
+}
+
+.dp-day-custom__day {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 100%;
+}
+
+.dp-day-custom__price {
+  font-size: 10px;
+  line-height: 100%;
+  font-weight: 400;
+  color: #797979;
+}
+
+.dp-day-custom__price.dp-day-custom__price--green {
+  color: #7dd2ea;
 }
 </style>

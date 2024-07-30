@@ -50,17 +50,12 @@
                   v-model="selectedDefault.from"
                   :options="selectOptions"
                   @option:selected="
-                    obj => (selectedDefault.from.format = obj.format)
+                    (obj) => (selectedDefault.from.format = obj.format)
                   "
                 >
-                  <template #option="{ label, imgSrc,imgAlt }">
+                  <template #option="{ label, imgSrc, imgAlt }">
                     <div class="select-option">
-                      <img
-                        :src="imgSrc"
-                        :alt="imgAlt"
-                        width="20"
-                        height="14"
-                      />
+                      <img :src="imgSrc" :alt="imgAlt" width="20" height="14" />
                       <span>{{ label }}</span>
                     </div>
                   </template>
@@ -80,17 +75,12 @@
                   v-model="selectedDefault.to"
                   :options="selectOptions"
                   @option:selected="
-                    obj => (selectedDefault.to.format = obj.format)
+                    (obj) => (selectedDefault.to.format = obj.format)
                   "
                 >
-                  <template #option="{ label,  imgSrc,imgAlt }">
+                  <template #option="{ label, imgSrc, imgAlt }">
                     <div class="select-option">
-                      <img
-                        :src="imgSrc"
-                        :alt="imgAlt"
-                        width="20"
-                        height="14"
-                      />
+                      <img :src="imgSrc" :alt="imgAlt" width="20" height="14" />
                       <span>{{ label }}</span>
                     </div>
                   </template>
@@ -176,7 +166,8 @@
                     v-model="selectedDefaultHardRoutes.from"
                     :options="selectOptions"
                     @option:selected="
-                      obj => (selectedDefaultHardRoutes.from.format = obj.format)
+                      (obj) =>
+                        (selectedDefaultHardRoutes.from.format = obj.format)
                     "
                   >
                     <template #option="{ label, imgName }">
@@ -210,7 +201,8 @@
                     v-model="selectedDefaultHardRoutes.to"
                     :options="selectOptions"
                     @option:selected="
-                      obj => (selectedDefaultHardRoutes.to.format = obj.format)
+                      (obj) =>
+                        (selectedDefaultHardRoutes.to.format = obj.format)
                     "
                   >
                     <template #option="{ label, imgName }">
@@ -324,7 +316,7 @@
         <button
           class="search-filter__item search-filter__hard-path"
           type="button"
-          @click="()=>switchFormatRoutes()"
+          @click="() => switchFormatRoutes()"
         >
           <PathIcon />
           <span>
@@ -472,7 +464,7 @@
               class="search-filter-mobile__text"
               type="button"
               id="sliderListActiveState"
-              @click="e => activeFilterDropdown(e.target)"
+              @click="(e) => activeFilterDropdown(e.target)"
             >
               Отправление и прибытие
             </button>
@@ -482,7 +474,7 @@
               class="search-filter-mobile__text"
               type="button"
               id="listTransActiveState"
-              @click="e => activeFilterDropdown(e.target)"
+              @click="(e) => activeFilterDropdown(e.target)"
             >
               Пересадки
             </button>
@@ -492,7 +484,7 @@
               class="search-filter-mobile__text"
               type="button"
               id="listBagActiveState"
-              @click="e => activeFilterDropdown(e.target)"
+              @click="(e) => activeFilterDropdown(e.target)"
             >
               Багаж
             </button>
@@ -502,7 +494,7 @@
               class="search-filter-mobile__text"
               type="button"
               id="listSortActiveState"
-              @click="e => activeFilterDropdown(e.target)"
+              @click="(e) => activeFilterDropdown(e.target)"
             >
               Сортировка
             </button>
@@ -565,9 +557,18 @@ import ReverseIcon from "@/assets/images/icons/iconsComp/ReverseIcon.vue";
 import UserIcon from "@/assets/images/icons/iconsComp/UserIcon.vue";
 import CancelIcon from "@/assets/images/icons/iconsComp/CancelIcon.vue";
 
-const russiaImgPath = new URL(`../assets/images/icons/russia.jpg`, import.meta.url).href
-const kazakhstanImgPath = new URL(`../assets/images/icons/kazakhstan.jpg`, import.meta.url).href
-const japanImgPath = new URL(`../assets/images/icons/japan.jpg`, import.meta.url).href
+const russiaImgPath = new URL(
+  `../assets/images/icons/russia.jpg`,
+  import.meta.url
+).href;
+const kazakhstanImgPath = new URL(
+  `../assets/images/icons/kazakhstan.jpg`,
+  import.meta.url
+).href;
+const japanImgPath = new URL(
+  `../assets/images/icons/japan.jpg`,
+  import.meta.url
+).href;
 
 export default {
   components: {
@@ -884,7 +885,7 @@ export default {
     this.category = this.$route.query.category;
     this.$watch(
       () => this.$route.query.category,
-      newCategory => {
+      (newCategory) => {
         this.category = newCategory;
       }
     );
@@ -904,10 +905,10 @@ export default {
     },
   },
   mounted() {
-    window.addEventListener("resize", e => {
+    window.addEventListener("resize", (e) => {
       this.windowWidth = e.target.innerWidth;
     });
-    window.addEventListener("click", e => {
+    window.addEventListener("click", (e) => {
       const searchFilterMobileEl = document.querySelector(
         ".search-filter-mobile"
       );
@@ -937,7 +938,7 @@ export default {
       this.hardRouteActive = !this.hardRouteActive;
     },
     hidePasDropdowns() {
-      this.dataFields.forEach(obj => {
+      this.dataFields.forEach((obj) => {
         obj["pasSelected" + obj.id] = false;
       });
     },
@@ -951,7 +952,7 @@ export default {
       if (key) {
         this[key] = !this[key];
       }
-      states.forEach(state => {
+      states.forEach((state) => {
         if (state !== key) {
           this[state] = false;
         }
@@ -977,7 +978,7 @@ export default {
       const keys = Object.keys(lastObj);
       const newObj = {};
       const newObjIndex = lastObj.id + 1;
-      keys.forEach(key => {
+      keys.forEach((key) => {
         if (key !== "id") {
           const str = key.replace(/[0-9]/g, "");
           newObj[str + newObjIndex] = false;
@@ -1018,9 +1019,11 @@ export default {
 .breadcrumb {
   padding-left: 10px;
 }
+
 .breadcrumb-nav_mb {
   margin-bottom: 0;
 }
+
 .dropdown {
   padding: 2.4rem;
   border: var(--border-grey);
@@ -1030,39 +1033,11 @@ export default {
   overflow: hidden;
   z-index: 1000;
 }
+
 .dropdown.transfers-dropdown {
   right: 123px;
 }
-.date-picker__day {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.date-picker__selected {
-  background-color: red;
-  border-radius: 4px;
-}
-.date-picker__price {
-  font-family: Gilroy-Medium;
-  font-weight: 400;
-  font-size: 10px;
-  color: #797979;
-}
-.date-picker__price_b {
-  color: #7dd2ea;
-}
-.date-picker__mobile-title {
-  font-size: 16px;
-  font-weight: 500 !important;
-  font-family: Gilroy-Medium !important;
-  color: #333;
-}
-.search-filter__item.date-picker__btn {
-  gap: 8px;
-  margin-left: auto;
-  margin-top: 23px;
-  font-size: 16px;
-}
+
 .select-option img {
   display: flex;
   align-items: center;
@@ -1096,19 +1071,23 @@ export default {
   gap: 8px;
   width: 100%;
 }
+
 .search-form-field__fields {
   display: flex;
   width: 100%;
 }
+
 .search-form-field__fields > label {
   max-width: 192px;
   border-top: var(--border-grey);
   border-bottom: var(--border-grey);
 }
+
 .search-form-field__fields > label:first-child {
   border-radius: 7px 0 0 7px;
   border-right: var(--border-grey);
 }
+
 .search-form-field__fields > label:last-child {
   border-radius: 0 7px 7px 0;
   border: var(--border-grey);
@@ -1144,9 +1123,11 @@ export default {
 .search-form-field label:focus-within {
   background-color: var(--light_gray);
 }
+
 .search-form-field input:focus {
   outline: none;
 }
+
 .search-form-field label:not(:last-child) {
   border-right: var(--border-grey);
 }
@@ -1179,6 +1160,7 @@ search-form-field__pas {
   background-color: #fff;
   border-radius: var(--bdrs-7);
 }
+
 .search-form-path label:last-child {
   padding-left: 7px;
 }
@@ -1215,6 +1197,7 @@ search-form-field__pas {
   transition: background-color 0.2s;
   z-index: 10;
 }
+
 .search-form-path__button:hover {
   background-color: var(--light_gray);
 }
@@ -1237,6 +1220,7 @@ search-form-field__pas {
 .search-btn:hover {
   background-color: #470d60;
 }
+
 .search-btn:active {
   filter: brightness(0.8);
 }
@@ -1252,6 +1236,7 @@ search-form-field__pas {
   position: relative;
   /* padding-top: 20px; */
 }
+
 .search-result-field > *:first-child::before,
 .search-result-field > *:first-child::after {
   position: absolute;
@@ -1265,11 +1250,13 @@ search-form-field__pas {
   color: #fff;
   z-index: 1;
 }
+
 .search-result-field > *:first-child::before {
   content: "Самый дешевый";
   left: 1.4rem;
   background-color: var(--red);
 }
+
 .search-result-field > *:first-child::after {
   content: "Самый быстрый";
   left: 13.2rem;
@@ -1290,6 +1277,7 @@ search-form-field__pas {
 .search-filter__hard-path {
   margin-right: 9rem;
 }
+
 .search-filter__hard-path svg {
   min-width: 21px;
   height: auto;
@@ -1303,22 +1291,27 @@ search-form-field__pas {
   text-overflow: ellipsis;
   overflow: hidden;
 }
+
 .search-filter > button {
   gap: 8px;
   width: 100%;
 }
+
 .search-filter > button:first-child {
   /* max-width: 259px; */
   max-width: fit-content;
 }
+
 .search-filter > button:nth-child(3),
 .search-filter > button:nth-child(4) {
   max-width: 196px;
 }
+
 .search-filter > button svg {
   min-width: 20px;
   height: auto;
 }
+
 .search-filter > button svg.arrow-down {
   min-width: 11px;
   height: auto;
@@ -1330,48 +1323,35 @@ search-form-field__pas {
   align-items: center;
   gap: 8px;
 }
+
 .search-filter__center button {
   gap: 13px;
 }
 
-.search-filter__item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  height: 40px;
-  border-radius: var(--bdrs-7);
-  border: var(--border-grey);
-  padding: 8px 16px;
-  font-family: Gilroy-SemiBold;
-  font-size: 14px;
-  color: #797979;
-  background-color: #fff;
-}
-.search-filter__item .arrow-down {
-  transition: transform 0.3s;
-}
-.search-filter__item.search-filter__item--active .arrow-down {
-  transform: rotate(180deg);
-}
 .search-filter__sort-wrap {
   position: relative;
 }
+
 .search-filter__sort-wrap.search-filter__item--active svg {
   transform: rotate(180deg);
 }
+
 .search-filter__item_sort {
   margin-left: auto;
   padding: 0;
   border: none;
   background-color: transparent;
 }
+
 .search-filter__item_sort button {
   padding-inline: 19px;
 }
+
 .search-filter__item_sort .dropdown {
   padding: 1.6rem;
   border-top-left-radius: 7px;
 }
+
 .search-filter-mobile {
   position: fixed;
   left: 0;
@@ -1385,13 +1365,16 @@ search-form-field__pas {
   transition: opacity 0.5s;
   z-index: 10000;
 }
+
 .search-filter-mobile.search-filter-mobile--active {
   display: block;
   opacity: 1;
 }
+
 .search-filter-mobile ul {
   margin-bottom: 0;
 }
+
 .search-filter-mobile li {
   display: flex;
   align-items: center;
@@ -1400,9 +1383,11 @@ search-form-field__pas {
   height: 72px;
   background-color: #fff;
 }
+
 .search-filter-mobile li:not(:last-child) {
   border-bottom: var(--border-grey);
 }
+
 .search-filter-mobile__text {
   border: none;
   font-size: 14px;
@@ -1413,9 +1398,11 @@ search-form-field__pas {
   transition: color 0.2s;
   cursor: pointer;
 }
+
 .search-filter-mobile__text:hover {
   color: #333;
 }
+
 .search-filter-mobile__title {
   margin-bottom: 0;
   font-size: 16px;
@@ -1424,6 +1411,7 @@ search-form-field__pas {
   line-height: 100%;
   color: #333;
 }
+
 .search-filter-mobile__close {
   display: flex;
   align-items: center;
@@ -1437,9 +1425,11 @@ search-form-field__pas {
   cursor: pointer;
   z-index: 100;
 }
+
 .search-filter-mobile__close:hover {
   background-color: var(--light_gray);
 }
+
 .search-filter-mobile__clear {
   border: none;
   margin-left: auto;
@@ -1452,9 +1442,11 @@ search-form-field__pas {
   transition: color 0.2s;
   cursor: pointer;
 }
+
 .search-filter-mobile__clear:hover {
   color: #333;
 }
+
 .dropdown.dropdown-mobile {
   position: fixed;
   top: auto;
@@ -1466,16 +1458,19 @@ search-form-field__pas {
   border-radius: 7px 7px 0 0;
   border: var(--border-grey);
 }
+
 .search-form-route-mobile {
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 100%;
 }
+
 .search-form-field__fields-wrapper.mobile--active .search-form-field__fields {
   flex-direction: column;
   gap: 16px;
 }
+
 .search-form-field__fields-wrapper.mobile--active
   .search-form-field__fields
   > *:nth-child(1),
@@ -1487,34 +1482,42 @@ search-form-field__pas {
   > *:nth-child(3) {
   display: none;
 }
+
 .search-form-field__fields-wrapper.mobile--active
   .search-form-field__fields
   > label:nth-child(2) {
   max-width: 100%;
 }
+
 .search-form-route-mobile__wrapper {
   position: relative;
   display: flex;
 }
+
 .search-form-route-mobile__wrapper .search-form-path__label {
   left: 15px;
   top: 33px;
   right: auto;
   font-size: 12px;
 }
+
 .search-form-route-mobile__wrapper > label {
   width: calc(100% / 3);
   padding-right: 16px;
 }
+
 .search-form-route-mobile__wrapper > label:nth-child(1) {
   border-radius: 7px 0 0 7px;
 }
+
 .search-form-route-mobile__wrapper > label:nth-child(3) {
   border-radius: 0 7px 7px 0;
 }
+
 .search-form-route-mobile__wrapper > label:not(:nth-child(3)) {
   border-right: var(--border-grey);
 }
+
 .search-form-route-mobile__btn {
   position: absolute;
   display: flex;
@@ -1530,6 +1533,7 @@ search-form-field__pas {
   border: 1px solid #797979;
   z-index: 10;
 }
+
 .dp-day-custom {
   display: flex;
   flex-direction: column;
@@ -1542,13 +1546,16 @@ search-form-field__pas {
   transition: background-color 0.2s;
   cursor: pointer;
 }
+
 .dp-day-custom:hover {
   border-radius: 4px;
   background-color: var(--primary_bg);
 }
+
 .vc-highlight {
   height: 32px !important;
 }
+
 .vc-highlights + .dp-day-custom {
   border-radius: 4px;
   /* height: 40px;
@@ -1556,22 +1563,26 @@ search-form-field__pas {
   /* background-color: var(--primary_bg); */
   color: #fff;
 }
+
 .dp-day-custom:hover span,
 .vc-highlights + .dp-day-custom:hover span,
 .vc-highlights + .dp-day-custom span {
   color: #fff !important;
 }
+
 .dp-day-custom__day {
   font-size: 16px;
   font-weight: 400;
   line-height: 100%;
 }
+
 .dp-day-custom__price {
   font-size: 10px;
   line-height: 100%;
   font-weight: 400;
   color: #797979;
 }
+
 .dp-day-custom__price.dp-day-custom__price--green {
   color: #7dd2ea;
 }
@@ -1580,56 +1591,69 @@ search-form-field__pas {
   .search-filter {
     flex-wrap: wrap;
   }
+
   .search-filter > button:nth-child(3) {
     order: 4;
   }
+
   .search-filter > *:nth-child(4) {
     order: 3;
   }
 }
+
 @media screen and (max-width: 1200px) {
   .search-filter__hard-path {
     margin-right: 0;
   }
+
   .search-filter__center {
     margin-left: auto;
   }
+
   .search-form-field__fields > *:nth-child(2) {
     flex-wrap: wrap;
     row-gap: 8px;
     border-left: var(--border-grey);
     border-radius: 7px 0 0 7px;
   }
+
   .search-form-field__fields {
     flex-wrap: wrap;
     row-gap: 8px;
   }
+
   .search-form-path {
     width: 100%;
     min-width: initial;
     max-width: initial;
     border-radius: 7px;
   }
+
   .search-form-path label {
     width: 50%;
     min-width: initial;
     max-width: initial;
   }
+
   .search-form-field__fields > label {
     max-width: calc(100% / 3);
   }
+
   .search-filter > button:nth-child(3) {
     order: 3;
   }
+
   .search-filter > *:last-child {
     order: 4;
     margin-left: auto;
   }
 }
+
 @media screen and (max-width: 992px) {
   .search-filter > *:nth-child(2) {
     order: 3;
   }
+
   .search-filter > *:last-child {
     order: 2;
   }
@@ -1643,12 +1667,15 @@ search-form-field__pas {
   .search-btn {
     width: 100%;
   }
+
   .search-filter > *:last-child {
     max-width: 212px;
   }
+
   .search-filter__center {
     width: 100%;
   }
+
   .search-filter__center button:nth-child(3) {
     width: 26%;
   }
@@ -1659,14 +1686,17 @@ search-form-field__pas {
     margin-left: 0;
     width: 100%;
   }
+
   .search-filter__item_sort > button {
     width: 100%;
   }
 }
+
 @media screen and (max-width: 576px) {
   .search-fields {
     padding: 16px;
   }
+
   .search-form-field__fields-wrapper.mobile--active
     .search-form-field__fields
     > label:last-child {
@@ -1674,42 +1704,52 @@ search-form-field__pas {
     border-left: var(--border-grey);
     border-radius: var(--bdrs-7);
   }
+
   .search-filter > button:first-child,
   .search-filter > *:last-child,
   .search-filter > button:nth-child(3) {
     max-width: 100%;
   }
+
   .search-filter__center {
     flex-wrap: wrap;
   }
+
   .search-filter__center > button {
     width: 100%;
   }
+
   .search-filter__center > button:first-child {
     width: 100%;
   }
+
   .search-filter__center > button:nth-child(2),
   .search-filter__center > button:nth-child(3) {
     width: calc((100% - 8px) / 2);
   }
+
   .search-filter__center .dropdown {
     top: 89px;
   }
+
   .search-form-path {
     height: auto;
   }
+
   .search-result-field > *:first-child::before {
     content: "Самый дешевый";
     left: auto;
     right: 12.9rem;
     background-color: var(--red);
   }
+
   .search-result-field > *:first-child::after {
     content: "Самый быстрый";
     left: auto;
     right: 1.2rem;
     background-color: #7dd2ea;
   }
+
   .search-form-field__pas .dropdown {
     position: fixed;
     bottom: 0;
@@ -1722,6 +1762,7 @@ search-form-field__pas {
     padding-top: 2rem;
     border: var(--border-grey);
   }
+
   .dp-day-custom {
     width: 48px;
   }
@@ -1729,71 +1770,144 @@ search-form-field__pas {
   .vc-weekdays {
     margin-bottom: 4px;
   }
+
   .search-filter__item.date-picker__btn {
     font-size: 14px;
   }
+
   .search-filter-mobile li:first-child {
     height: 72px;
   }
+
   .search-filter-mobile li {
     height: 62px;
     padding-inline: 21px;
   }
-  
-.search-result-field > *:not(:last-child) {
-  margin-bottom: 1.6rem;
+
+  .search-result-field > *:not(:last-child) {
+    margin-bottom: 1.6rem;
+  }
 }
-}
+
 @media screen and (max-width: 480px) {
   .search-form-field input::placeholder,
   .search-form-field input {
     font-size: 12px;
   }
+
   .search-form-field__fields {
     column-gap: 8px;
   }
+
   .search-form-field__fields > label:nth-child(2),
   .search-form-field__fields > label:nth-child(3) {
     max-width: calc((100% - 8px) / 2);
     border: var(--border-grey);
     border-radius: var(--bdrs-7);
   }
+
   .search-form-field__fields > label:nth-child(4) {
     max-width: 100%;
     border: var(--border-grey);
     border-radius: var(--bdrs-7);
   }
+
   .search-btn,
   .search-form-field label {
     min-height: 46px;
     max-height: 46px;
   }
+
   .search-form-path {
     gap: 8px;
     flex-wrap: wrap;
     border: none;
   }
+
   .search-form-path > label {
     width: 100%;
     border: var(--border-grey);
     border-radius: var(--bdrs-7);
   }
+
   .search-form-path label:last-child {
     padding-left: 0;
   }
+
   .search-form-field__fields > label:last-child {
     width: 100%;
     max-width: 100%;
   }
 }
 </style>
+
 <style>
+.date-picker__day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.date-picker__selected {
+  background-color: red;
+  border-radius: 4px;
+}
+
+.date-picker__price {
+  font-family: Gilroy-Medium;
+  font-weight: 400;
+  font-size: 10px;
+  color: #797979;
+}
+
+.date-picker__price_b {
+  color: #7dd2ea;
+}
+
+.date-picker__mobile-title {
+  font-size: 16px;
+  font-weight: 500 !important;
+  font-family: Gilroy-Medium !important;
+  color: #333;
+}
+
+.search-filter__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  border-radius: var(--bdrs-7);
+  border: var(--border-grey);
+  padding: 8px 16px;
+  font-family: Gilroy-SemiBold;
+  font-size: 14px;
+  color: #797979;
+  background-color: #fff;
+}
+
+.search-filter__item .arrow-down {
+  transition: transform 0.3s;
+}
+
+.search-filter__item.search-filter__item--active .arrow-down {
+  transform: rotate(180deg);
+}
+
+.search-filter__item.date-picker__btn {
+  gap: 8px;
+  margin-left: auto;
+  margin-top: 23px;
+  font-size: 16px;
+}
+
 .search-filter__item_sort label {
   margin-bottom: 0;
 }
+
 .search-filter__item_sort ul {
   margin-bottom: 0;
 }
+
 .search-filter__item_sort li:not(:last-child) {
   margin-bottom: 8px;
 }

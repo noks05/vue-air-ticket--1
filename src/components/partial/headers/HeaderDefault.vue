@@ -499,8 +499,8 @@ export default {
   opacity: 0;
   transition: opacity 0.3s;
   transform: translateX(-50%);
-  z-index: 1000;
   animation: fadeIn 0.3s;
+  z-index: 10000000;
 }
 
 .list-truncate ul {

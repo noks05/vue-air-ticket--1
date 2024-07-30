@@ -329,7 +329,7 @@
 
 
 /* datepicker in search-fields */
-.search-form-field .vc-bordered {
+.vc-bordered {
   top: -10px;
   z-index: 1000;
   padding: 34px 43px;
@@ -344,29 +344,29 @@
   padding-right: 4px;
 }
 
-.search-form-field .vc-header.is-lg {
+.vc-header.is-lg {
   margin-bottom: 7px;
 }
 
-.search-form-field .vc-header.is-lg span {
+.vc-header.is-lg span {
   font-family: Gilroy-Medium;
   font-weight: 400;
   font-size: 14px;
   color: var(--primary_bg);
 }
 
-.search-form-field .vc-weekday {
+.vc-weekday {
   font-family: Gilroy-Medium;
   font-weight: 400;
   font-size: 14px;
   color: #797979;
 }
 
-.search-form-field .vc-weekday:nth-last-child(-n+2) {
+.vc-weekday:nth-last-child(-n+2) {
   color: var(--red);
 }
 
-.search-form-field .vc-light.vc-attr, .vc-light .vc-attr {
+.vc-light.vc-attr, .vc-light .vc-attr {
   border-radius: 4px !important;
   /* background-color: var(--primary_bg) !important;
   --vc-highlight-solid-bg: var(--primary_bg) !important; */
@@ -428,7 +428,7 @@
 
 
 @media screen and (max-width: 992px) {
-  .search-form-field .vc-bordered {
+  .vc-bordered {
     padding: 24px 20px;
   }
 }
@@ -450,18 +450,18 @@
     border-radius: 7px 7px 0 0 !important;
   }
 
-  .search-form-field .vc-bordered {
+  .vc-bordered {
     padding-top: 76px;
     padding-inline: 6px;
   }
 
-  .search-form-field .vc-bordered .date-picker__btn {
+  .vc-bordered .date-picker__btn {
     position: absolute;
     top: -76px;
     right: 10px;
   }
 
-  .search-form-field .vc-bordered .date-picker__mobile-title {
+  .vc-bordered .date-picker__mobile-title {
     position: absolute;
     top: -48px;
     left: 23px;
