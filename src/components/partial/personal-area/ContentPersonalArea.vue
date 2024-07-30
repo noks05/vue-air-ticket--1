@@ -7,6 +7,7 @@
         ? 'p-area-content-wrap_op'
         : '',
     ]"
+    v-if="$route.path === '/personal-area' && $route.query"
   >
     <div v-if="$route.query.titlePage === 'Операции'">
       <OperationPA />

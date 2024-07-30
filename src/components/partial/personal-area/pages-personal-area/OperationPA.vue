@@ -168,6 +168,24 @@ export default {
 </script>
 
 <style scoped>
+
+.dropdown {
+  padding: 2.4rem;
+  border: var(--border-grey);
+  border-radius: 0 0 7px 7px;
+  background-color: #fff;
+  box-shadow: var(--shadow-light);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.dropdown.transfers-dropdown {
+  right: 123px;
+}
+
+</style>
+
+<style>
 .operation-label{
   position: relative;
   margin-bottom: 0;
@@ -206,24 +224,6 @@ export default {
   right: 16px;
 }
 
-.dropdown {
-  padding: 2.4rem;
-  border: var(--border-grey);
-  border-radius: 0 0 7px 7px;
-  background-color: #fff;
-  box-shadow: var(--shadow-light);
-  overflow: hidden;
-  z-index: 1000;
-}
-
-.dropdown.transfers-dropdown {
-  right: 123px;
-}
-
-</style>
-
-<style>
-
 .operation-top {
   display: flex;
   align-items: center;
@@ -234,6 +234,10 @@ export default {
 .operation-datepicker-wrap{
   display: flex;
   align-items: center;
+}
+
+.operation-datepicker-wrap .order-btn{
+  margin-left: 20px;
 }
 
 .operation-btn {

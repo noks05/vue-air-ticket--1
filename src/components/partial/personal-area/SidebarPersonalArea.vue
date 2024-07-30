@@ -225,4 +225,15 @@ export default {
 .p-area-small-text.p-area-small-text--active {
   color: var(--text_color);
 }
+
+@media (max-width: 480px) {
+  .p-area-wrap {
+    margin-top: 24px;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    padding-inline: 7px;
+    border: none;
+  }
+}
 </style>

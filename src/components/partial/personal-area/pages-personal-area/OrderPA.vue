@@ -21,27 +21,29 @@
           </div>
         </template>
         <template #default="props">
-          <label class="operation-label">
-            <input
-              type="text"
-              name="date-from"
-              placeholder="Дата от"
-              :value="formatDate(selectedDate.start)"
-              @click.stop="props.togglePopover"
-              @focusin="console.log(props.locale)"
-            />
-            <CalendarIcon class="search-form-field__img" />
-          </label>
-          <label class="operation-label">
-            <input
-              type="text"
-              name="date-to"
-              placeholder="Дата до"
-              :value="formatDate(selectedDate.end)"
-              @click="props.togglePopover"
-            />
-            <CalendarIcon class="search-form-field__img" />
-          </label>
+          <div class="operation-label-wrap">
+            <label class="operation-label">
+              <input
+                type="text"
+                name="date-from"
+                placeholder="Дата от"
+                :value="formatDate(selectedDate.start)"
+                @click.stop="props.togglePopover"
+                @focusin="console.log(props.locale)"
+              />
+              <CalendarIcon class="search-form-field__img" />
+            </label>
+            <label class="operation-label">
+              <input
+                type="text"
+                name="date-to"
+                placeholder="Дата до"
+                :value="formatDate(selectedDate.end)"
+                @click="props.togglePopover"
+              />
+              <CalendarIcon class="search-form-field__img" />
+            </label>
+          </div>
         </template>
         <template #footer>
           <div class="date-picker__mobile-title" v-if="mobile">Когда</div>
@@ -170,12 +172,14 @@
 
 <script>
 import ArrowDownIcon from "@/assets/images/icons/iconsComp/ArrowDownIcon.vue";
+import CalendarIcon from "@/assets/images/icons/iconsComp/CalendarIcon.vue";
 import Pagination from "@/components/elements/Pagination.vue";
 
 export default {
   components: {
     Pagination,
     ArrowDownIcon,
+    CalendarIcon,
   },
   data() {
     return {
@@ -183,6 +187,7 @@ export default {
       filterSelected: null,
       perPage: 5,
       totalCount: 30,
+      filterActive: false,
       selectedDate: {
         start: null,
         end: null,

@@ -11,7 +11,7 @@
       </router-link>
     </div>
   </template>
-  
+
   <script>
   import { mapGetters } from "vuex";
   export default {
@@ -25,9 +25,8 @@
     font-family: Gilroy-Regular;
     font-size: 12px;
   }
-  
+
   .dropdown-toggle:hover svg path {
     fill: var(--primary_bg);
   }
   </style>
-  

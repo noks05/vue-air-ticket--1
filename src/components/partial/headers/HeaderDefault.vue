@@ -238,7 +238,9 @@
                 <img
                   src="../../../assets/newImg/icons/user_icon.svg"
                   alt="user"
+                  v-if="!tablet"
                 />
+                <UserPAIcon  v-if="tablet"/>
                 Александр: 3300.00
               </button>
 
@@ -248,7 +250,12 @@
               >
                 <ul>
                   <li>
-                    <router-link class="link-truncate" to="/password">
+                    <router-link
+                      class="link-truncate"
+                      :to="{
+                        path: '/personal-area',
+                        query: { titlePage: 'Личные данные' },
+                      }">
                       <UserBlackIcon />
                       <span>Профиль</span>
                     </router-link>
@@ -257,8 +264,8 @@
                     <router-link
                       class="link-truncate"
                       :to="{
-                        path: '/basket',
-                        query: { orderCer: 'Оформление заказа' },
+                        path: '/personal-area',
+                        query: { titlePage: 'Избранное' },
                       }"
                     >
                       <FavoriteEmptyIcon />
@@ -269,8 +276,8 @@
                     <router-link
                       class="link-truncate"
                       :to="{
-                        path: '/basket',
-                        query: { orderAir: 'Оформление авиабилета' },
+                        path: '/personal-area',
+                        query: { titlePage: 'Заказы' },
                       }"
                     >
                       <ListIcon />
@@ -278,13 +285,18 @@
                     </router-link>
                   </li>
                   <li>
-                    <router-link class="link-truncate" to="#">
+                    <router-link
+                      class="link-truncate"
+                      :to="{
+                        path: '/personal-area',
+                        query: { titlePage: 'Операции' },
+                      }">
                       <OperationsIcon />
                       <span>Операции</span>
                     </router-link>
                   </li>
                   <li>
-                    <router-link class="link-truncate" to="#">
+                    <router-link class="link-truncate" to="/password">
                       <ExitIcon />
                       <span>Выход</span>
                     </router-link>
@@ -310,6 +322,7 @@ import FavoriteEmptyIcon from "@/assets/images/icons/iconsComp/FavoriteEmptyIcon
 import ListIcon from "@/assets/images/icons/iconsComp/ListIcon.vue";
 import OperationsIcon from "@/assets/images/icons/iconsComp/OperationsIcon.vue";
 import ExitIcon from "@/assets/images/icons/iconsComp/ExitIcon.vue";
+import UserPAIcon from "@/assets/images/icons/iconsComp/UserPAIcon.vue";
 
 export default {
   components: {
@@ -323,10 +336,15 @@ export default {
     ListIcon,
     OperationsIcon,
     ExitIcon,
+    UserPAIcon,
   },
   computed: {
     isFullwidth: function () {
       return this.$route.path.includes("fullwidth");
+    },
+    tablet() {
+      let result = window.innerWidth <= 992;
+      return result;
     },
   },
   data() {
@@ -345,8 +363,12 @@ export default {
       // console.log(this.$route);
     },
     activeDropdown() {
-      const elem = this.$refs.containerTruncate;
-      elem.classList.toggle("container-truncate--active");
+      if(window.innerWidth <= 480){
+        this.$router.push('/personal-area');
+      }else{
+        const elem = this.$refs.containerTruncate;
+        elem.classList.toggle("container-truncate--active");
+      }
     },
     removeDropdown(target) {
       const linkTruncate = target.closest(".link-truncate");
@@ -450,7 +472,7 @@ export default {
 .btn-truncate {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
   padding: 0;
   font-family: Gilroy-Medium !important;
   color: #000;
@@ -516,6 +538,7 @@ export default {
   width: 50px;
   height: 50px;
 }
+
 </style>
 
 <style>
@@ -530,5 +553,27 @@ export default {
 .list-truncate li:nth-last-child(2):hover svg path {
   stroke: inherit;
   fill: var(--primary_bg);
+}
+
+@media (max-width: 992px) {
+  .header-bottom.sticky-header{
+    display: flex;
+    height: 56px;
+    border-top: var(--border-grey);
+  }
+  .header-bottom .header-left{
+    display: none;
+  }
+  .header-bottom .header-right {
+    margin-inline: auto;
+  }
+  .header-bottom .header-right .btn-truncate{
+    font-family: Gilroy-Regular !important;
+    font-weight: 400;
+    color: var(--primary_bg);
+  }
+  .header-bottom .header-right svg path{
+    stroke: var(--primary_bg);
+  }
 }
 </style>

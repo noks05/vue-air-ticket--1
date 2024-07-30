@@ -143,6 +143,14 @@ export default {
   margin-bottom: 51px;
 }
 
+@media (max-width: 576px) {
+
+  .remind-pass-wrap {
+   margin-top: 15px;
+   margin-bottom: 46px;
+  }
+}
+
 @media (max-width: 480px) {
   .new-pass-wrap {
     max-width: 100%;

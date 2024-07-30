@@ -103,7 +103,6 @@ export default {
       }
 
       if (this.tablet) {
-        console.log("rrrrrrr");
         pageNumbers.push(1);
       }
       return pageNumbers;
@@ -136,11 +135,11 @@ export default {
 
 <style scoped>
 @media (max-width: 991px) {
-  .page-item-points {
+  .pagination .page-item-points {
     margin-left: 14px;
   }
 
-  .page-item-total {
+  .pagination .page-item-total {
     padding-left: 0;
   }
 }

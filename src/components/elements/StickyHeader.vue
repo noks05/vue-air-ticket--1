@@ -60,8 +60,8 @@ export default {
         },
         resizeHandler: function() {
             let stickyContent = this.$el.children[0];
-            this.$el.style.height = stickyContent.offsetHeight + 'px';
-            this.scrollHandler();
+            // this.$el.style.height = stickyContent.offsetHeight + 'px';
+            // this.scrollHandler();
         }
     }
 };

@@ -3,8 +3,8 @@
 
   <div class="p-area-alerts">
     <p class="p-area-alert p-area-alert_green" v-if="closeAlert1">
-      Не забудьте&nbsp;потратить&nbsp;3000.00&nbsp;бонусов на витрине, иначе в начале
-      следующего месяца они сгорят.
+      Не забудьте&nbsp;потратить&nbsp;3000.00&nbsp;бонусов на витрине, иначе
+      в начале следующего месяца они сгорят.
       <button @click="closeAlert1 = !closeAlert1" type="button">
         <CancelIcon />
       </button>
@@ -20,6 +20,7 @@
   <nav
     aria-label="breadcrumb"
     class="breadcrumb-nav breadcrumb-nav_mb breadcrumb-nav_mt"
+    v-if="crumbs.length"
   >
     <div class="container">
       <ol class="breadcrumb">
@@ -63,6 +64,7 @@
         'p-area-title',
         $route.query.titlePage === 'Личные данные' ? 'p-area-title_data' : '',
       ]"
+      v-if="crumbs.length"
     >
       {{ crumbs[crumbs.length - 1] }}
     </h2>
@@ -75,7 +77,7 @@
             ? 'p-area-sidebar_add'
             : '',
         ]"
-        v-if="!tablet"
+        v-if="isSidebar"
       />
       <PersonalAreaContent />
     </div>
@@ -116,18 +118,16 @@ export default {
       return result;
     },
     tablet() {
-      let result = false;
-
-      if(this.$route.query.titlePage === 'Заказы'){
-         result = this.windowWidth <= 991;
-      }else{
-         result = this.windowWidth <= 768;
-      }
+      let result = this.windowWidth <= 992;
       return result;
     },
-  },
-  mounted() {
-    console.log(this.windowWidth);
+    isSidebar() {
+      const result =
+        !this.tablet ||
+        (this.$route.path === "/personal-area" &&
+          !Object.keys(this.$route.query).length);
+      return result;
+    },
   },
 };
 </script>
@@ -248,17 +248,13 @@ export default {
   margin-top: -0.1rem;
 }
 
-.breadcrumb-item_none{
-  display: none;
-}
-
 @media (max-width: 576px) {
   .breadcrumb-nav .container,
-  .p-area-container.container{
+  .p-area-container.container {
     padding-inline: 16px;
   }
 
-  .breadcrumb-nav_mt.breadcrumb-nav_mb{
+  .breadcrumb-nav_mt.breadcrumb-nav_mb {
     margin-bottom: 18px !important;
     border-bottom: var(--border-grey) !important;
   }
@@ -282,14 +278,18 @@ export default {
     font-size: 22px;
   }
 
-  .address-delivery-descr{
+  .address-delivery-descr {
     margin-bottom: 24px;
   }
 
-  .address-btn{
+  .address-btn {
     text-align: center;
     width: 100%;
     margin-left: 0;
+  }
+
+  .breadcrumb-item_none {
+    display: none;
   }
 }
 </style>
