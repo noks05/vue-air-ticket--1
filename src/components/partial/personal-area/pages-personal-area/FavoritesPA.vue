@@ -5,9 +5,13 @@
         <div class="favor-box-top">
           <div class="favor-img-wrap">
             <img
-              :src="'src/assets/images/personal-area/' + card.nameImg"
-              :alt="card.altImg"
+              :src="card.nameImg"
             />
+            <!-- <img
+              src="../../../../assets/images/personal-area/yandex-sale.jpg"
+              :src="'/src/assets/images/personal-area/' + card.nameImg"
+              :alt="card.altImg"
+            /> -->
           </div>
 
           <span class="favor-box-marker" v-if="card.marker">
@@ -55,6 +59,11 @@ import HeartEmptyIcon from "@/assets/images/icons/iconsComp/HeartEmptyIcon.vue";
 import HeartIcon from "@/assets/images/icons/iconsComp/HeartIcon.vue";
 import Pagination from "@/components/elements/Pagination.vue";
 
+const img = new URL(
+  `../../../../assets/images/personal-area/yandex-sale.jpg`,
+  import.meta.url
+).href;
+
 export default {
   components: {
     Pagination,
@@ -71,7 +80,7 @@ export default {
         {
           id: 1,
           favorite: false,
-          nameImg: "yandex-sale.jpg",
+          nameImg: img,
           altImg: "yandex sale",
           marker: false,
           title: "Яндекс Практикум",
@@ -80,7 +89,7 @@ export default {
         {
           id: 2,
           favorite: false,
-          nameImg: "yandex-sale.jpg",
+          nameImg: img,
           altImg: "yandex sale",
           marker: false,
           title: "Яндекс Практикум",
@@ -89,7 +98,7 @@ export default {
         {
           id: 3,
           favorite: false,
-          nameImg: "yandex-sale.jpg",
+          nameImg: img,
           altImg: "yandex sale",
           marker: {
             text: "Нет в наличии",
@@ -100,7 +109,7 @@ export default {
         {
           id: 4,
           favorite: false,
-          nameImg: "yandex-sale.jpg",
+          nameImg: img,
           altImg: "yandex sale",
           marker: false,
           title: "Яндекс Практикум",
@@ -109,7 +118,7 @@ export default {
         {
           id: 5,
           favorite: false,
-          nameImg: "yandex-sale.jpg",
+          nameImg: img,
           altImg: "yandex sale",
           marker: false,
           title: "Яндекс Практикум",
@@ -118,7 +127,7 @@ export default {
         {
           id: 6,
           favorite: false,
-          nameImg: "yandex-sale.jpg",
+          nameImg: img,
           altImg: "yandex sale",
           marker: false,
           title: "Яндекс Практикум",
@@ -127,7 +136,7 @@ export default {
         {
           id: 7,
           favorite: false,
-          nameImg: "yandex-sale.jpg",
+          nameImg: img,
           altImg: "yandex sale",
           marker: {
             text: "Нет в наличии",
@@ -138,7 +147,7 @@ export default {
         {
           id: 8,
           favorite: false,
-          nameImg: "yandex-sale.jpg",
+          nameImg: img,
           altImg: "yandex sale",
           marker: false,
           title: "Яндекс Практикум",

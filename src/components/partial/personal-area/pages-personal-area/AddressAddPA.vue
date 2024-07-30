@@ -146,10 +146,12 @@ export default {
       this.options.forEach((obj) => (obj.state = false));
       this.options[selectedItem.id].state = true;
     },
-    onSelectedOption(option){
+    onSelectedOption(option) {
       this.selected.value = option.value;
-      this.$el.querySelector('.vs__dropdown-toggle').classList.add('vs__dropdown-toggle--active');
-      console.log(option)
+      this.$el
+        .querySelector(".vs__dropdown-toggle")
+        .classList.add("vs__dropdown-toggle--active");
+      console.log(option);
     },
   },
 };
@@ -267,14 +269,14 @@ export default {
   display: none;
 }
 
-.user-data-btns button{
-  width: 100%;
-  padding-block: 14px;
-}
-
 @media (max-width: 576px) {
   .address-add-select.address-add-select_address .vs__dropdown-toggle {
     height: 80px;
+  }
+
+  .user-data-btns button {
+    width: 100%;
+    padding-block: 14px;
   }
 }
 </style>
