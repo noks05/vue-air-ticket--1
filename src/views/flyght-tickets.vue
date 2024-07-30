@@ -98,7 +98,7 @@
               v-model.range="selectedDate"
             >
               <template #day-content="{ day, dayEvents }">
-                <div :class="['dp-day-custom']" v-on="dayEvents">
+                <div :class="{dpDayCustom: true, dayIsRange : isDateInRange(date) }" v-on="dayEvents">
                   <span class="dp-day-custom__day">{{ day.day }}</span>
                   <span
                     :class="[
@@ -1011,6 +1011,12 @@ export default {
       let dayWeek = days[Number(date.getDay())];
       return day + " " + month + ", " + dayWeek;
     },
+    isDateInRange(date) {
+      if (!this.rangeStart || !this.rangeEnd) {
+        return false;
+      }
+      return date > this.rangeStart && date < this.rangeEnd;
+    }
   },
 };
 </script>
@@ -1553,7 +1559,7 @@ search-form-field__pas {
 }
 
 .vc-highlight {
-  height: 32px !important;
+  height: 40px !important;
 }
 
 .vc-highlights + .dp-day-custom {

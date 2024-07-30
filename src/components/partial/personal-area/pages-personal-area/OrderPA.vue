@@ -7,9 +7,17 @@
         locale="ru-RU"
         v-model.range="selectedDate"
       >
-        <template #day-content="{ day, dayEvents }">
-          <div :class="['dp-day-custom']" v-on="dayEvents">
-            <span class="dp-day-custom__day">{{ day.day }}</span>
+        <template #day-content="props">
+          <div
+            :class="{
+              'dp-day-custom': true,
+              'day-is-range': isDateInRange(props),
+              'day-is-range-start': isDateIsStart(props),
+              'day-is-range-end': isDateIsEnd(props),
+            }"
+            v-on="props.dayEvents"
+          >
+            <span class="dp-day-custom__day">{{ props.day.day }}</span>
             <!-- <span
               :class="[
                 'dp-day-custom__price',
@@ -29,7 +37,6 @@
                 placeholder="Дата от"
                 :value="formatDate(selectedDate.start)"
                 @click.stop="props.togglePopover"
-                @focusin="console.log(props.locale)"
               />
               <CalendarIcon class="search-form-field__img" />
             </label>
@@ -128,7 +135,7 @@
   </table>
 
   <div class="order-page-table-mobile-wrap">
-    <div class="order-page-table-mobile" v-for="it in [1,2,3]" :key="it">
+    <div class="order-page-table-mobile" v-for="it in [1, 2, 3]" :key="it">
       <div class="top">
         <span class="date"> 28.03.2024 </span>
 
@@ -160,9 +167,9 @@
 
       <p class="text-bold">
         <label class="input-file">
-              <input class="visually-hidden" type="file" />
-              <span>Скачать</span>
-        </label>PIN для скачивания: 24509116
+          <input class="visually-hidden" type="file" />
+          <span>Скачать</span> </label
+        >PIN для скачивания: 24509116
       </p>
     </div>
   </div>
@@ -175,6 +182,7 @@ import ArrowDownIcon from "@/assets/images/icons/iconsComp/ArrowDownIcon.vue";
 import CalendarIcon from "@/assets/images/icons/iconsComp/CalendarIcon.vue";
 import PathIcon from "@/assets/images/icons/iconsComp/PathIcon.vue";
 import Pagination from "@/components/elements/Pagination.vue";
+import { getFormatMonth } from "@/utilities/calendar";
 
 export default {
   components: {
@@ -232,12 +240,38 @@ export default {
       let dayWeek = days[Number(date.getDay())];
       return day + " " + month + ", " + dayWeek;
     },
+    isDateInRange({ day }) {
+      if (!this.selectedDate.start || !this.selectedDate.end) {
+        return false;
+      }
+      return (
+        day &&
+        day.date > this.selectedDate.start &&
+        day.date < this.selectedDate.end
+      );
+    },
+    isDateIsStart({ day }) {
+      if (day.date && this.selectedDate.start) {
+        const result =
+          this.selectedDate.start.getTime() === day.date.getTime();
+        return result
+      }
+      return false
+    },
+    isDateIsEnd({ day }) {
+      if (day.date && this.selectedDate.end) {
+        const result =
+          this.selectedDate.end.getTime() === day.date.getTime();
+        return result
+      }
+      return false
+    },
   },
 };
 </script>
 
 <style scoped>
-.order-page-table-mobile-wrap{
+.order-page-table-mobile-wrap {
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -259,21 +293,21 @@ export default {
   margin-top: -8px;
 }
 
-.order-page-table-mobile p.text-bold label{
+.order-page-table-mobile p.text-bold label {
   margin-bottom: 0;
 }
 
-.order-page-table-mobile ul{
+.order-page-table-mobile ul {
   margin-bottom: 0;
 }
 
-.order-page-table-mobile .input-file{
+.order-page-table-mobile .input-file {
   margin-top: 0;
 }
 
 .order-page-table-mobile span,
 .order-page-table-mobile p,
-.order-page-table-mobile li{
+.order-page-table-mobile li {
   font-family: Gilroy-Regular !important;
   font-weight: 400;
   font-size: 12px;
@@ -283,11 +317,11 @@ export default {
 
 .order-page-table-mobile .text-bold,
 .order-page-table-mobile .text-bold span,
-.order-page-table-mobile .text-bold li{
+.order-page-table-mobile .text-bold li {
   font-size: 14px;
 }
 
-.order-page-table-mobile .top{
+.order-page-table-mobile .top {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -487,7 +521,6 @@ export default {
 
 
 <style scoped>
-
 .dp-day-custom {
   display: flex;
   flex-direction: column;
@@ -507,21 +540,43 @@ export default {
 }
 
 .vc-highlight {
-  height: 32px !important;
+  height: 40px !important;
 }
 
 .vc-highlights + .dp-day-custom {
   border-radius: 4px;
-  /* height: 40px;
-  width: 40px; */
-  /* background-color: var(--primary_bg); */
-  color: #fff;
 }
 
-.dp-day-custom:hover span,
+.dp-day-custom .dp-day-custom__day {
+  color: var(--grey-79) !important;
+}
+
+.vc-highlights + .day-is-range {
+  background-color: var(--light_gray) !important;
+}
+
+.vc-highlights + .day-is-range span {
+  color: var(--primary_bg) !important;
+}
+
+.dp-day-custom:hover .dp-day-custom__day,
 .vc-highlights + .dp-day-custom:hover span,
-.vc-highlights + .dp-day-custom span {
+/* .vc-highlights + .dp-day-custom span, */
+.vc-highlights + .day-is-range-start span,
+.vc-highlights + .day-is-range-end span {
   color: #fff !important;
+}
+
+.vc-highlights + .day-is-range-start {
+  border-radius: 7px 0 0 7px !important;
+  overflow: hidden;
+  background-color: var(--primary_bg);
+}
+
+.vc-highlights + .day-is-range-end {
+  border-radius: 0 7px 7px 0 !important;
+  overflow: hidden;
+  background-color: var(--primary_bg);
 }
 
 .dp-day-custom__day {
@@ -540,5 +595,4 @@ export default {
 .dp-day-custom__price.dp-day-custom__price--green {
   color: #7dd2ea;
 }
-
 </style>

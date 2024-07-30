@@ -195,12 +195,16 @@ export default {
   height: 40px;
   width: 121px;
   padding-inline: 16px;
+  padding-right: 37px;
   border: var(--border-grey);
   border-radius: var(--bdrs-7);
   font-family: Gilroy-Regular !important;
   font-weight: 400;
   font-size: 14px;
   line-height: 100%;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
   color: var(--text_color);
 }
 

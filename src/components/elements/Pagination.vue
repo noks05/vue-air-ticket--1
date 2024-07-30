@@ -87,7 +87,6 @@ export default {
         (0 < this.total % this.perPage ? 1 : 0);
 
       if (!this.tablet) {
-        console.log(this.tablet);
         for (let i = -1; i < 2 && this.pageCount >= 3; i++) {
           if (1 < this.currentPage && this.currentPage < this.pageCount)
             pageNumbers.push(this.currentPage + i);

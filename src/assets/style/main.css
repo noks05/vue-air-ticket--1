@@ -416,14 +416,17 @@
 .vc-title span::first-letter {
   text-transform: uppercase !important;
 }
+
 .vc-blue {
-  --vc-accent-200: #6e1595a3 !important;
-  --vc-accent-600: #6e1595 !important;
+  --vc-accent-200: var(--light_gray) !important;
+  --vc-accent-600: var(--primary_bg) !important;
 }
+
 .vc-highlight-bg-outline, .vc-highlight-bg-none{
   border-radius: 4px !important;
   border: none !important;
-  background-color: #6e1595 !important;
+  color: #fff;
+  background-color: var(--primary_bg) !important;
 }
 
 
