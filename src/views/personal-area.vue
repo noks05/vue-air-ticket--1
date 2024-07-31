@@ -139,8 +139,7 @@ export default {
 
 .breadcrumb-nav_mt.breadcrumb-nav_mb {
   margin-bottom: 16px;
-  border-bottom: none;
-  border-top: 0.2rem solid rgba(235, 235, 235, 0.55);
+  border-bottom: 0.1rem solid rgba(235, 235, 235, 0.55);
 }
 
 .p-area-container {

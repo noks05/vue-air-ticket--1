@@ -8,6 +8,8 @@
         @input.stop="(e) => activeCancel(e)"
         @click.stop="(e) => clearInputValue(e)"
       >
+      <h3 class="air-ticket-h3">Контактные данные</h3>
+
         <label class="order-input-container order-input-container-required">
           <span class="order-input-label"> ФИО </span>
           <input
@@ -48,7 +50,7 @@
         </label>
 
         <div class="certificate-delivery">
-          <div class="certificate-delivery-title">Способ доставки</div>
+          <div class="certificate-delivery-title air-ticket-h3">Способ доставки</div>
 
           <div class="certificate-delivery-content">
             <span class="certificate-marker delivery-provider-replace"></span>
@@ -131,10 +133,6 @@ export default {
 </script>
 
 <style>
-.certificate-wrap h2{
-  margin-bottom: 16px;
-}
-
 .certificate-wrap .order-amount{
   margin-top: 0;
   margin-bottom: 24px;

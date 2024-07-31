@@ -56,8 +56,8 @@
         <DataPassenger class="air-ticket-block" title="Младенец" />
 
         <div class="air-ticket-amount">
-          <span class="air-ticket-amount-text"> Сумма заказа: </span>
-          <span class="air-ticket-amount-money"> 475,66 бонусов </span>
+          <span class="order-price"> Сумма заказа: </span>
+          <span class="order-money"> 475,66 бонусов </span>
         </div>
 
         <p class="certificate-policy order-price">
@@ -116,22 +116,8 @@ export default {
 </script>
 
 <style scoped>
-.air-ticket-h3 {
-  margin-bottom: 16px;
-  font-size: 20px;
-  font-family: Gilroy-Medium !important;
-  font-weight: 500;
-  line-height: 100%;
-  letter-spacing: 0;
-  color: #000;
-}
-
-.air-ticket-h3_mt {
-  margin-top: 40px;
-}
-
 .air-ticket-input_h {
-  height: 68px;
+  /* height: 68px; */
 }
 
 .air-ticket-block {
@@ -191,8 +177,22 @@ export default {
 
 
 <style>
+.air-ticket-h3 {
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-family: Gilroy-Medium !important;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: #000;
+}
+
+.air-ticket-h3_mt {
+  margin-top: 40px;
+}
+
 .air-ticket h2 {
-  margin-bottom: 23px;
+  /* margin-bottom: 23px; */
 }
 
 .air-ticket .address-add-select {
@@ -201,5 +201,12 @@ export default {
 
 .air-ticket .address-add-select-wrap:not(:last-child) {
   margin-bottom: 8px;
+}
+
+@media (max-width: 576px) {
+
+  .air-ticket-h3 {
+    font-size: 18px;
+  }
 }
 </style>

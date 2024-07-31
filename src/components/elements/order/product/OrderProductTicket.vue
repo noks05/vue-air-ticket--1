@@ -8,6 +8,8 @@
         @input.stop="(e) => activeCancel(e)"
         @click.stop="(e) => clearInputValue(e)"
       >
+      <h3 class="air-ticket-h3">Контактные данные</h3>
+
         <label class="order-input-container order-input-container-required">
           <span class="order-input-label"> ФИО </span>
           <input
@@ -90,6 +92,10 @@
 
         <input class="order-index" type="text" name="indexCountry" value="Индекс" readonly>
 
+        <h3 class="air-ticket-h3">
+          Способ доставки
+        </h3>
+
         <MethodDelivery
           :products="[
             'Чайник Xiaomi Thermostatic Electric Kettle 2 CN, белый',
@@ -167,10 +173,6 @@ export default {
   width: 100%;
   max-width: 883px;
   margin-bottom: 60px;
-}
-
-.order-product-ticket .order-wrap {
-  margin-top: -26px;
 }
 
 .order-wrap h2 {
