@@ -88,7 +88,7 @@
           </button>
         </label>
 
-        <div class="order-index">Индекс</div>
+        <input class="order-index" type="text" name="indexCountry" value="Индекс" readonly>
 
         <MethodDelivery
           :products="[
@@ -295,10 +295,12 @@ export default {
 
 .order-index {
   height: 48px;
+  width: 100%;
   margin-top: -6px;
   margin-bottom: 41px;
   padding: 16px;
   border-radius: var(--bdrs-7);
+  border: none;
   font-size: 16px;
   font-family: Gilroy-SemiBold !important;
   font-weight: 600;

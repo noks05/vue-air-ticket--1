@@ -503,6 +503,43 @@ export default {
   z-index: 10000000;
 }
 
+.container-truncate::before{
+  content: '';
+  position: absolute;
+  top: 41px;
+  left: 53%;
+  transform: rotateZ(45deg) translateX(-50%);
+  display: none;
+  height: 30px;
+  width: 30px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 1px 13px -2px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 1px 13px -2px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 1px 13px -2px rgba(34, 60, 80, 0.2);
+  background-color: #fff;
+  opacity: 0;
+  animation: fadeIn 0.3s;
+  transition: opacity 0.3s;
+}
+
+.container-truncate--active::before{
+  display: block;
+  opacity: 1;
+}
+
+.list-truncate::after{
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: rotateZ(45deg) translateX(-50%);
+  height: 30px;
+  width: 30px;
+  border-radius: 7px;
+  background-color: #fff;
+  z-index: 1;
+}
+
 .list-truncate ul {
   margin: 0;
 }
