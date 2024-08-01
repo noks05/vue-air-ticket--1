@@ -148,7 +148,7 @@ export default {
 
 .p-area-title {
   margin: 0;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
   letter-spacing: 0;
   font-family: Gilroy-Medium !important;
   font-weight: 500;
@@ -216,7 +216,6 @@ export default {
   letter-spacing: 0;
   min-width: 172px;
   max-width: 172px;
-  margin-top: -2px;
 }
 
 .p-area-container .p-area-sidebar_add .p-area-widget {
