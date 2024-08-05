@@ -82,7 +82,7 @@
         "
       >
         <img src="../assets/newImg/icons/filter.svg" alt="" style="height: 16px;" />
-        <span style="text-transform: none !important; height: 16px;">        
+        <span style="text-transform: none !important; height: 16px;">
           Фильтры и сортировка</span
         >
       </div>
@@ -90,13 +90,13 @@
   </div>
 </template>
 <script>
-import PageHeader from "@/components/elements/PageHeader.vue";
+// import PageHeader from "@/components/elements/PageHeader.vue";
 import defaultT from "@/components/elements/flights/default.vue";
 import ticket from "@/components/elements/flights/ticet-v2.vue";
 import headerDef from "@/components/partial/headers/HeaderDefault.vue";
 export default {
   components: {
-    PageHeader,
+    // PageHeader,
     ticket,
     headerDef,
     defaultT,

@@ -311,7 +311,7 @@
 </template>
 
 <script>
-import PageHeader from '../../../components/elements/PageHeader.vue';
+// import PageHeader from '../../../components/elements/PageHeader.vue';
 
 export default {
     components: {

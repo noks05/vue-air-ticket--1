@@ -162,12 +162,12 @@
 </template>
 
 <script>
-import PageHeader from '../../../components/elements/PageHeader.vue';
+// import PageHeader from '../../../components/elements/PageHeader.vue';
 import ShopSidebarTwo from '../../../components/partial/shop/sidebar/ShopSidebarTwo.vue';
 
 export default {
     components: {
-        PageHeader,
+        // PageHeader,
         ShopSidebarTwo
     },
     methods: {

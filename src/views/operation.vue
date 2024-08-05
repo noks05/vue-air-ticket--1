@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import PageHeader from "@/components/elements/PageHeader.vue";
+// import PageHeader from "@/components/elements/PageHeader.vue";
 import HeaderDefaultVue from "@/components/partial/headers/HeaderDefault.vue";
 export default {
   data() {
@@ -94,7 +94,7 @@ export default {
     },
   },
   components: {
-    PageHeader,
+    // PageHeader,
     HeaderDefaultVue,
   },
 };

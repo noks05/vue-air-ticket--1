@@ -69,12 +69,12 @@
 
 <script>
 import EyeIcon from "@/assets/images/icons/iconsComp/EyeIcon.vue";
-import PageHeader from "../PageHeader.vue";
+// import PageHeader from "../PageHeader.vue";
 import EyeCloseIcon from "@/assets/images/icons/iconsComp/EyeCloseIcon.vue";
 
 export default {
   components: {
-    PageHeader,
+    // PageHeader,
     EyeIcon,
     EyeCloseIcon,
   },

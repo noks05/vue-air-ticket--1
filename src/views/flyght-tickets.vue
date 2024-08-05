@@ -551,7 +551,7 @@
   />
 </template>
 <script>
-import PageHeader from "@/components/elements/PageHeader.vue";
+// import PageHeader from "@/components/elements/PageHeader.vue";
 import ticket from "@/components/elements/flights/ticket-items.vue";
 import headerDef from "@/components/partial/headers/HeaderDefault.vue";
 import { getFormatMonth } from "@/utilities/calendar.js";
@@ -586,7 +586,7 @@ const japanImgPath = new URL(
 
 export default {
   components: {
-    PageHeader,
+    // PageHeader,
     ticket,
     headerDef,
     CalendarIcon,

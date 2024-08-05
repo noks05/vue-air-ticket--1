@@ -151,7 +151,7 @@
 import { mapGetters } from "vuex";
 import Sticky from "vue-sticky-directive";
 import headerCatalog from "@/components/partial/headers/headerCatalog.vue";
-import PageHeader from "@/components/elements/PageHeader.vue";
+// import PageHeader from "@/components/elements/PageHeader.vue";
 import ShopListOne from "@/components/partial/shop/list/ShopListOne.vue";
 import ShopSidebarOne from "@/components/partial/shop/sidebar/ShopSidebarOne.vue";
 import Pagination from "@/components/elements/Pagination.vue";
@@ -161,7 +161,7 @@ import { scrollToPageContent } from "@/utilities/common";
 
 export default {
   components: {
-    PageHeader,
+    // PageHeader,
     headerCatalog,
     ShopListOne,
     ShopSidebarOne,

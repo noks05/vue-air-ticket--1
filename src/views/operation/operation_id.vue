@@ -76,7 +76,7 @@
 
 <script>
 import HeaderDefault from "@/components/partial/headers/HeaderDefault.vue";
-import PageHeader from "@/components/elements/PageHeader.vue";
+// import PageHeader from "@/components/elements/PageHeader.vue";
 
 export default {
   data() {
@@ -261,7 +261,7 @@ export default {
     },
   },
   components: {
-    PageHeader,
+    // PageHeader,
     HeaderDefault
   },
 };

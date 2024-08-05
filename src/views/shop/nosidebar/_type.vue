@@ -71,7 +71,7 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import PageHeader from '../../../components/elements/PageHeader.vue';
+// import PageHeader from '../../../components/elements/PageHeader.vue';
 
 import ShopListThree from '../../../components/partial/shop/list/ShopListThree.vue';
 import ShopSidebarOne from '../../../components/partial/shop/sidebar/ShopSidebarOne.vue';
@@ -81,7 +81,7 @@ import { scrollToPageContent } from '../../../utilities/common.js';
 
 export default {
     components: {
-        PageHeader,
+        // PageHeader,
         ShopListThree,
         ShopSidebarOne
     },
