@@ -1059,7 +1059,7 @@ export default {
 }
 
 .breadcrumb-nav_mb {
-  margin-bottom: 0;
+  margin-bottom: 1.6rem;
 }
 
 .dropdown {
